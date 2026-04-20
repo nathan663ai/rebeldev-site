@@ -31,6 +31,7 @@
   --accent:         #f0c000;
   --accent-dim:     rgba(240,192,0,0.08);
   --accent-glow:    rgba(240,192,0,0.15);
+  --status-green:   #22c55e;
   --font-sans:      'Outfit', ui-sans-serif, system-ui, sans-serif;
   --font-mono:      'JetBrains Mono', ui-monospace, Menlo, monospace;
   --radius-sm:      6px;
@@ -193,6 +194,18 @@ body::before {
   color: #000000;
 }
 .nav-links .nav-cta svg { width: 14px; height: 14px; stroke: #000000; }
+.nav-links .nav-portal {
+  padding: 6px 12px;
+  border: 1px solid rgba(240,192,0,0.32);
+  border-radius: var(--radius-sm);
+  background: var(--accent-dim);
+  transition: border-color 0.2s var(--ease), background 0.2s var(--ease), color 0.2s var(--ease);
+}
+.nav-links .nav-portal:hover {
+  color: var(--text);
+  border-color: var(--accent);
+  background: rgba(240,192,0,0.14);
+}
 
 /* Hamburger */
 .burger {
@@ -258,8 +271,8 @@ body::before {
 .hero-tag-dot {
   width: 8px; height: 8px;
   border-radius: 50%;
-  background: var(--accent);
-  box-shadow: 0 0 10px var(--accent);
+  background: var(--status-green);
+  box-shadow: 0 0 10px var(--status-green);
   animation: pulse 2s ease-in-out infinite;
 }
 .hero h1 {
@@ -690,28 +703,28 @@ body::before {
 .step-extra strong { color: var(--accent); font-weight: 500; }
 
 /* ------------------------------------------------------------------
-   PROOF BAR
+   TRUST BAR
 ------------------------------------------------------------------ */
-.proof {
-  padding: 60px 0;
+.trust {
+  padding: 56px 0;
   border-top: 1px solid var(--border);
   border-bottom: 1px solid var(--border);
   background: var(--bg-elev);
   position: relative;
   z-index: 2;
 }
-.proof-grid {
+.trust-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 24px;
-  align-items: center;
+  align-items: start;
 }
-.proof-item {
+.trust-item {
   text-align: center;
-  padding: 10px 24px;
+  padding: 8px 20px;
   position: relative;
 }
-.proof-item:not(:last-child)::after {
+.trust-item:not(:last-child)::after {
   content: "";
   position: absolute;
   right: 0; top: 20%;
@@ -719,20 +732,31 @@ body::before {
   width: 1px;
   background: var(--border-strong);
 }
-.proof-num {
-  font-size: 56px;
-  font-weight: 900;
+.trust-icon {
+  width: 48px; height: 48px;
+  margin: 0 auto 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+  background: var(--accent-dim);
+  border: 1px solid var(--border-accent);
   color: var(--accent);
-  letter-spacing: -0.04em;
-  line-height: 1;
-  margin-bottom: 10px;
 }
-.proof-label {
+.trust-icon svg { width: 22px; height: 22px; }
+.trust-title {
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  margin-bottom: 6px;
+  color: var(--text);
+}
+.trust-sub {
   font-family: var(--font-mono);
-  font-size: 12px;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
+  font-size: 11px;
+  letter-spacing: 0.06em;
   color: var(--text-dim);
+  line-height: 1.55;
 }
 
 /* ------------------------------------------------------------------
@@ -1143,9 +1167,9 @@ body::before {
 }
 .footer-status .dot {
   width: 6px; height: 6px;
-  background: var(--accent);
+  background: var(--status-green);
   border-radius: 50%;
-  box-shadow: 0 0 8px var(--accent);
+  box-shadow: 0 0 8px var(--status-green);
 }
 
 /* ------------------------------------------------------------------
@@ -1240,8 +1264,8 @@ body::before {
   .who-grid { grid-template-columns: 1fr; }
   .services-grid { grid-template-columns: 1fr; }
   .process-grid { grid-template-columns: 1fr; }
-  .proof-grid { grid-template-columns: 1fr; gap: 32px; }
-  .proof-item:not(:last-child)::after { display: none; }
+  .trust-grid { grid-template-columns: 1fr; gap: 32px; }
+  .trust-item:not(:last-child)::after { display: none; }
   .field-row { grid-template-columns: 1fr; }
   .case-numbers { grid-template-columns: 1fr; }
   .footer-top { grid-template-columns: 1fr; }
@@ -1273,7 +1297,7 @@ body::before {
       <a href="#process">Process</a>
       <a href="#pricing">Pricing</a>
       <a href="#faq">FAQ</a>
-      <a href="portal.html">Customer Portal</a>
+      <a href="portal.html" class="nav-portal">Customer Portal</a>
       <a href="#contact" class="nav-cta">
         Get in touch
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
@@ -1572,21 +1596,30 @@ body::before {
   </div>
 </section>
 
-<!-- ==================== PROOF BAR ==================== -->
-<div class="proof">
+<!-- ==================== TRUST BAR ==================== -->
+<div class="trust">
   <div class="container">
-    <div class="proof-grid">
-      <div class="proof-item">
-        <div class="proof-num">1</div>
-        <div class="proof-label">Single point of contact</div>
+    <div class="trust-grid">
+      <div class="trust-item">
+        <div class="trust-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L4 6v6c0 5 3.5 9.5 8 10 4.5-0.5 8-5 8-10V6l-8-4z"/><path d="M9 12l2 2 4-4"/></svg>
+        </div>
+        <div class="trust-title">100% Confidential</div>
+        <div class="trust-sub">Every project and conversation. No exceptions.</div>
       </div>
-      <div class="proof-item">
-        <div class="proof-num">&pound;0</div>
-        <div class="proof-label">Discovery calls. Always free.</div>
+      <div class="trust-item">
+        <div class="trust-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><circle cx="7" cy="7" r="1" fill="currentColor"/></svg>
+        </div>
+        <div class="trust-title">Fixed Price</div>
+        <div class="trust-sub">No surprise invoices. Ever.</div>
       </div>
-      <div class="proof-item">
-        <div class="proof-num">100<span style="font-size: 32px;">%</span></div>
-        <div class="proof-label">Fixed price. No hourly billing.</div>
+      <div class="trust-item">
+        <div class="trust-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="15" r="4"/><path d="M10.85 12.15L19 4"/><path d="M18 5l2 2"/><path d="M15 8l2 2"/></svg>
+        </div>
+        <div class="trust-title">You Own Everything</div>
+        <div class="trust-sub">Full code ownership from day one.</div>
       </div>
     </div>
   </div>
