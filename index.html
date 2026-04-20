@@ -9,6 +9,21 @@
   gtag('js', new Date());
   gtag('config', 'AW-17822371244');
 </script>
+<!-- Google Ads conversion tracking -->
+<script>
+  function gtagSendEvent(url) {
+    var callback = function () {
+      if (typeof url === 'string') {
+        window.location = url;
+      }
+    };
+    gtag('event', 'ads_conversion_Contact_Us_1', {
+      'event_callback': callback,
+      'event_timeout': 2000,
+    });
+    return false;
+  }
+</script>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Rebel Dev | Custom software for businesses outgrowing spreadsheets</title>
@@ -2140,6 +2155,7 @@ if (contactForm) {
         headers: { 'Accept': 'application/json' }
       });
       if (!res.ok) throw new Error('Submission failed');
+      gtag('event', 'ads_conversion_Contact_Us_1');
       contactForm.reset();
       showSuccessModal();
     } catch (err) {
