@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Rebel Dev | Custom software for businesses that need it built properly</title>
+<title>Rebel Dev | Custom software for businesses outgrowing spreadsheets</title>
 <meta name="description" content="Rebel Dev builds custom software for small and mid-sized businesses. Process automation, dashboards, integrations, AI tools. Fixed price. Fast turnaround." />
 <meta name="theme-color" content="#0a0a0a" />
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png" />
@@ -801,14 +801,6 @@ body::before {
   border-radius: 4px;
   text-transform: uppercase;
 }
-.price-label {
-  font-family: var(--font-mono);
-  font-size: 11px;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--accent);
-  margin-bottom: 18px;
-}
 .price h3 {
   font-size: 24px;
   font-weight: 700;
@@ -1156,6 +1148,26 @@ body::before {
   color: var(--text-muted);
   letter-spacing: 0.05em;
 }
+.footer-legal {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.footer-legal a {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--text-muted);
+  letter-spacing: 0.05em;
+  transition: color 0.2s var(--ease);
+}
+.footer-legal a:hover { color: var(--accent); }
+.form-note a {
+  color: var(--text-dim);
+  border-bottom: 1px dashed var(--border-strong);
+  transition: color 0.2s var(--ease), border-color 0.2s var(--ease);
+}
+.form-note a:hover { color: var(--accent); border-bottom-color: var(--accent); }
 .footer-status {
   display: inline-flex;
   align-items: center;
@@ -1461,7 +1473,7 @@ body::before {
       <div class="section-label">02 / Services</div>
       <h2 class="section-title">What we build.</h2>
       <p class="section-sub">
-        Every business has different problems. We build the specific tool that solves yours.
+        We build internal tools that remove the manual work slowing your team down.
       </p>
     </div>
     <div class="services-grid reveal-stagger">
@@ -1495,7 +1507,7 @@ body::before {
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L14 8L20 8L15 12L17 18L12 14L7 18L9 12L4 8L10 8Z"/></svg>
         </div>
         <h3>AI-Powered Tools</h3>
-        <p>Practical AI built into your workflow. Summarise documents, classify incoming enquiries, draft reports, extract data. Useful, not hype.</p>
+        <p>If AI is genuinely useful for the job, we build it in. If it isn&rsquo;t, we don&rsquo;t force it.</p>
       </div>
 
       <div class="service">
@@ -1525,7 +1537,7 @@ body::before {
       <div class="section-label">03 / Proof</div>
       <h2 class="section-title">Instant answers, where there used to be spreadsheets.</h2>
       <p class="section-sub">
-        A real example of what happens when you pair deep business knowledge with the right tools, built around how a team actually works.
+        One example: a logistics team was pricing quotes by hand across four operator rate cards. We built one tool that pulled it together.
       </p>
     </div>
     <div class="case reveal">
@@ -1637,27 +1649,8 @@ body::before {
     </div>
     <div class="pricing-grid reveal-stagger">
 
-      <div class="price">
-        <div class="price-label">Option A</div>
-        <h3>One-Off Build</h3>
-        <p class="price-best">businesses with their own technical team</p>
-        <p class="price-sub">You want it built, you want to own it, and you&rsquo;ll handle the rest.</p>
-        <div class="price-amount"><span class="from">from</span>&pound;3,500</div>
-        <div class="price-period">Fixed one-time fee</div>
-        <div class="price-note">Final price quoted after discovery call based on your specific requirements.</div>
-        <ul class="price-features">
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg>Full custom build to spec</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg>You own the code, outright</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg>Deployment handover</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg>30 days of bug-fix support</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg>Documentation included</li>
-        </ul>
-        <a href="#contact" class="btn-ghost">Get a quote</a>
-      </div>
-
       <div class="price featured">
         <div class="price-badge">Most popular</div>
-        <div class="price-label">Option B</div>
         <h3>Build + Managed Hosting</h3>
         <p class="price-best">businesses that want it handled end to end</p>
         <p class="price-sub">Build it, host it, maintain it. You never think about servers.</p>
@@ -1679,10 +1672,26 @@ body::before {
       </div>
 
       <div class="price">
-        <div class="price-label">Option C</div>
+        <h3>One-Off Build</h3>
+        <p class="price-best">businesses with their own technical team</p>
+        <p class="price-sub">You want it built, you want to own it, and you&rsquo;ll handle the rest.</p>
+        <div class="price-amount"><span class="from">from</span>&pound;3,500</div>
+        <div class="price-period">Fixed one-time fee</div>
+        <div class="price-note">Final price quoted after discovery call based on your specific requirements.</div>
+        <ul class="price-features">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg>Full custom build to spec</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg>You own the code, outright</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg>Deployment handover</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg>30 days of bug-fix support</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg>Documentation included</li>
+        </ul>
+        <a href="#contact" class="btn-ghost">Get a quote</a>
+      </div>
+
+      <div class="price">
         <h3>Ongoing Partnership</h3>
         <p class="price-best">businesses that want an ongoing technical partner</p>
-        <p class="price-sub">We embed into your business. We identify where you&rsquo;re losing time, build the tools to fix it, and keep improving month to month. Like hiring a technical partner, without the salary.</p>
+        <p class="price-sub">We work with you month to month, spot the bottlenecks, and build fixes as they come up. You get ongoing technical help without hiring in-house.</p>
         <div class="price-amount"><span class="from">from</span>&pound;1,800</div>
         <div class="price-period">Per month, rolling</div>
         <div class="price-note">Final price quoted after discovery call based on your specific requirements.</div>
@@ -1873,7 +1882,7 @@ body::before {
         </button>
         <div class="form-note">
           We reply within one working day.<br />
-          Your details are kept private and never shared.
+          By submitting, you agree to our <a href="privacy.html">privacy policy</a>.
         </div>
         <div class="form-success" id="formSuccess">
           Thanks. Message received. We&rsquo;ll be back to you within one working day.
@@ -1893,7 +1902,7 @@ body::before {
           <img src="logo-icon1.png" alt="Rebel Dev" class="logo-icon" />
           REBEL <span class="logo-accent">DEV</span>
         </a>
-        <p>Custom software for businesses that need it built properly. A trading name of Rebel AI Ltd.</p>
+        <p>Custom software for businesses that have outgrown spreadsheets and workarounds. A trading name of Rebel AI Ltd.</p>
       </div>
       <div class="footer-col">
         <h5>Services</h5>
@@ -1924,7 +1933,10 @@ body::before {
       </div>
     </div>
     <div class="footer-bottom">
-      <p>&copy; 2026 Rebel AI Ltd (SC839626). All rights reserved.</p>
+      <div class="footer-legal">
+        <p>&copy; 2026 Rebel AI Ltd (SC839626). All rights reserved.</p>
+        <a href="privacy.html">Privacy Policy</a>
+      </div>
       <div class="footer-status">
         <span class="dot"></span>
         Currently accepting new projects
@@ -1935,7 +1947,7 @@ body::before {
 
 <!-- Mobile sticky CTA (< 768px only) -->
 <a href="#contact" class="mobile-cta" id="mobileCta">
-  Got a problem? Let&rsquo;s talk
+  Request a free discovery call
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
 </a>
 
