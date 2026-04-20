@@ -1082,18 +1082,73 @@ body::before {
   text-align: center;
   letter-spacing: 0.05em;
 }
-.form-success {
-  display: none;
-  padding: 20px;
+/* Success modal */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  background: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s var(--ease);
+}
+.modal-overlay.visible { opacity: 1; pointer-events: auto; }
+.modal-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 44px 40px 36px;
+  max-width: 460px;
+  width: 100%;
+  text-align: center;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5);
+  transform: translateY(12px) scale(0.98);
+  transition: transform 0.3s var(--ease);
+  position: relative;
+}
+.modal-overlay.visible .modal-card { transform: translateY(0) scale(1); }
+.modal-check {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
   background: var(--accent-dim);
   border: 1px solid var(--border-accent);
-  border-radius: 8px;
   color: var(--accent);
-  font-size: 14px;
-  text-align: center;
-  margin-top: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 22px;
 }
-.form-success.show { display: block; }
+.modal-check svg { width: 28px; height: 28px; }
+.modal-card h3 {
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin-bottom: 12px;
+  color: var(--text);
+}
+.modal-card p {
+  font-size: 15px;
+  color: var(--text-dim);
+  line-height: 1.65;
+  margin-bottom: 26px;
+}
+.modal-close {
+  background: var(--accent);
+  color: #000;
+  padding: 12px 28px;
+  border-radius: var(--radius-sm);
+  font-weight: 500;
+  font-size: 14px;
+  transition: transform 0.2s var(--ease), box-shadow 0.2s var(--ease);
+}
+.modal-close:hover { transform: translateY(-1px); box-shadow: 0 8px 24px var(--accent-glow); }
 
 /* ------------------------------------------------------------------
    FOOTER
@@ -1874,7 +1929,7 @@ body::before {
         </div>
         <div class="field">
           <label for="message">Tell us what you&rsquo;re trying to fix</label>
-          <textarea id="message" name="message" placeholder="A few sentences is plenty. What&rsquo;s the manual process, the broken system, or the idea you want built?" required></textarea>
+          <textarea id="message" name="message" placeholder="What does your team spend too long doing? What process drives you mad? Tell us and we&rsquo;ll figure out the fix together." required></textarea>
         </div>
         <button type="submit" class="form-submit">
           Send enquiry
@@ -1883,9 +1938,6 @@ body::before {
         <div class="form-note">
           We reply within one working day.<br />
           By submitting, you agree to our <a href="privacy.html">privacy policy</a>.
-        </div>
-        <div class="form-success" id="formSuccess">
-          Thanks. Message received. We&rsquo;ll be back to you within one working day.
         </div>
       </form>
 
@@ -1944,6 +1996,18 @@ body::before {
     </div>
   </div>
 </footer>
+
+<!-- Success modal (shown on contact form AJAX success) -->
+<div class="modal-overlay" id="successModal" role="dialog" aria-modal="true" aria-labelledby="successModalHeading" aria-hidden="true">
+  <div class="modal-card">
+    <div class="modal-check">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg>
+    </div>
+    <h3 id="successModalHeading">Thanks for getting in touch</h3>
+    <p>We&rsquo;ve received your message and will come back to you within one working day with an honest take on how we can help.</p>
+    <button type="button" class="modal-close" id="modalClose">Close</button>
+  </div>
+</div>
 
 <!-- Mobile sticky CTA (< 768px only) -->
 <a href="#contact" class="mobile-cta" id="mobileCta">Request a free discovery call</a>
@@ -2028,10 +2092,36 @@ if (mobileCta && heroSection) {
 }
 
 // ------------------------------------------------------------------
-// CONTACT FORM (AJAX submit to Formspree)
+// CONTACT FORM (AJAX submit to Formspree) + success modal
 // ------------------------------------------------------------------
 const contactForm = document.getElementById('contactForm');
-const formSuccess = document.getElementById('formSuccess');
+const successModal = document.getElementById('successModal');
+const modalCloseBtn = document.getElementById('modalClose');
+
+function showSuccessModal() {
+  if (!successModal) return;
+  successModal.classList.add('visible');
+  successModal.setAttribute('aria-hidden', 'false');
+  document.body.style.overflow = 'hidden';
+  if (modalCloseBtn) modalCloseBtn.focus();
+}
+function hideSuccessModal() {
+  if (!successModal) return;
+  successModal.classList.remove('visible');
+  successModal.setAttribute('aria-hidden', 'true');
+  document.body.style.overflow = '';
+}
+
+if (modalCloseBtn) modalCloseBtn.addEventListener('click', hideSuccessModal);
+if (successModal) {
+  successModal.addEventListener('click', (e) => {
+    if (e.target === successModal) hideSuccessModal();
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && successModal.classList.contains('visible')) hideSuccessModal();
+  });
+}
+
 if (contactForm) {
   contactForm.addEventListener('submit', async (e) => {
     e.preventDefault();
@@ -2042,8 +2132,8 @@ if (contactForm) {
         headers: { 'Accept': 'application/json' }
       });
       if (!res.ok) throw new Error('Submission failed');
-      formSuccess.classList.add('show');
       contactForm.reset();
+      showSuccessModal();
     } catch (err) {
       alert('Something went wrong. Please email contact@rebeldev.co.uk directly.');
     }
