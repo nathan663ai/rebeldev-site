@@ -2027,6 +2027,29 @@ if (mobileCta && heroSection) {
   }, { passive: true });
 }
 
+// ------------------------------------------------------------------
+// CONTACT FORM (AJAX submit to Formspree)
+// ------------------------------------------------------------------
+const contactForm = document.getElementById('contactForm');
+const formSuccess = document.getElementById('formSuccess');
+if (contactForm) {
+  contactForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    try {
+      const res = await fetch(contactForm.action, {
+        method: 'POST',
+        body: new FormData(contactForm),
+        headers: { 'Accept': 'application/json' }
+      });
+      if (!res.ok) throw new Error('Submission failed');
+      formSuccess.classList.add('show');
+      contactForm.reset();
+    } catch (err) {
+      alert('Something went wrong. Please email hello@rebeldev.co.uk directly.');
+    }
+  });
+}
+
 </script>
 </body>
 </html>
