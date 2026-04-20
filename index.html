@@ -475,6 +475,7 @@ body::before {
   color: var(--text-dim);
   line-height: 1.55;
 }
+.who-card.full-width { grid-column: 1 / -1; }
 
 /* ------------------------------------------------------------------
    INTERLUDE
@@ -675,6 +676,15 @@ body::before {
   color: var(--text-dim);
   line-height: 1.55;
 }
+.step-extra {
+  margin-top: 14px;
+  padding-top: 14px;
+  border-top: 1px dashed var(--border-strong);
+  font-size: 13px;
+  color: var(--text-dim);
+  line-height: 1.55;
+}
+.step-extra strong { color: var(--accent); font-weight: 500; }
 
 /* ------------------------------------------------------------------
    PROOF BAR
@@ -821,7 +831,14 @@ body::before {
 .price-period {
   font-size: 13px;
   color: var(--text-muted);
-  margin-bottom: 28px;
+  margin-bottom: 8px;
+}
+.price-note {
+  font-size: 12px;
+  color: var(--text-muted);
+  line-height: 1.5;
+  margin-bottom: 24px;
+  opacity: 0.85;
 }
 .price-features {
   list-style: none;
@@ -1390,6 +1407,15 @@ body::before {
           <p>You&rsquo;ve scoped it in your head. You don&rsquo;t need a 6-month consulting engagement. You need someone to build it.</p>
         </div>
       </div>
+      <div class="who-card full-width">
+        <div class="who-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        </div>
+        <div>
+          <h4>You want someone who actually shows up</h4>
+          <p>We&rsquo;re not hiding behind a screen. We offer site visits across the UK to understand your operations in person. No other freelancer or agency at this price point does that.</p>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -1522,6 +1548,7 @@ body::before {
         <div class="step-num">STEP 01</div>
         <h4>Discovery Call</h4>
         <p>We dig into how your business actually runs day to day. The better we understand the problem, the better the solution. Free 30 minutes. No obligation.</p>
+        <p class="step-extra"><strong>We can come to you.</strong> Site visits available across the UK so we can see how your team works first-hand.</p>
       </div>
       <div class="step">
         <div class="step-num">STEP 02</div>
@@ -1569,7 +1596,7 @@ body::before {
       <div class="section-label">05 / Pricing</div>
       <h2 class="section-title">Three ways to work together.</h2>
       <p class="section-sub">
-        Every project is quoted fixed-price after the discovery call. These are starting ranges so you know what to expect.
+        Every project is different, so every quote is different. These are starting points to give you a ballpark. Your actual price depends on what you need built.
       </p>
     </div>
     <div class="pricing-grid reveal-stagger">
@@ -1581,6 +1608,7 @@ body::before {
         <p class="price-sub">You want it built, you want to own it, and you&rsquo;ll handle the rest.</p>
         <div class="price-amount"><span class="from">from</span>&pound;3,500</div>
         <div class="price-period">Fixed one-time fee</div>
+        <div class="price-note">Final price quoted after discovery call based on your specific requirements.</div>
         <ul class="price-features">
           <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg>Full custom build to spec</li>
           <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg>You own the code, outright</li>
@@ -1599,6 +1627,7 @@ body::before {
         <p class="price-sub">Build it, host it, maintain it. You never think about servers.</p>
         <div class="price-amount"><span class="from">from</span>&pound;2,500</div>
         <div class="price-period">+ from &pound;199/mo managed hosting</div>
+        <div class="price-note">Final price quoted after discovery call based on your specific requirements.</div>
         <ul class="price-features">
           <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg>Everything in One-Off Build</li>
           <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg>Fully managed hosting &amp; database</li>
@@ -1615,17 +1644,19 @@ body::before {
 
       <div class="price">
         <div class="price-label">Option C</div>
-        <h3>Retainer</h3>
-        <p class="price-best">ongoing development after your first project</p>
-        <p class="price-sub">Need regular improvements after launch? We keep building, maintaining, and improving month to month.</p>
+        <h3>Ongoing Partnership</h3>
+        <p class="price-best">businesses that want an ongoing technical partner</p>
+        <p class="price-sub">We embed into your business. We identify where you&rsquo;re losing time, build the tools to fix it, and keep improving month to month. Like hiring a technical partner, without the salary.</p>
         <div class="price-amount"><span class="from">from</span>&pound;1,800</div>
         <div class="price-period">Per month, rolling</div>
+        <div class="price-note">Final price quoted after discovery call based on your specific requirements.</div>
         <ul class="price-features">
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg>Dedicated dev hours each month</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg>Build new tools as you need them</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg>Evolve existing software over time</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg>Hosting &amp; maintenance included</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg>Monthly roadmap reviews</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg>Process audit and improvement roadmap</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg>Build new tools as opportunities arise</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg>Maintain and improve existing systems</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg>Hosting and infrastructure included</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg>Regular check-ins and progress reviews</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg>No recruitment costs, no long-term contract</li>
         </ul>
         <a href="#contact" class="btn-ghost">Get a quote</a>
       </div>
@@ -1650,7 +1681,7 @@ body::before {
           </span>
         </button>
         <div class="faq-a"><div class="faq-a-inner">
-          Most small tools take one to three weeks. Larger builds (full custom platforms, multi-system integrations) sit in the four to eight week range. We quote a delivery date with the fixed price, and if we&rsquo;re going to miss it, you hear from us well before it matters.
+          It depends on what you need. A simple internal tool will take less time than a multi-system platform with integrations. We&rsquo;ll give you a realistic timeline as part of the fixed-price quote after the discovery call. We&rsquo;d rather be honest upfront than set expectations we can&rsquo;t meet.
         </div></div>
       </div>
       <div class="faq-item">
