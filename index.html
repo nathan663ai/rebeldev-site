@@ -1844,7 +1844,7 @@ body::before {
         </div>
       </div>
 
-      <form class="contact-form reveal" id="contactForm" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+      <form class="contact-form reveal" id="contactForm" action="https://formspree.io/f/mojylrdq" method="POST">
         <div class="field-row">
           <div class="field">
             <label for="name">Name</label>
@@ -2027,20 +2027,6 @@ if (mobileCta && heroSection) {
   }, { passive: true });
 }
 
-// ------------------------------------------------------------------
-// CONTACT FORM (placeholder submit handler until Formspree is wired)
-// ------------------------------------------------------------------
-const form = document.getElementById('contactForm');
-const successEl = document.getElementById('formSuccess');
-form.addEventListener('submit', (e) => {
-  // If the form action still contains YOUR_FORM_ID, show success locally.
-  if (form.action.includes('YOUR_FORM_ID')) {
-    e.preventDefault();
-    successEl.classList.add('show');
-    form.reset();
-    setTimeout(() => successEl.classList.remove('show'), 6000);
-  }
-});
 </script>
 </body>
 </html>
