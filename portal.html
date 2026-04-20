@@ -226,31 +226,6 @@ body::after {
   border-color: var(--accent);
   background: var(--bg);
 }
-.field-inline {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 24px;
-  font-size: 13px;
-  color: var(--text-dim);
-}
-.remember {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  cursor: pointer;
-  user-select: none;
-}
-.remember input {
-  width: 16px; height: 16px;
-  accent-color: var(--accent);
-}
-.forgot {
-  color: var(--accent);
-  transition: opacity 0.2s var(--ease);
-}
-.forgot:hover { opacity: 0.8; }
-
 .btn {
   width: 100%;
   padding: 16px;
@@ -270,30 +245,6 @@ body::after {
   box-shadow: 0 10px 30px var(--accent-glow);
 }
 .btn svg { width: 16px; height: 16px; }
-
-.coming-soon {
-  margin-top: 24px;
-  padding: 16px;
-  background: var(--bg-elev);
-  border: 1px dashed var(--border-strong);
-  border-radius: 8px;
-  font-family: var(--font-mono);
-  font-size: 11px;
-  color: var(--text-muted);
-  letter-spacing: 0.05em;
-  text-align: center;
-  line-height: 1.6;
-}
-.coming-soon .dot {
-  display: inline-block;
-  width: 6px; height: 6px;
-  background: var(--accent);
-  border-radius: 50%;
-  margin-right: 6px;
-  animation: pulse 1.8s ease-in-out infinite;
-  vertical-align: middle;
-}
-.coming-soon a { color: var(--accent); }
 
 .bottom-note {
   margin-top: 28px;
@@ -353,27 +304,15 @@ body::after {
           <label for="password">Password</label>
           <input type="password" id="password" name="password" placeholder="&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;" autocomplete="current-password" />
         </div>
-        <div class="field-inline">
-          <label class="remember">
-            <input type="checkbox" />
-            Remember me
-          </label>
-          <a href="#" class="forgot">Forgot password?</a>
-        </div>
         <button type="submit" class="btn">
           Sign in
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </button>
-
-        <div class="coming-soon">
-          <span class="dot"></span>
-          Portal launching soon &nbsp;/&nbsp; Need access now? <a href="index.html#contact">Contact us</a>
-        </div>
       </form>
     </div>
 
     <div class="bottom-note">
-      Not a client yet? <a href="index.html#contact">Book a discovery call &rarr;</a>
+      Not a client yet? <a href="index.html#contact">Request a discovery call &rarr;</a>
     </div>
   </div>
 </main>

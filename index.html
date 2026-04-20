@@ -323,62 +323,67 @@ body::before {
 }
 .btn-ghost:hover { border-color: var(--accent); background: var(--accent-dim); }
 
-/* Hero code / note card */
-.code-card {
+/* Hero journey card */
+.journey-card {
   background: var(--bg-card);
   border: 1px solid var(--border);
   border-radius: var(--radius-lg);
-  overflow: hidden;
+  padding: 32px;
   box-shadow: 0 30px 80px rgba(0,0,0,0.5);
+  position: relative;
 }
-.code-card-header {
-  padding: 14px 18px;
-  background: var(--bg-elev);
-  border-bottom: 1px solid var(--border);
-  font-family: var(--font-mono);
-  font-size: 11px;
-  letter-spacing: 0.06em;
-  color: var(--text-muted);
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-.code-card-header .file-tag {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-}
-.code-card-header .file-tag::before {
+.journey-card::before {
   content: "";
-  width: 6px; height: 6px;
-  background: var(--accent);
-  border-radius: 2px;
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 1px;
+  background: linear-gradient(90deg, transparent, var(--accent), transparent);
+  opacity: 0.4;
 }
-.code-card-body {
-  padding: 24px 20px;
-  font-family: var(--font-mono);
-  font-size: 13px;
-  line-height: 1.85;
-  color: var(--text-dim);
-}
-.code-line {
+.journey-step {
   display: flex;
-  gap: 18px;
+  gap: 20px;
   align-items: flex-start;
-  min-height: 1.85em;
+  padding: 16px 0;
+  position: relative;
 }
-.code-num {
-  flex: 0 0 26px;
-  color: var(--text-muted);
-  font-size: 11px;
-  opacity: 0.45;
-  text-align: right;
-  user-select: none;
-  padding-top: 2px;
+.journey-step:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  left: 21px;
+  top: 60px;
+  bottom: -4px;
+  width: 1px;
+  background: linear-gradient(to bottom, var(--border-accent), var(--border) 60%, transparent);
 }
-.code-heading { color: var(--text); font-weight: 600; }
-.code-mark { color: var(--accent); margin-right: 4px; }
-.code-comment { color: var(--text-muted); font-style: italic; opacity: 0.7; }
+.journey-marker {
+  flex-shrink: 0;
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  background: var(--accent-dim);
+  border: 1px solid var(--border-accent);
+  color: var(--accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 1;
+}
+.journey-marker svg { width: 20px; height: 20px; }
+.journey-body { padding-top: 4px; }
+.journey-title {
+  font-size: 17px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: var(--text);
+  margin-bottom: 4px;
+}
+.journey-sub {
+  font-size: 14px;
+  color: var(--text-dim);
+  line-height: 1.5;
+}
 
 /* ------------------------------------------------------------------
    MARQUEE
@@ -767,8 +772,26 @@ body::before {
 .price h3 {
   font-size: 24px;
   font-weight: 700;
-  margin-bottom: 8px;
+  margin-bottom: 10px;
   letter-spacing: -0.015em;
+}
+.price-best {
+  font-size: 13px;
+  color: var(--text-dim);
+  line-height: 1.45;
+  margin-bottom: 16px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--border);
+}
+.price-best::before {
+  content: "Best for";
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  color: var(--accent);
+  text-transform: uppercase;
+  margin-right: 10px;
+  font-weight: 600;
 }
 .price-sub {
   font-size: 14px;
@@ -881,6 +904,29 @@ body::before {
 /* ------------------------------------------------------------------
    CONTACT
 ------------------------------------------------------------------ */
+.founder-note {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--accent);
+  border-radius: var(--radius-md);
+  padding: 26px 30px;
+  margin-bottom: 56px;
+  max-width: 780px;
+}
+.founder-label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 10px;
+}
+.founder-note p {
+  font-size: 16px;
+  color: var(--text);
+  line-height: 1.6;
+  font-weight: 400;
+}
 .contact-grid {
   display: grid;
   grid-template-columns: 1fr 1.3fr;
@@ -1080,6 +1126,35 @@ body::before {
 }
 
 /* ------------------------------------------------------------------
+   MOBILE STICKY CTA
+------------------------------------------------------------------ */
+.mobile-cta {
+  position: fixed;
+  left: 0; right: 0; bottom: 0;
+  z-index: 90;
+  display: none;
+  padding: 14px 20px;
+  background: var(--accent);
+  color: #000;
+  font-size: 14px;
+  font-weight: 500;
+  text-align: center;
+  transform: translateY(100%);
+  transition: transform 0.35s var(--ease);
+  box-shadow: 0 -8px 24px rgba(0,0,0,0.35);
+  letter-spacing: -0.005em;
+}
+.mobile-cta.visible { transform: translateY(0); }
+.mobile-cta svg {
+  width: 14px; height: 14px;
+  vertical-align: -2px;
+  margin-left: 8px;
+}
+@media (max-width: 768px) {
+  .mobile-cta { display: block; }
+}
+
+/* ------------------------------------------------------------------
    SCROLL REVEAL
 ------------------------------------------------------------------ */
 .reveal {
@@ -1209,7 +1284,7 @@ body::before {
         </p>
         <div class="hero-ctas">
           <a href="#contact" class="btn-primary">
-            Book a free discovery call
+            Request a free discovery call
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
           </a>
           <a href="#services" class="btn-ghost">
@@ -1218,23 +1293,33 @@ body::before {
         </div>
       </div>
       <div class="hero-visual reveal">
-        <div class="code-card">
-          <div class="code-card-header">
-            <span class="file-tag">how-we-work.md</span>
+        <div class="journey-card">
+          <div class="journey-step">
+            <div class="journey-marker">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+            </div>
+            <div class="journey-body">
+              <div class="journey-title">You tell us the problem</div>
+              <div class="journey-sub">What&rsquo;s slowing your team down, what&rsquo;s broken, or what you wish existed.</div>
+            </div>
           </div>
-          <div class="code-card-body">
-            <div class="code-line"><span class="code-num">01</span><span class="code-heading"># How we work</span></div>
-            <div class="code-line"><span class="code-num">02</span><span></span></div>
-            <div class="code-line"><span class="code-num">03</span><span>We start by learning your</span></div>
-            <div class="code-line"><span class="code-num">04</span><span>business, not your tech stack.</span></div>
-            <div class="code-line"><span class="code-num">05</span><span></span></div>
-            <div class="code-line"><span class="code-num">06</span><span><span class="code-mark">&gt;</span>Then we build the one thing</span></div>
-            <div class="code-line"><span class="code-num">07</span><span>&nbsp;&nbsp;that saves the most time first.</span></div>
-            <div class="code-line"><span class="code-num">08</span><span></span></div>
-            <div class="code-line"><span class="code-num">09</span><span><span class="code-mark">&gt;</span>Everything else comes after.</span></div>
-            <div class="code-line"><span class="code-num">10</span><span></span></div>
-            <div class="code-line"><span class="code-num">11</span><span class="code-comment">// Fixed price.</span></div>
-            <div class="code-line"><span class="code-num">12</span><span class="code-comment">// No bloat.</span></div>
+          <div class="journey-step">
+            <div class="journey-marker">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+            </div>
+            <div class="journey-body">
+              <div class="journey-title">We build the fix</div>
+              <div class="journey-sub">Fixed price, fast turnaround, built around how you actually work.</div>
+            </div>
+          </div>
+          <div class="journey-step">
+            <div class="journey-marker">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+            </div>
+            <div class="journey-body">
+              <div class="journey-title">You get your time back</div>
+              <div class="journey-sub">Spreadsheets retired, manual work automated, focus back where it should be.</div>
+            </div>
           </div>
         </div>
       </div>
@@ -1321,7 +1406,7 @@ body::before {
       <div class="section-label">02 / Services</div>
       <h2 class="section-title">What we build.</h2>
       <p class="section-sub">
-        Custom software that fits how your business actually runs. If it can be built, we probably build it.
+        Every business has different problems. We build the specific tool that solves yours.
       </p>
     </div>
     <div class="services-grid reveal-stagger">
@@ -1393,13 +1478,13 @@ body::before {
         <div class="case-meta">Case Study &nbsp;/&nbsp; UK Logistics Group</div>
         <h3>A pricing tool built around how they actually sell.</h3>
         <p>
-          A UK logistics group needed to compare B2B rate cards across multiple operators. Their sales team was buried in spreadsheets, reconciling pricing by hand before every quote.
+          A UK logistics group needed a better way to price. Three staff members were spending hours each week manually cross-referencing rate cards across four different operators before every quote.
         </p>
         <p>
-          We spent the time upfront to understand how they actually sell, not just what they wanted built. Then we shipped a tool that pulls every rate card into one place and gives them instant answers.
+          We sat with their sales team, learned how they actually quoted, and built the tool around that workflow. It pulls every rate card into one place and gives them instant answers.
         </p>
         <p style="color: var(--text); font-weight: 500; margin-top: 24px;">
-          It&rsquo;s been running every day since. The spreadsheets are gone.
+          The spreadsheets are gone. The team quotes in minutes instead of hours, with fewer errors.
         </p>
       </div>
       <div class="case-numbers">
@@ -1490,6 +1575,7 @@ body::before {
       <div class="price">
         <div class="price-label">Option A</div>
         <h3>One-Off Build</h3>
+        <p class="price-best">businesses with their own technical team</p>
         <p class="price-sub">You want it built, you want to own it, and you&rsquo;ll handle the rest.</p>
         <div class="price-amount"><span class="from">from</span>&pound;3,500</div>
         <div class="price-period">Fixed one-time fee</div>
@@ -1507,6 +1593,7 @@ body::before {
         <div class="price-badge">Most popular</div>
         <div class="price-label">Option B</div>
         <h3>Build + Managed Hosting</h3>
+        <p class="price-best">businesses that want it handled end to end</p>
         <p class="price-sub">Build it, host it, maintain it. You never think about servers.</p>
         <div class="price-amount"><span class="from">from</span>&pound;3,500</div>
         <div class="price-period">+ from &pound;199/mo managed hosting</div>
@@ -1527,7 +1614,8 @@ body::before {
       <div class="price">
         <div class="price-label">Option C</div>
         <h3>Retainer</h3>
-        <p class="price-sub">Ongoing development work. We act like an embedded product team.</p>
+        <p class="price-best">ongoing development after your first project</p>
+        <p class="price-sub">Need regular improvements after launch? We keep building, maintaining, and improving month to month.</p>
         <div class="price-amount"><span class="from">from</span>&pound;1,800</div>
         <div class="price-period">Per month, rolling</div>
         <ul class="price-features">
@@ -1604,7 +1692,7 @@ body::before {
           </span>
         </button>
         <div class="faq-a"><div class="faq-a-inner">
-          Agencies quote high because they have to. Freelancers are cheap but hit and miss on reliability. We sit in the middle: agency-quality delivery, freelancer-level pricing, with AI-assisted development that lets us work faster than either. One point of contact. No account managers.
+          You get one experienced point of contact, a fixed scope, and a fixed price. Less overhead than an agency, more structure than a typical freelancer, and direct communication from discovery through to support.
         </div></div>
       </div>
       <div class="faq-item">
@@ -1626,7 +1714,7 @@ body::before {
           </span>
         </button>
         <div class="faq-a"><div class="faq-a-inner">
-          Modern, boring, reliable stack. Typically TypeScript, React or Next.js on the frontend, Node or Python on the backend, Postgres for data, hosted on proven infrastructure. We pick tech based on what your tool needs, not what&rsquo;s trendy.
+          We use standard, well-supported technology so you&rsquo;re not locked in and another developer can take over if needed. We pick tools based on what your project needs, not what&rsquo;s trendy.
         </div></div>
       </div>
     </div>
@@ -1636,12 +1724,18 @@ body::before {
 <!-- ==================== CONTACT ==================== -->
 <section class="section" id="contact">
   <div class="container">
+    <div class="founder-note reveal">
+      <div class="founder-label">A note from the founder</div>
+      <p>
+        Rebel Dev is run by Nathan. I handle every project personally, from the first conversation through to delivery and support. One point of contact. No account managers. No handoffs.
+      </p>
+    </div>
     <div class="contact-grid">
       <div class="contact-info reveal">
         <div class="section-label">07 / Get in touch</div>
-        <h2>Let&rsquo;s see if we&rsquo;re a fit.</h2>
+        <h2>Tell us what&rsquo;s not working.</h2>
         <p>
-          Tell us a bit about what you&rsquo;re trying to fix. We&rsquo;ll come back within one working day and suggest a time for a free 30-minute discovery call.
+          Describe the problem. We&rsquo;ll come back within one working day with an honest take on whether we can help and what it would look like.
         </p>
         <a href="mailto:hello@rebeldev.co.uk" class="contact-method">
           <div class="contact-method-icon">
@@ -1709,7 +1803,8 @@ body::before {
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </button>
         <div class="form-note">
-          We reply within one working day &nbsp;/&nbsp; Your info stays with us
+          We reply within one working day.<br />
+          Your details are kept private and never shared.
         </div>
         <div class="form-success" id="formSuccess">
           Thanks. Message received. We&rsquo;ll be back to you within one working day.
@@ -1755,12 +1850,12 @@ body::before {
         <h5>Get in touch</h5>
         <ul>
           <li><a href="mailto:hello@rebeldev.co.uk">hello@rebeldev.co.uk</a></li>
-          <li><a href="#contact">Book a discovery call</a></li>
+          <li><a href="#contact">Request a discovery call</a></li>
         </ul>
       </div>
     </div>
     <div class="footer-bottom">
-      <p>&copy; 2026 Rebel AI Ltd. All rights reserved.</p>
+      <p>&copy; 2026 Rebel AI Ltd (SC839626). All rights reserved.</p>
       <div class="footer-status">
         <span class="dot"></span>
         Currently accepting new projects
@@ -1768,6 +1863,12 @@ body::before {
     </div>
   </div>
 </footer>
+
+<!-- Mobile sticky CTA (< 768px only) -->
+<a href="#contact" class="mobile-cta" id="mobileCta">
+  Got a problem? Let&rsquo;s talk
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+</a>
 
 <script>
 // ------------------------------------------------------------------
@@ -1833,6 +1934,20 @@ document.querySelectorAll('.faq-item').forEach(item => {
     }
   });
 });
+
+// ------------------------------------------------------------------
+// MOBILE STICKY CTA (shows after scrolling past hero, hides near contact)
+// ------------------------------------------------------------------
+const mobileCta = document.getElementById('mobileCta');
+const heroSection = document.querySelector('.hero');
+const contactSection = document.getElementById('contact');
+if (mobileCta && heroSection) {
+  window.addEventListener('scroll', () => {
+    const pastHero = heroSection.getBoundingClientRect().bottom < 0;
+    const contactNear = contactSection && contactSection.getBoundingClientRect().top < window.innerHeight * 0.8;
+    mobileCta.classList.toggle('visible', pastHero && !contactNear);
+  }, { passive: true });
+}
 
 // ------------------------------------------------------------------
 // CONTACT FORM (placeholder submit handler until Formspree is wired)
