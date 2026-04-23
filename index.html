@@ -620,6 +620,53 @@ body::before {
   line-height: 1.55;
 }
 
+/* Story section */
+.story-list {
+  list-style: none;
+  max-width: 640px;
+  margin: 0 auto;
+}
+.story-step {
+  display: flex;
+  align-items: baseline;
+  gap: 24px;
+  padding: 22px 0;
+  border-bottom: 1px solid var(--border);
+}
+.story-step:last-child { border-bottom: none; }
+.story-num {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  color: var(--accent);
+  flex-shrink: 0;
+  min-width: 28px;
+}
+.story-text {
+  font-size: 17px;
+  color: var(--text);
+  line-height: 1.55;
+  letter-spacing: -0.005em;
+}
+.story-close {
+  max-width: 640px;
+  margin: 56px auto 0;
+  text-align: center;
+}
+.story-close-line {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 22px;
+}
+@media (max-width: 560px) {
+  .story-step { gap: 16px; padding: 18px 0; }
+  .story-text { font-size: 15.5px; }
+}
+
 /* ------------------------------------------------------------------
    INTERLUDE
 ------------------------------------------------------------------ */
@@ -1645,7 +1692,7 @@ body::before {
     </div>
 
     <div class="signs reveal">
-      <p class="signs-intro">If any of these sound familiar, we should talk.</p>
+      <p class="signs-intro">If even one of these sounds familiar, your business is ready for proper software.</p>
       <h3>Signs you&rsquo;ve outgrown your current setup</h3>
       <ul class="signs-list">
         <li>
@@ -1760,6 +1807,7 @@ body::before {
     <div class="section-head reveal">
       <div class="section-label">What we build</div>
       <h2 class="section-title">Real examples of the kind of software we deliver.</h2>
+      <p class="section-sub">Most of our projects fall into one of these categories.</p>
     </div>
     <div class="build-grid reveal-stagger">
       <div class="build-card">
@@ -1818,6 +1866,45 @@ body::before {
         <h3>Reporting platforms</h3>
         <p>Pull data from every system into reports that write themselves.</p>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== WHEN PEOPLE CONTACT US ==================== -->
+<section class="section" id="story">
+  <div class="container">
+    <div class="section-head reveal" style="text-align: center; margin-left: auto; margin-right: auto;">
+      <div class="section-label" style="justify-content: center;">When people contact us</div>
+      <h2 class="section-title">The same story comes up again and again.</h2>
+    </div>
+    <ol class="story-list reveal-stagger">
+      <li class="story-step">
+        <span class="story-num">01</span>
+        <span class="story-text">A spreadsheet has quietly become critical to the business.</span>
+      </li>
+      <li class="story-step">
+        <span class="story-num">02</span>
+        <span class="story-text">Nobody wants to touch it in case it breaks.</span>
+      </li>
+      <li class="story-step">
+        <span class="story-num">03</span>
+        <span class="story-text">Reports take hours, sometimes days, every week.</span>
+      </li>
+      <li class="story-step">
+        <span class="story-num">04</span>
+        <span class="story-text">Someone finally says: this should be software by now.</span>
+      </li>
+      <li class="story-step">
+        <span class="story-num">05</span>
+        <span class="story-text">That&rsquo;s usually when they call us.</span>
+      </li>
+    </ol>
+    <div class="story-close reveal">
+      <p class="story-close-line">If this is where you are, let&rsquo;s talk.</p>
+      <a href="#contact" class="btn-primary">
+        Request a free discovery call
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
     </div>
   </div>
 </section>
