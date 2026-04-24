@@ -433,6 +433,85 @@ body::before {
 }
 
 /* ------------------------------------------------------------------
+   FREE REVIEW
+------------------------------------------------------------------ */
+.review-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 56px 48px;
+  max-width: 860px;
+  margin: 0 auto;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.35);
+}
+.review-card::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 1px;
+  background: linear-gradient(90deg, transparent, var(--accent), transparent);
+  opacity: 0.5;
+}
+.review-card .section-head { margin-bottom: 24px; max-width: none; }
+.review-card .section-title { font-size: clamp(26px, 3.6vw, 38px); }
+.review-body {
+  font-size: 16px;
+  color: var(--text-dim);
+  line-height: 1.7;
+  max-width: 680px;
+  margin-bottom: 36px;
+}
+.review-points {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin-bottom: 36px;
+  padding: 28px 0;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+.review-point {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+}
+.review-point-icon {
+  flex-shrink: 0;
+  width: 36px; height: 36px;
+  border-radius: 8px;
+  background: var(--accent-dim);
+  border: 1px solid var(--border-accent);
+  color: var(--accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.review-point-icon svg { width: 16px; height: 16px; }
+.review-point-title {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text);
+  letter-spacing: -0.005em;
+  margin-bottom: 2px;
+}
+.review-point-sub {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--text-dim);
+  letter-spacing: 0.04em;
+  line-height: 1.5;
+}
+.review-cta { display: flex; justify-content: flex-start; }
+@media (max-width: 720px) {
+  .review-card { padding: 36px 24px; }
+  .review-points { grid-template-columns: 1fr; gap: 16px; padding: 22px 0; }
+  .review-cta { justify-content: stretch; }
+  .review-cta .btn-primary { width: 100%; justify-content: center; }
+}
+
+/* ------------------------------------------------------------------
    MARQUEE
 ------------------------------------------------------------------ */
 .marquee {
@@ -1619,6 +1698,55 @@ body::before {
   </div>
 </section>
 
+<!-- ==================== FREE REVIEW ==================== -->
+<section class="section" id="free-review" style="padding-top: 40px;">
+  <div class="container">
+    <div class="review-card reveal">
+      <div class="section-head">
+        <div class="section-label">Free review</div>
+        <h2 class="section-title">Not sure if your process needs software?</h2>
+        <p class="section-sub">Tell us about the spreadsheet or manual process you&rsquo;re stuck with.</p>
+      </div>
+      <p class="review-body">We&rsquo;ll review it and tell you honestly whether it should be software, what a simple system would look like, and roughly what it would cost. No obligation. No sales pitch. Just a straight answer.</p>
+      <div class="review-points">
+        <div class="review-point">
+          <div class="review-point-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><path d="M8 10h8M8 13h5"/></svg>
+          </div>
+          <div>
+            <div class="review-point-title">Straight answer</div>
+            <div class="review-point-sub">No sales fluff, just honest advice</div>
+          </div>
+        </div>
+        <div class="review-point">
+          <div class="review-point-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M16 8L8 16"/><path d="M8 8l8 8"/></svg>
+          </div>
+          <div>
+            <div class="review-point-title">No cost</div>
+            <div class="review-point-sub">Free to request, free to ignore</div>
+          </div>
+        </div>
+        <div class="review-point">
+          <div class="review-point-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+          </div>
+          <div>
+            <div class="review-point-title">Private</div>
+            <div class="review-point-sub">What you share stays between us</div>
+          </div>
+        </div>
+      </div>
+      <div class="review-cta">
+        <a href="#contact" class="btn-primary">
+          Request a Free Review
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ==================== MARQUEE ==================== -->
 <div class="marquee">
   <div class="marquee-track" id="marqueeTrack">
@@ -2241,7 +2369,7 @@ body::before {
         <div class="field">
           <label for="project">Project type</label>
           <select id="project" name="project" required>
-            <option value="">Select one</option>
+            <option selected>Free Spreadsheet Review</option>
             <option>Process Automation</option>
             <option>Custom Dashboard or Tool</option>
             <option>System Integration</option>
