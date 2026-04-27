@@ -265,14 +265,54 @@ body::before {
   overflow: hidden;
   z-index: 2;
 }
-.hero::before {
-  content: "";
+/* Animated gradient mesh background */
+.hero-mesh {
   position: absolute;
-  top: -20%; right: -10%;
-  width: 600px; height: 600px;
-  background: radial-gradient(circle, var(--accent-glow) 0%, transparent 60%);
-  filter: blur(80px);
+  inset: 0;
   z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+  opacity: 0.2;
+}
+.hero-blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(90px);
+  will-change: transform;
+}
+.hero-blob-1 {
+  top: -20%; right: -10%;
+  width: 620px; height: 620px;
+  background: radial-gradient(circle, #f0c000 0%, rgba(240,192,0,0.4) 40%, transparent 70%);
+  animation: meshDrift1 90s ease-in-out infinite;
+}
+.hero-blob-2 {
+  bottom: -25%; left: -15%;
+  width: 540px; height: 540px;
+  background: radial-gradient(circle, #d4a800 0%, rgba(212,168,0,0.35) 45%, transparent 70%);
+  animation: meshDrift2 110s ease-in-out infinite;
+}
+.hero-blob-3 {
+  top: 30%; left: 35%;
+  width: 420px; height: 420px;
+  background: radial-gradient(circle, rgba(240,192,0,0.55) 0%, transparent 65%);
+  animation: meshDrift3 75s ease-in-out infinite;
+}
+@keyframes meshDrift1 {
+  0%,100% { transform: translate(0,0) scale(1); }
+  50%     { transform: translate(-60px, 40px) scale(1.08); }
+}
+@keyframes meshDrift2 {
+  0%,100% { transform: translate(0,0) scale(1); }
+  50%     { transform: translate(80px, -50px) scale(1.05); }
+}
+@keyframes meshDrift3 {
+  0%,100% { transform: translate(0,0) scale(1); }
+  33%     { transform: translate(-40px, 60px) scale(0.95); }
+  66%     { transform: translate(70px, -30px) scale(1.07); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-blob-1, .hero-blob-2, .hero-blob-3 { animation: none; }
 }
 .hero-inner {
   position: relative;
@@ -667,25 +707,32 @@ body::before {
   background: var(--bg-card);
   border: 1px solid var(--border);
   border-radius: var(--radius-md);
-  transition: border-color 0.3s var(--ease), background 0.3s var(--ease), transform 0.3s var(--ease);
+  transition: border-color 0.3s var(--ease), background 0.3s var(--ease), transform 0.3s var(--ease), box-shadow 0.3s var(--ease);
 }
 .build-card:hover {
   border-color: var(--border-accent);
   background: var(--bg-card-hover);
-  transform: translateY(-2px);
+  transform: translateY(-4px);
+  box-shadow: 0 16px 36px -22px rgba(240,192,0,0.32), 0 0 50px -28px rgba(240,192,0,0.22);
 }
 .build-icon {
-  width: 40px; height: 40px;
-  border-radius: 8px;
-  background: var(--accent-dim);
+  width: 56px; height: 56px;
+  border-radius: 12px;
+  background: radial-gradient(circle at 30% 30%, rgba(240,192,0,0.3) 0%, rgba(212,168,0,0.16) 45%, rgba(240,192,0,0.05) 100%);
   border: 1px solid var(--border-accent);
   color: var(--accent);
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 16px;
+  margin-bottom: 18px;
+  transition: transform 0.35s var(--ease), background 0.35s var(--ease), border-color 0.35s var(--ease);
 }
-.build-icon svg { width: 18px; height: 18px; }
+.build-card:hover .build-icon {
+  transform: scale(1.05);
+  background: radial-gradient(circle at 30% 30%, rgba(240,192,0,0.48) 0%, rgba(212,168,0,0.26) 45%, rgba(240,192,0,0.08) 100%);
+  border-color: rgba(240,192,0,0.5);
+}
+.build-icon svg { width: 24px; height: 24px; }
 .build-card h3 {
   font-size: 16px;
   font-weight: 700;
@@ -741,6 +788,60 @@ body::before {
   color: var(--accent);
   margin-bottom: 22px;
 }
+
+/* Image break section */
+.image-break {
+  position: relative;
+  width: 100%;
+  height: 420px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  z-index: 2;
+}
+.image-break-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.4) contrast(1.1);
+  z-index: 0;
+}
+.image-break::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(10, 10, 10, 0.4);
+  z-index: 1;
+}
+.image-break-content {
+  position: relative;
+  z-index: 2;
+  padding: 0 24px;
+  max-width: 900px;
+}
+.image-break h2 {
+  font-family: var(--font-sans);
+  font-weight: 900;
+  font-size: clamp(32px, 5vw, 56px);
+  line-height: 1.05;
+  letter-spacing: -0.025em;
+  color: #fff;
+  margin-bottom: 16px;
+}
+.image-break-sub {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+@media (max-width: 720px) {
+  .image-break { height: 320px; }
+}
 @media (max-width: 560px) {
   .story-step { gap: 16px; padding: 18px 0; }
   .story-text { font-size: 15.5px; }
@@ -793,7 +894,7 @@ body::before {
   border-radius: var(--radius-md);
   position: relative;
   overflow: hidden;
-  transition: border-color 0.3s var(--ease), background 0.3s var(--ease), transform 0.3s var(--ease);
+  transition: border-color 0.3s var(--ease), background 0.3s var(--ease), transform 0.3s var(--ease), box-shadow 0.3s var(--ease);
 }
 .service::after {
   content: "";
@@ -807,21 +908,28 @@ body::before {
 .service:hover {
   border-color: var(--border-accent);
   background: var(--bg-card-hover);
-  transform: translateY(-3px);
+  transform: translateY(-4px);
+  box-shadow: 0 18px 40px -20px rgba(240,192,0,0.35), 0 0 60px -25px rgba(240,192,0,0.25);
 }
 .service:hover::after { width: 100%; }
 .service-icon {
-  width: 48px; height: 48px;
-  border-radius: 10px;
-  background: var(--accent-dim);
+  width: 64px; height: 64px;
+  border-radius: 14px;
+  background: radial-gradient(circle at 30% 30%, rgba(240,192,0,0.32) 0%, rgba(212,168,0,0.18) 45%, rgba(240,192,0,0.06) 100%);
   border: 1px solid var(--border-accent);
   display: flex;
   align-items: center;
   justify-content: center;
   color: var(--accent);
-  margin-bottom: 22px;
+  margin-bottom: 24px;
+  transition: transform 0.35s var(--ease), background 0.35s var(--ease), border-color 0.35s var(--ease);
 }
-.service-icon svg { width: 22px; height: 22px; }
+.service:hover .service-icon {
+  transform: scale(1.05);
+  background: radial-gradient(circle at 30% 30%, rgba(240,192,0,0.5) 0%, rgba(212,168,0,0.28) 45%, rgba(240,192,0,0.1) 100%);
+  border-color: rgba(240,192,0,0.5);
+}
+.service-icon svg { width: 28px; height: 28px; }
 .service h3 {
   font-size: 19px;
   font-weight: 700;
@@ -1636,6 +1744,11 @@ body::before {
 
 <!-- ==================== HERO ==================== -->
 <section class="hero">
+  <div class="hero-mesh" aria-hidden="true">
+    <div class="hero-blob hero-blob-1"></div>
+    <div class="hero-blob hero-blob-2"></div>
+    <div class="hero-blob hero-blob-3"></div>
+  </div>
   <div class="container">
     <div class="hero-inner">
       <div class="hero-copy reveal">
@@ -2034,6 +2147,15 @@ body::before {
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
       </a>
     </div>
+  </div>
+</section>
+
+<!-- ==================== IMAGE BREAK ==================== -->
+<section class="image-break reveal" aria-label="Real software. Real outcomes.">
+  <img class="image-break-img" src="https://images.unsplash.com/photo-1551434678-e076c223a692?w=1920&amp;q=80" alt="" loading="lazy" width="1920" height="600" />
+  <div class="image-break-content">
+    <h2>Real software. Real outcomes.</h2>
+    <p class="image-break-sub">Here&rsquo;s what that looks like in practice.</p>
   </div>
 </section>
 
