@@ -410,58 +410,60 @@ body::before {
 }
 .btn-ghost:hover { border-color: var(--accent); background: var(--accent-dim); }
 
-/* Hero dashboard mockup */
+/* Hero dashboard mockup (light SaaS skin) */
 .dash {
   --dash-loop: 14s;
   --dash-bar-stagger: 0.1s;
+  --dash-blue: #3b82f6;
+  --dash-blue-light: #93c5fd;
+  --dash-ink: #111827;
+  --dash-muted: #6b7280;
+  --dash-line-c: #e5e7eb;
+  --dash-panel: #f7f8fa;
   position: relative;
   width: 100%;
   max-width: 600px;
-  background: #0a0a0a;
-  border: 1px solid var(--border);
+  background: #ffffff;
+  border: 1px solid var(--dash-line-c);
   border-radius: 14px;
   overflow: hidden;
-  box-shadow: 0 30px 80px rgba(0,0,0,0.55), 0 0 0 1px rgba(240,192,0,0.06), 0 0 60px -20px rgba(240,192,0,0.18);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.4);
   font-family: var(--font-sans);
   transform: perspective(1400px) rotateY(-3deg) rotateX(2deg);
   transform-origin: center center;
-}
-.dash::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  border-radius: 14px;
-  background: linear-gradient(135deg, rgba(240,192,0,0.05) 0%, transparent 35%);
 }
 .dash-chrome {
   display: flex;
   align-items: center;
   gap: 6px;
   padding: 10px 14px;
-  background: #111;
-  border-bottom: 1px solid var(--border);
+  background: #f3f4f6;
+  border-bottom: 1px solid var(--dash-line-c);
 }
 .dash-dot {
-  width: 9px; height: 9px;
+  width: 11px; height: 11px;
   border-radius: 50%;
-  background: var(--border-strong);
+  background: #d1d5db;
 }
+.dash-dot:nth-child(1) { background: #ff5f57; }
+.dash-dot:nth-child(2) { background: #febc2e; }
+.dash-dot:nth-child(3) { background: #28c840; }
 .dash-chrome-title {
   margin-left: 10px;
   font-family: var(--font-mono);
   font-size: 10px;
   letter-spacing: 0.08em;
-  color: var(--text-muted);
+  color: var(--dash-muted);
 }
 .dash-body {
   display: grid;
   grid-template-columns: 60px 1fr;
   min-height: 360px;
+  background: #ffffff;
 }
 .dash-side {
-  background: #0d0d0d;
-  border-right: 1px solid var(--border);
+  background: #f9fafb;
+  border-right: 1px solid var(--dash-line-c);
   padding: 14px 10px;
   display: flex;
   flex-direction: column;
@@ -470,19 +472,19 @@ body::before {
 .dash-side-item {
   height: 26px;
   border-radius: 6px;
-  background: #1a1a1a;
+  background: #eef0f3;
   position: relative;
 }
 .dash-side-item.active {
-  background: rgba(240,192,0,0.12);
-  border: 1px solid var(--border-accent);
+  background: rgba(59,130,246,0.1);
+  border: 1px solid rgba(59,130,246,0.25);
 }
 .dash-side-item.active::before {
   content: "";
   position: absolute;
   left: 0; top: 4px; bottom: 4px;
   width: 2px;
-  background: var(--accent);
+  background: var(--dash-blue);
   border-radius: 2px;
 }
 .dash-main { padding: 16px 18px 18px; display: flex; flex-direction: column; gap: 14px; }
@@ -492,8 +494,8 @@ body::before {
   gap: 10px;
 }
 .dash-stat {
-  background: #131313;
-  border: 1px solid var(--border);
+  background: var(--dash-panel);
+  border: 1px solid var(--dash-line-c);
   border-radius: 8px;
   padding: 12px 14px;
 }
@@ -502,14 +504,14 @@ body::before {
   font-size: 9px;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--text-muted);
+  color: var(--dash-muted);
   margin-bottom: 6px;
 }
 .dash-stat-value {
   font-size: 19px;
   font-weight: 800;
   letter-spacing: -0.02em;
-  color: var(--text);
+  color: var(--dash-ink);
   display: flex;
   align-items: baseline;
   gap: 6px;
@@ -519,15 +521,15 @@ body::before {
   font-family: var(--font-mono);
   font-size: 10px;
   font-weight: 600;
-  color: var(--accent);
+  color: var(--dash-blue);
   display: inline-flex;
   align-items: center;
   gap: 2px;
 }
 .dash-stat-trend svg { width: 10px; height: 10px; }
 .dash-chart {
-  background: #131313;
-  border: 1px solid var(--border);
+  background: var(--dash-panel);
+  border: 1px solid var(--dash-line-c);
   border-radius: 8px;
   padding: 14px;
 }
@@ -542,12 +544,12 @@ body::before {
   font-size: 9px;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--text-muted);
+  color: var(--dash-muted);
 }
 .dash-chart-meta {
   font-family: var(--font-mono);
   font-size: 9px;
-  color: var(--text-dim);
+  color: var(--dash-muted);
 }
 .dash-bars {
   display: flex;
@@ -559,7 +561,7 @@ body::before {
   flex: 1;
   min-width: 0;
   height: calc(var(--h, 0.6) * 100%);
-  background: linear-gradient(to top, rgba(240,192,0,0.85), rgba(240,192,0,0.35));
+  background: linear-gradient(to top, var(--dash-blue-light) 0%, var(--dash-blue) 100%);
   border-radius: 3px 3px 0 0;
   transform-origin: bottom;
   transform: scaleY(0);
@@ -580,19 +582,19 @@ body::before {
 }
 .dash-line svg { width: 100%; height: 100%; display: block; }
 .dash-grid-line {
-  stroke: rgba(255,255,255,0.04);
+  stroke: rgba(17,24,39,0.08);
   stroke-width: 1;
   stroke-dasharray: 2 4;
 }
 .dash-line-path {
-  stroke: var(--accent);
+  stroke: var(--dash-blue);
   stroke-width: 2;
   fill: none;
   stroke-linecap: round;
   stroke-linejoin: round;
   stroke-dasharray: 600;
   stroke-dashoffset: 600;
-  filter: drop-shadow(0 0 6px rgba(240,192,0,0.4));
+  filter: drop-shadow(0 1px 2px rgba(59,130,246,0.25));
   animation: dashLineDraw var(--dash-loop) ease-in-out infinite;
 }
 .dash-line-fill {
@@ -615,14 +617,7 @@ body::before {
 .dash-counter {
   display: inline-block;
   min-width: 1ch;
-}
-.dash-counter[data-count] {
-  animation: dashCountFlash var(--dash-loop) ease-in-out infinite;
-}
-@keyframes dashCountFlash {
-  0%, 5%   { color: var(--text-dim); }
-  35%      { color: var(--text); }
-  100%     { color: var(--text); }
+  color: var(--dash-ink);
 }
 @media (max-width: 720px) {
   .dash { transform: none; }
@@ -2065,8 +2060,8 @@ body::before {
                   <svg viewBox="0 0 600 90" preserveAspectRatio="none">
                     <defs>
                       <linearGradient id="dashLineGrad" x1="0" y1="0" x2="0" y2="1">
-                        <stop offset="0%" stop-color="#f0c000" stop-opacity="0.35"/>
-                        <stop offset="100%" stop-color="#f0c000" stop-opacity="0"/>
+                        <stop offset="0%" stop-color="#3b82f6" stop-opacity="0.28"/>
+                        <stop offset="100%" stop-color="#3b82f6" stop-opacity="0"/>
                       </linearGradient>
                     </defs>
                     <line class="dash-grid-line" x1="0" y1="22" x2="600" y2="22"/>
