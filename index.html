@@ -728,6 +728,16 @@ body::before {
   .dash { transform: none; }
 }
 
+.dash-caption {
+  margin: 18px 0 0;
+  max-width: 600px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  line-height: 1.6;
+  letter-spacing: 0.04em;
+  color: var(--text-dim);
+}
+
 /* Hold every dashboard animation at its 0% keyframe (spreadsheet visible)
    until JS adds .is-running, so visitors always see the cycle start. */
 .dash-state-sheet,
@@ -2225,6 +2235,10 @@ body::before {
             </div>
           </div>
         </div>
+        <p class="dash-caption">
+          Spreadsheet today. Custom software tomorrow.<br />
+          Built around how your team actually works.
+        </p>
       </div>
     </div>
   </div>
