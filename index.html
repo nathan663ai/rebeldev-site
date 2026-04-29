@@ -728,14 +728,40 @@ body::before {
   .dash { transform: none; }
 }
 
-.dash-caption {
-  margin: 18px 0 0;
-  max-width: 600px;
-  font-family: var(--font-mono);
-  font-size: 12px;
-  line-height: 1.6;
-  letter-spacing: 0.04em;
-  color: var(--text-dim);
+/* Morph overlay: text that appears only during the spreadsheet -> dashboard
+   transition windows of the 18s loop, centred over the .dash-stage. */
+.dash-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  padding: 16px;
+  text-align: center;
+  pointer-events: none;
+  opacity: 0;
+  font-family: var(--font-sans);
+  font-weight: 800;
+  font-size: clamp(18px, 2.4vw, 22px);
+  letter-spacing: -0.015em;
+  line-height: 1.2;
+  color: #ffffff;
+  text-shadow: 0 2px 12px rgba(0,0,0,0.45), 0 0 24px rgba(0,0,0,0.35);
+  animation: dashOverlay var(--dash-loop) ease-in-out infinite;
+}
+.dash-overlay span { display: block; }
+@keyframes dashOverlay {
+  0%, 16%   { opacity: 0; transform: translateY(6px); }
+  22%       { opacity: 1; transform: translateY(0); }
+  28%       { opacity: 1; transform: translateY(0); }
+  32%       { opacity: 0; transform: translateY(-4px); }
+  82%       { opacity: 0; transform: translateY(6px); }
+  88%       { opacity: 1; transform: translateY(0); }
+  93%       { opacity: 1; transform: translateY(0); }
+  100%      { opacity: 0; transform: translateY(-4px); }
 }
 
 /* Hold every dashboard animation at its 0% keyframe (spreadsheet visible)
@@ -745,7 +771,8 @@ body::before {
 .dash-bar,
 .dash-line-path,
 .dash-line-fill,
-.sheet-cell.flash {
+.sheet-cell.flash,
+.dash-overlay {
   animation-play-state: paused;
 }
 .dash.is-running .dash-state-sheet,
@@ -753,7 +780,8 @@ body::before {
 .dash.is-running .dash-bar,
 .dash.is-running .dash-line-path,
 .dash.is-running .dash-line-fill,
-.dash.is-running .sheet-cell.flash {
+.dash.is-running .sheet-cell.flash,
+.dash.is-running .dash-overlay {
   animation-play-state: running;
 }
 
@@ -765,6 +793,7 @@ body::before {
   .dash-line-path { animation: none; stroke-dashoffset: 0; }
   .dash-line-fill { animation: none; opacity: 1; }
   .dash-counter[data-count] { animation: none; }
+  .dash-overlay { display: none; }
 }
 
 /* ------------------------------------------------------------------
@@ -2233,12 +2262,12 @@ body::before {
             </div>
           </div>
             </div>
+            <div class="dash-overlay" aria-hidden="true">
+              <span>Spreadsheet today.</span>
+              <span>Custom software tomorrow.</span>
+            </div>
           </div>
         </div>
-        <p class="dash-caption">
-          Spreadsheet today. Custom software tomorrow.<br />
-          Built around how your team actually works.
-        </p>
       </div>
     </div>
   </div>
