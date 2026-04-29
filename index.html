@@ -746,6 +746,54 @@ body::before {
   line-height: 1.55;
 }
 
+/* Describe-it section */
+.describe-body {
+  max-width: 760px;
+  margin: -16px 0 48px;
+}
+.describe-body p {
+  font-size: 16px;
+  color: var(--text-dim);
+  line-height: 1.75;
+}
+.describe-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1px;
+  background: var(--border);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+.describe-col {
+  padding: 32px 32px 36px;
+  background: var(--bg-card);
+}
+.describe-col-label {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 22px;
+  padding-bottom: 18px;
+  border-bottom: 1px solid var(--border);
+}
+.describe-list {
+  list-style: none;
+  display: grid;
+  gap: 12px;
+}
+.describe-list li {
+  font-size: 16px;
+  color: var(--text);
+  letter-spacing: -0.005em;
+}
+@media (max-width: 720px) {
+  .describe-grid { grid-template-columns: 1fr; }
+  .describe-col { padding: 26px 24px 30px; }
+}
+
 /* Story section */
 .story-list {
   list-style: none;
@@ -1954,25 +2002,31 @@ body::before {
           <span class="sign-icon">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 9v12"/></svg>
           </span>
-          Your pricing lives in a spreadsheet that only one person really understands
+          A pricing model or process that lives in a workbook only one person fully understands
         </li>
         <li>
           <span class="sign-icon">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 14l4-4 4 4 5-5"/></svg>
           </span>
-          Monthly reports take days because data lives in three different places
+          Reports that take days to put together because data lives in three different places
         </li>
         <li>
           <span class="sign-icon">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
           </span>
-          Your team copies information between systems every day
+          Your team copies information between systems every single day
         </li>
         <li>
           <span class="sign-icon">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M4.93 4.93l14.14 14.14"/></svg>
           </span>
-          You&rsquo;re paying for SaaS tools that almost fit but need constant workarounds
+          You&rsquo;re paying for SaaS tools that almost fit, with constant manual workarounds
+        </li>
+        <li>
+          <span class="sign-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          </span>
+          You&rsquo;re hiring people to do work that software should be doing
         </li>
         <li>
           <span class="sign-icon">
@@ -2125,6 +2179,44 @@ body::before {
   </div>
 </section>
 
+<!-- ==================== DESCRIBE IT, WE BUILD IT ==================== -->
+<section class="section" id="describe">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="section-label">No limits</div>
+      <h2 class="section-title">If you can describe it, we can build it.</h2>
+      <p class="section-sub">Custom software isn&rsquo;t just for replacing spreadsheets. It&rsquo;s for any process, workflow, or tool you wish worked differently.</p>
+    </div>
+    <div class="describe-body reveal">
+      <p>If it helps your business run better, we build it. Productivity tools, customer-facing portals, internal dashboards, automation flows, reporting platforms, scheduling systems, inventory management, integrations between systems. Anything you&rsquo;ve imagined but couldn&rsquo;t find off the shelf, we&rsquo;ll build it around the way you actually work.</p>
+    </div>
+    <div class="describe-grid reveal-stagger">
+      <div class="describe-col">
+        <div class="describe-col-label">Internal tools</div>
+        <ul class="describe-list">
+          <li>Pricing engines</li>
+          <li>Quoting tools</li>
+          <li>Operations dashboards</li>
+          <li>Internal CRMs</li>
+          <li>Reporting platforms</li>
+          <li>Inventory systems</li>
+        </ul>
+      </div>
+      <div class="describe-col">
+        <div class="describe-col-label">Customer-facing</div>
+        <ul class="describe-list">
+          <li>Client portals</li>
+          <li>Booking systems</li>
+          <li>Self-service dashboards</li>
+          <li>Custom checkout flows</li>
+          <li>Membership platforms</li>
+          <li>Branded apps</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ==================== WHEN PEOPLE CONTACT US ==================== -->
 <section class="section" id="story">
   <div class="container">
@@ -2135,15 +2227,15 @@ body::before {
     <ol class="story-list reveal-stagger">
       <li class="story-step">
         <span class="story-num">01</span>
-        <span class="story-text">A spreadsheet has quietly become critical to the business.</span>
+        <span class="story-text">A process has quietly become critical to the business.</span>
       </li>
       <li class="story-step">
         <span class="story-num">02</span>
-        <span class="story-text">Nobody wants to touch it in case it breaks.</span>
+        <span class="story-text">Nobody wants to touch the system in case it breaks.</span>
       </li>
       <li class="story-step">
         <span class="story-num">03</span>
-        <span class="story-text">Reports take hours, sometimes days, every week.</span>
+        <span class="story-text">Reports, quotes, or workflows take hours when they shouldn&rsquo;t.</span>
       </li>
       <li class="story-step">
         <span class="story-num">04</span>
