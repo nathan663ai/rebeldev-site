@@ -557,6 +557,8 @@ body::before {
 }
 .dash-bar {
   flex: 1;
+  min-width: 0;
+  height: calc(var(--h, 0.6) * 100%);
   background: linear-gradient(to top, rgba(240,192,0,0.85), rgba(240,192,0,0.35));
   border-radius: 3px 3px 0 0;
   transform-origin: bottom;
@@ -566,8 +568,8 @@ body::before {
 }
 @keyframes dashBarGrow {
   0%   { transform: scaleY(0); }
-  10%  { transform: scaleY(var(--h, 0.6)); }
-  85%  { transform: scaleY(var(--h, 0.6)); }
+  10%  { transform: scaleY(1); }
+  85%  { transform: scaleY(1); }
   95%  { transform: scaleY(0); }
   100% { transform: scaleY(0); }
 }
@@ -626,7 +628,7 @@ body::before {
   .dash { transform: none; }
 }
 @media (prefers-reduced-motion: reduce) {
-  .dash-bar { animation: none; transform: scaleY(var(--h, 0.6)); }
+  .dash-bar { animation: none; transform: scaleY(1); }
   .dash-line-path { animation: none; stroke-dashoffset: 0; }
   .dash-line-fill { animation: none; opacity: 1; }
   .dash-counter[data-count] { animation: none; }
