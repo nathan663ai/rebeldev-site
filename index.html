@@ -410,66 +410,226 @@ body::before {
 }
 .btn-ghost:hover { border-color: var(--accent); background: var(--accent-dim); }
 
-/* Hero journey card */
-.journey-card {
-  background: var(--bg-card);
+/* Hero dashboard mockup */
+.dash {
+  --dash-loop: 14s;
+  --dash-bar-stagger: 0.1s;
+  position: relative;
+  width: 100%;
+  max-width: 600px;
+  background: #0a0a0a;
   border: 1px solid var(--border);
-  border-radius: var(--radius-lg);
-  padding: 32px;
-  box-shadow: 0 30px 80px rgba(0,0,0,0.5);
-  position: relative;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 30px 80px rgba(0,0,0,0.55), 0 0 0 1px rgba(240,192,0,0.06), 0 0 60px -20px rgba(240,192,0,0.18);
+  font-family: var(--font-sans);
+  transform: perspective(1400px) rotateY(-3deg) rotateX(2deg);
+  transform-origin: center center;
 }
-.journey-card::before {
+.dash::before {
   content: "";
   position: absolute;
-  top: 0; left: 0;
-  width: 100%; height: 1px;
-  background: linear-gradient(90deg, transparent, var(--accent), transparent);
-  opacity: 0.4;
+  inset: 0;
+  pointer-events: none;
+  border-radius: 14px;
+  background: linear-gradient(135deg, rgba(240,192,0,0.05) 0%, transparent 35%);
 }
-.journey-step {
-  display: flex;
-  gap: 20px;
-  align-items: flex-start;
-  padding: 16px 0;
-  position: relative;
-}
-.journey-step:not(:last-child)::after {
-  content: "";
-  position: absolute;
-  left: 21px;
-  top: 60px;
-  bottom: -4px;
-  width: 1px;
-  background: linear-gradient(to bottom, var(--border-accent), var(--border) 60%, transparent);
-}
-.journey-marker {
-  flex-shrink: 0;
-  width: 44px;
-  height: 44px;
-  border-radius: 10px;
-  background: var(--accent-dim);
-  border: 1px solid var(--border-accent);
-  color: var(--accent);
+.dash-chrome {
   display: flex;
   align-items: center;
-  justify-content: center;
+  gap: 6px;
+  padding: 10px 14px;
+  background: #111;
+  border-bottom: 1px solid var(--border);
+}
+.dash-dot {
+  width: 9px; height: 9px;
+  border-radius: 50%;
+  background: var(--border-strong);
+}
+.dash-chrome-title {
+  margin-left: 10px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+}
+.dash-body {
+  display: grid;
+  grid-template-columns: 60px 1fr;
+  min-height: 360px;
+}
+.dash-side {
+  background: #0d0d0d;
+  border-right: 1px solid var(--border);
+  padding: 14px 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.dash-side-item {
+  height: 26px;
+  border-radius: 6px;
+  background: #1a1a1a;
   position: relative;
-  z-index: 1;
 }
-.journey-marker svg { width: 20px; height: 20px; }
-.journey-body { padding-top: 4px; }
-.journey-title {
-  font-size: 17px;
-  font-weight: 700;
-  letter-spacing: -0.01em;
+.dash-side-item.active {
+  background: rgba(240,192,0,0.12);
+  border: 1px solid var(--border-accent);
+}
+.dash-side-item.active::before {
+  content: "";
+  position: absolute;
+  left: 0; top: 4px; bottom: 4px;
+  width: 2px;
+  background: var(--accent);
+  border-radius: 2px;
+}
+.dash-main { padding: 16px 18px 18px; display: flex; flex-direction: column; gap: 14px; }
+.dash-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+.dash-stat {
+  background: #131313;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 12px 14px;
+}
+.dash-stat-label {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 6px;
+}
+.dash-stat-value {
+  font-size: 19px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
   color: var(--text);
-  margin-bottom: 4px;
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  font-variant-numeric: tabular-nums;
 }
-.journey-sub {
-  font-size: 14px;
+.dash-stat-trend {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--accent);
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+}
+.dash-stat-trend svg { width: 10px; height: 10px; }
+.dash-chart {
+  background: #131313;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 14px;
+}
+.dash-chart-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+.dash-chart-title {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+.dash-chart-meta {
+  font-family: var(--font-mono);
+  font-size: 9px;
   color: var(--text-dim);
-  line-height: 1.5;
+}
+.dash-bars {
+  display: flex;
+  align-items: flex-end;
+  gap: 6px;
+  height: 70px;
+}
+.dash-bar {
+  flex: 1;
+  background: linear-gradient(to top, rgba(240,192,0,0.85), rgba(240,192,0,0.35));
+  border-radius: 3px 3px 0 0;
+  transform-origin: bottom;
+  transform: scaleY(0);
+  animation: dashBarGrow var(--dash-loop) ease-in-out infinite;
+  animation-delay: calc(var(--i, 0) * var(--dash-bar-stagger));
+}
+@keyframes dashBarGrow {
+  0%   { transform: scaleY(0); }
+  10%  { transform: scaleY(var(--h, 0.6)); }
+  85%  { transform: scaleY(var(--h, 0.6)); }
+  95%  { transform: scaleY(0); }
+  100% { transform: scaleY(0); }
+}
+.dash-line {
+  position: relative;
+  height: 90px;
+  width: 100%;
+}
+.dash-line svg { width: 100%; height: 100%; display: block; }
+.dash-grid-line {
+  stroke: rgba(255,255,255,0.04);
+  stroke-width: 1;
+  stroke-dasharray: 2 4;
+}
+.dash-line-path {
+  stroke: var(--accent);
+  stroke-width: 2;
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 600;
+  stroke-dashoffset: 600;
+  filter: drop-shadow(0 0 6px rgba(240,192,0,0.4));
+  animation: dashLineDraw var(--dash-loop) ease-in-out infinite;
+}
+.dash-line-fill {
+  fill: url(#dashLineGrad);
+  opacity: 0;
+  animation: dashLineFill var(--dash-loop) ease-in-out infinite;
+}
+@keyframes dashLineDraw {
+  0%, 5%   { stroke-dashoffset: 600; }
+  35%      { stroke-dashoffset: 0; }
+  85%      { stroke-dashoffset: 0; }
+  95%, 100%{ stroke-dashoffset: 600; }
+}
+@keyframes dashLineFill {
+  0%, 30%  { opacity: 0; }
+  45%      { opacity: 1; }
+  85%      { opacity: 1; }
+  95%, 100%{ opacity: 0; }
+}
+.dash-counter {
+  display: inline-block;
+  min-width: 1ch;
+}
+.dash-counter[data-count] {
+  animation: dashCountFlash var(--dash-loop) ease-in-out infinite;
+}
+@keyframes dashCountFlash {
+  0%, 5%   { color: var(--text-dim); }
+  35%      { color: var(--text); }
+  100%     { color: var(--text); }
+}
+@media (max-width: 720px) {
+  .dash { transform: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .dash-bar { animation: none; transform: scaleY(var(--h, 0.6)); }
+  .dash-line-path { animation: none; stroke-dashoffset: 0; }
+  .dash-line-fill { animation: none; opacity: 1; }
+  .dash-counter[data-count] { animation: none; }
 }
 
 /* ------------------------------------------------------------------
@@ -1839,32 +1999,82 @@ body::before {
         </div>
       </div>
       <div class="hero-visual reveal">
-        <div class="journey-card">
-          <div class="journey-step">
-            <div class="journey-marker">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-            </div>
-            <div class="journey-body">
-              <div class="journey-title">You tell us the problem</div>
-              <div class="journey-sub">What&rsquo;s slowing your team down, what&rsquo;s broken, or what you wish existed.</div>
-            </div>
+        <div class="dash" aria-hidden="true">
+          <div class="dash-chrome">
+            <span class="dash-dot"></span>
+            <span class="dash-dot"></span>
+            <span class="dash-dot"></span>
+            <span class="dash-chrome-title">operations.rebeldev.app</span>
           </div>
-          <div class="journey-step">
-            <div class="journey-marker">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
-            </div>
-            <div class="journey-body">
-              <div class="journey-title">We build the fix</div>
-              <div class="journey-sub">Fixed price, fast turnaround, built around how you actually work.</div>
-            </div>
-          </div>
-          <div class="journey-step">
-            <div class="journey-marker">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
-            </div>
-            <div class="journey-body">
-              <div class="journey-title">You get your time back</div>
-              <div class="journey-sub">Spreadsheets retired, manual work automated, focus back where it should be.</div>
+          <div class="dash-body">
+            <aside class="dash-side">
+              <div class="dash-side-item active"></div>
+              <div class="dash-side-item"></div>
+              <div class="dash-side-item"></div>
+              <div class="dash-side-item"></div>
+              <div class="dash-side-item"></div>
+            </aside>
+            <div class="dash-main">
+              <div class="dash-stats">
+                <div class="dash-stat">
+                  <div class="dash-stat-label">Revenue</div>
+                  <div class="dash-stat-value">
+                    <span>&pound;</span><span class="dash-counter" data-count="24580" data-prefix="">0</span>
+                  </div>
+                  <span class="dash-stat-trend"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 9l4-4 2 2 2-4"/><path d="M7 3h3v3"/></svg>+12.4%</span>
+                </div>
+                <div class="dash-stat">
+                  <div class="dash-stat-label">Orders</div>
+                  <div class="dash-stat-value">
+                    <span class="dash-counter" data-count="147">0</span>
+                  </div>
+                  <span class="dash-stat-trend"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 9l4-4 2 2 2-4"/><path d="M7 3h3v3"/></svg>+8.1%</span>
+                </div>
+                <div class="dash-stat">
+                  <div class="dash-stat-label">Growth</div>
+                  <div class="dash-stat-value">
+                    <span class="dash-counter" data-count="3.2" data-decimals="1">0.0</span><span>x</span>
+                  </div>
+                  <span class="dash-stat-trend"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 9l4-4 2 2 2-4"/><path d="M7 3h3v3"/></svg>+0.4x</span>
+                </div>
+              </div>
+              <div class="dash-chart">
+                <div class="dash-chart-head">
+                  <div class="dash-chart-title">Weekly throughput</div>
+                  <div class="dash-chart-meta">Mon &middot; Sun</div>
+                </div>
+                <div class="dash-bars">
+                  <div class="dash-bar" style="--i:0; --h:0.42"></div>
+                  <div class="dash-bar" style="--i:1; --h:0.58"></div>
+                  <div class="dash-bar" style="--i:2; --h:0.36"></div>
+                  <div class="dash-bar" style="--i:3; --h:0.72"></div>
+                  <div class="dash-bar" style="--i:4; --h:0.55"></div>
+                  <div class="dash-bar" style="--i:5; --h:0.86"></div>
+                  <div class="dash-bar" style="--i:6; --h:0.68"></div>
+                  <div class="dash-bar" style="--i:7; --h:0.94"></div>
+                </div>
+              </div>
+              <div class="dash-chart">
+                <div class="dash-chart-head">
+                  <div class="dash-chart-title">Monthly trend</div>
+                  <div class="dash-chart-meta">Last 30 days</div>
+                </div>
+                <div class="dash-line">
+                  <svg viewBox="0 0 600 90" preserveAspectRatio="none">
+                    <defs>
+                      <linearGradient id="dashLineGrad" x1="0" y1="0" x2="0" y2="1">
+                        <stop offset="0%" stop-color="#f0c000" stop-opacity="0.35"/>
+                        <stop offset="100%" stop-color="#f0c000" stop-opacity="0"/>
+                      </linearGradient>
+                    </defs>
+                    <line class="dash-grid-line" x1="0" y1="22" x2="600" y2="22"/>
+                    <line class="dash-grid-line" x1="0" y1="45" x2="600" y2="45"/>
+                    <line class="dash-grid-line" x1="0" y1="68" x2="600" y2="68"/>
+                    <path class="dash-line-fill" d="M0 70 L75 60 L150 65 L225 48 L300 52 L375 38 L450 30 L525 22 L600 14 L600 90 L0 90 Z"/>
+                    <path class="dash-line-path" d="M0 70 L75 60 L150 65 L225 48 L300 52 L375 38 L450 30 L525 22 L600 14"/>
+                  </svg>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -2743,6 +2953,65 @@ const io = new IntersectionObserver((entries) => {
 }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
 
 document.querySelectorAll('.reveal, .reveal-stagger').forEach(el => io.observe(el));
+
+// ------------------------------------------------------------------
+// HERO DASHBOARD: count-up loop (synced with 14s CSS bar/line cycle)
+// ------------------------------------------------------------------
+(function () {
+  const counters = document.querySelectorAll('.dash-counter[data-count]');
+  if (!counters.length) return;
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const LOOP = 14000;
+  const COUNT_DELAY = 700;
+  const COUNT_DUR = 1800;
+
+  function format(value, decimals) {
+    if (decimals > 0) return value.toFixed(decimals);
+    return Math.round(value).toLocaleString('en-GB');
+  }
+  function setFinal() {
+    counters.forEach(el => {
+      const target = parseFloat(el.getAttribute('data-count'));
+      const decimals = parseInt(el.getAttribute('data-decimals') || '0', 10);
+      el.textContent = format(target, decimals);
+    });
+  }
+  function runCountUp(el) {
+    const target = parseFloat(el.getAttribute('data-count'));
+    const decimals = parseInt(el.getAttribute('data-decimals') || '0', 10);
+    const start = performance.now();
+    function frame(now) {
+      const t = Math.min((now - start) / COUNT_DUR, 1);
+      const eased = 1 - Math.pow(1 - t, 3);
+      el.textContent = format(target * eased, decimals);
+      if (t < 1) requestAnimationFrame(frame);
+      else el.textContent = format(target, decimals);
+    }
+    requestAnimationFrame(frame);
+  }
+  if (reduce) { setFinal(); return; }
+
+  const dash = document.querySelector('.dash');
+  if (!dash) return;
+  let started = false;
+  let intervalId = null;
+
+  function tick() {
+    counters.forEach(el => { el.textContent = el.getAttribute('data-decimals') === '1' ? '0.0' : '0'; });
+    setTimeout(() => counters.forEach(runCountUp), COUNT_DELAY);
+  }
+  function start() {
+    if (started) return;
+    started = true;
+    tick();
+    intervalId = setInterval(tick, LOOP);
+  }
+  // Kick off when the dashboard is in view
+  const dashIo = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { start(); dashIo.unobserve(e.target); } });
+  }, { threshold: 0.25 });
+  dashIo.observe(dash);
+})();
 
 // ------------------------------------------------------------------
 // FAQ ACCORDION
