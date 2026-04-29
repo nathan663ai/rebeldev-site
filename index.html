@@ -727,6 +727,26 @@ body::before {
 @media (max-width: 720px) {
   .dash { transform: none; }
 }
+
+/* Hold every dashboard animation at its 0% keyframe (spreadsheet visible)
+   until JS adds .is-running, so visitors always see the cycle start. */
+.dash-state-sheet,
+.dash-state-dash,
+.dash-bar,
+.dash-line-path,
+.dash-line-fill,
+.sheet-cell.flash {
+  animation-play-state: paused;
+}
+.dash.is-running .dash-state-sheet,
+.dash.is-running .dash-state-dash,
+.dash.is-running .dash-bar,
+.dash.is-running .dash-line-path,
+.dash.is-running .dash-line-fill,
+.dash.is-running .sheet-cell.flash {
+  animation-play-state: running;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .dash-state-sheet { display: none; }
   .dash-state-dash { animation: none; opacity: 1; transform: none; filter: none; }
@@ -3121,6 +3141,9 @@ document.querySelectorAll('.reveal, .reveal-stagger').forEach(el => io.observe(e
   }
   if (reduce) { setFinal(); return; }
 
+  const dash = document.querySelector('.dash');
+  if (!dash) return;
+
   function reset() {
     counters.forEach(el => {
       el.textContent = el.getAttribute('data-decimals') === '1' ? '0.0' : '0';
@@ -3130,10 +3153,22 @@ document.querySelectorAll('.reveal, .reveal-stagger').forEach(el => io.observe(e
     reset();
     setTimeout(() => counters.forEach(runCountUp), COUNT_DELAY);
   }
-  // Start aligned with the page-load CSS animation clock so the
-  // count-up matches the dashboard reveal window.
-  tick();
-  setInterval(tick, LOOP);
+
+  // Hold the cycle paused (CSS animation-play-state: paused) until the
+  // dashboard scrolls into view, then start it from 0% so visitors
+  // always see the spreadsheet first and watch the morph play out live.
+  let started = false;
+  function start() {
+    if (started) return;
+    started = true;
+    dash.classList.add('is-running');
+    tick();
+    setInterval(tick, LOOP);
+  }
+  const dashIo = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { start(); dashIo.unobserve(e.target); } });
+  }, { threshold: 0.25 });
+  dashIo.observe(dash);
 })();
 
 // ------------------------------------------------------------------
