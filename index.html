@@ -728,40 +728,50 @@ body::before {
   .dash { transform: none; }
 }
 
-/* Morph overlay: text that appears only during the spreadsheet -> dashboard
-   transition windows of the 18s loop, centred over the .dash-stage. */
-.dash-overlay {
+/* Morph labels: two stacked labels above the mockup that swap in the same
+   spot. Each one is bound to its state's visibility window in the 18s loop. */
+.dash-labels {
+  position: relative;
+  height: 24px;
+  margin: 0 0 14px;
+  max-width: 600px;
+}
+.dash-label {
   position: absolute;
   inset: 0;
-  z-index: 5;
   display: flex;
-  flex-direction: column;
   align-items: center;
-  justify-content: center;
-  gap: 4px;
-  padding: 16px;
-  text-align: center;
+  white-space: nowrap;
   pointer-events: none;
-  opacity: 0;
-  font-family: var(--font-sans);
-  font-weight: 800;
-  font-size: clamp(18px, 2.4vw, 22px);
-  letter-spacing: -0.015em;
-  line-height: 1.2;
-  color: #ffffff;
-  text-shadow: 0 2px 12px rgba(0,0,0,0.45), 0 0 24px rgba(0,0,0,0.35);
-  animation: dashOverlay var(--dash-loop) ease-in-out infinite;
 }
-.dash-overlay span { display: block; }
-@keyframes dashOverlay {
-  0%, 16%   { opacity: 0; transform: translateY(6px); }
-  22%       { opacity: 1; transform: translateY(0); }
-  28%       { opacity: 1; transform: translateY(0); }
-  32%       { opacity: 0; transform: translateY(-4px); }
-  82%       { opacity: 0; transform: translateY(6px); }
-  88%       { opacity: 1; transform: translateY(0); }
-  93%       { opacity: 1; transform: translateY(0); }
-  100%      { opacity: 0; transform: translateY(-4px); }
+.dash-label-sheet {
+  font-family: var(--font-mono);
+  font-size: 14px;
+  letter-spacing: 0.04em;
+  color: var(--text-dim);
+  opacity: 1;
+  animation: dashLabelSheet var(--dash-loop) ease-in-out infinite;
+}
+.dash-label-dash {
+  font-family: var(--font-sans);
+  font-weight: 700;
+  font-size: 17px;
+  letter-spacing: -0.01em;
+  color: var(--accent);
+  opacity: 0;
+  animation: dashLabelDash var(--dash-loop) ease-in-out infinite;
+}
+@keyframes dashLabelSheet {
+  0%, 16.67% { opacity: 1; }
+  25%        { opacity: 0; }
+  94%        { opacity: 0; }
+  100%       { opacity: 1; }
+}
+@keyframes dashLabelDash {
+  0%, 28%    { opacity: 0; }
+  33%        { opacity: 1; }
+  83%        { opacity: 1; }
+  94%, 100%  { opacity: 0; }
 }
 
 /* Hold every dashboard animation at its 0% keyframe (spreadsheet visible)
@@ -772,7 +782,8 @@ body::before {
 .dash-line-path,
 .dash-line-fill,
 .sheet-cell.flash,
-.dash-overlay {
+.dash-label-sheet,
+.dash-label-dash {
   animation-play-state: paused;
 }
 .dash.is-running .dash-state-sheet,
@@ -781,7 +792,8 @@ body::before {
 .dash.is-running .dash-line-path,
 .dash.is-running .dash-line-fill,
 .dash.is-running .sheet-cell.flash,
-.dash.is-running .dash-overlay {
+.dash-labels.is-running .dash-label-sheet,
+.dash-labels.is-running .dash-label-dash {
   animation-play-state: running;
 }
 
@@ -793,7 +805,8 @@ body::before {
   .dash-line-path { animation: none; stroke-dashoffset: 0; }
   .dash-line-fill { animation: none; opacity: 1; }
   .dash-counter[data-count] { animation: none; }
-  .dash-overlay { display: none; }
+  .dash-label-sheet { display: none; }
+  .dash-label-dash { animation: none; opacity: 1; }
 }
 
 /* ------------------------------------------------------------------
@@ -2163,6 +2176,10 @@ body::before {
         </div>
       </div>
       <div class="hero-visual reveal">
+        <div class="dash-labels" aria-hidden="true">
+          <span class="dash-label dash-label-sheet">Spreadsheet today.</span>
+          <span class="dash-label dash-label-dash">Custom software tomorrow.</span>
+        </div>
         <div class="dash" aria-hidden="true">
           <div class="dash-chrome">
             <span class="dash-dot"></span>
@@ -2261,10 +2278,6 @@ body::before {
               </div>
             </div>
           </div>
-            </div>
-            <div class="dash-overlay" aria-hidden="true">
-              <span>Spreadsheet today.</span>
-              <span>Custom software tomorrow.</span>
             </div>
           </div>
         </div>
@@ -3200,11 +3213,13 @@ document.querySelectorAll('.reveal, .reveal-stagger').forEach(el => io.observe(e
   // Hold the cycle paused (CSS animation-play-state: paused) until the
   // dashboard scrolls into view, then start it from 0% so visitors
   // always see the spreadsheet first and watch the morph play out live.
+  const dashLabels = dash.parentElement && dash.parentElement.querySelector('.dash-labels');
   let started = false;
   function start() {
     if (started) return;
     started = true;
     dash.classList.add('is-running');
+    if (dashLabels) dashLabels.classList.add('is-running');
     tick();
     setInterval(tick, LOOP);
   }
