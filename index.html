@@ -412,7 +412,7 @@ body::before {
 
 /* Hero dashboard mockup (light SaaS skin) */
 .dash {
-  --dash-loop: 14s;
+  --dash-loop: 18s;
   --dash-bar-stagger: 0.1s;
   --dash-blue: #3b82f6;
   --dash-blue-light: #93c5fd;
@@ -455,9 +455,114 @@ body::before {
   letter-spacing: 0.08em;
   color: var(--dash-muted);
 }
+.dash-stage {
+  position: relative;
+  min-height: 360px;
+  background: #ffffff;
+  overflow: hidden;
+}
+.dash-state {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  will-change: opacity, transform, filter;
+}
+.dash-state-sheet {
+  background: #ffffff;
+  font-family: var(--font-mono);
+  animation: stageSheet var(--dash-loop) ease-in-out infinite;
+}
+.dash-state-dash {
+  opacity: 0;
+  animation: stageDash var(--dash-loop) ease-in-out infinite;
+}
+@keyframes stageSheet {
+  0%, 16%   { opacity: 1; transform: scale(1); filter: blur(0); }
+  25%       { opacity: 0; transform: scale(1.04); filter: blur(8px); }
+  83%       { opacity: 0; transform: scale(1.04); filter: blur(8px); }
+  94%, 100% { opacity: 1; transform: scale(1); filter: blur(0); }
+}
+@keyframes stageDash {
+  0%, 16%   { opacity: 0; transform: scale(0.97); filter: blur(8px); }
+  25%       { opacity: 1; transform: scale(1); filter: blur(0); }
+  83%       { opacity: 1; transform: scale(1); filter: blur(0); }
+  94%, 100% { opacity: 0; transform: scale(0.97); filter: blur(8px); }
+}
+
+/* Spreadsheet view */
+.sheet-cols {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  background: #f3f4f6;
+  border-bottom: 1px solid #d1d5db;
+  flex-shrink: 0;
+}
+.sheet-col {
+  padding: 6px 5px;
+  font-size: 8px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  color: #6b7280;
+  text-transform: uppercase;
+  border-right: 1px solid #e5e7eb;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.sheet-col:last-child { border-right: none; }
+.sheet-rows {
+  flex: 1;
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-auto-rows: 1fr;
+  position: relative;
+  min-height: 0;
+}
+.sheet-cell {
+  padding: 5px 5px;
+  border-right: 1px solid #f0f1f3;
+  border-bottom: 1px solid #f0f1f3;
+  font-size: 9px;
+  color: #374151;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: flex;
+  align-items: center;
+  background: #ffffff;
+}
+.sheet-cell:nth-child(12n) { border-right: none; }
+.sheet-cell.neg { background: rgba(239,68,68,0.1); color: #b91c1c; }
+.sheet-cell.warn { background: rgba(245,158,11,0.13); color: #92400e; }
+.sheet-cell.flash { animation: cellFlash var(--dash-loop) linear infinite; }
+@keyframes cellFlash {
+  0%   { background-color: transparent; box-shadow: inset 0 0 0 0 rgba(59,130,246,0); }
+  1%   { background-color: rgba(59,130,246,0.32); box-shadow: inset 0 0 0 1.5px rgba(59,130,246,0.6); }
+  4%   { background-color: rgba(59,130,246,0); box-shadow: inset 0 0 0 0 rgba(59,130,246,0); }
+  100% { background-color: transparent; }
+}
+.sheet-scrollbar {
+  position: absolute;
+  top: 4px; bottom: 4px; right: 2px;
+  width: 4px;
+  background: #f3f4f6;
+  border-radius: 2px;
+  pointer-events: none;
+}
+.sheet-scrollbar::before {
+  content: "";
+  position: absolute;
+  top: 6px; left: 0; right: 0;
+  height: 28%;
+  background: #cbd5e1;
+  border-radius: 2px;
+}
+
 .dash-body {
   display: grid;
   grid-template-columns: 60px 1fr;
+  height: 100%;
   min-height: 360px;
   background: #ffffff;
 }
@@ -569,11 +674,11 @@ body::before {
   animation-delay: calc(var(--i, 0) * var(--dash-bar-stagger));
 }
 @keyframes dashBarGrow {
-  0%   { transform: scaleY(0); }
-  10%  { transform: scaleY(1); }
-  85%  { transform: scaleY(1); }
-  95%  { transform: scaleY(0); }
-  100% { transform: scaleY(0); }
+  0%, 25%   { transform: scaleY(0); }
+  39%       { transform: scaleY(1); }
+  72%       { transform: scaleY(1); }
+  82%       { transform: scaleY(0); }
+  100%      { transform: scaleY(0); }
 }
 .dash-line {
   position: relative;
@@ -603,16 +708,16 @@ body::before {
   animation: dashLineFill var(--dash-loop) ease-in-out infinite;
 }
 @keyframes dashLineDraw {
-  0%, 5%   { stroke-dashoffset: 600; }
-  35%      { stroke-dashoffset: 0; }
-  85%      { stroke-dashoffset: 0; }
-  95%, 100%{ stroke-dashoffset: 600; }
+  0%, 28%   { stroke-dashoffset: 600; }
+  50%       { stroke-dashoffset: 0; }
+  78%       { stroke-dashoffset: 0; }
+  83%, 100% { stroke-dashoffset: 600; }
 }
 @keyframes dashLineFill {
-  0%, 30%  { opacity: 0; }
-  45%      { opacity: 1; }
-  85%      { opacity: 1; }
-  95%, 100%{ opacity: 0; }
+  0%, 45%   { opacity: 0; }
+  55%       { opacity: 1; }
+  78%       { opacity: 1; }
+  83%, 100% { opacity: 0; }
 }
 .dash-counter {
   display: inline-block;
@@ -623,6 +728,9 @@ body::before {
   .dash { transform: none; }
 }
 @media (prefers-reduced-motion: reduce) {
+  .dash-state-sheet { display: none; }
+  .dash-state-dash { animation: none; opacity: 1; transform: none; filter: none; }
+  .sheet-cell.flash { animation: none; }
   .dash-bar { animation: none; transform: scaleY(1); }
   .dash-line-path { animation: none; stroke-dashoffset: 0; }
   .dash-line-fill { animation: none; opacity: 1; }
@@ -2003,8 +2111,28 @@ body::before {
             <span class="dash-dot"></span>
             <span class="dash-chrome-title">operations.rebeldev.app</span>
           </div>
-          <div class="dash-body">
-            <aside class="dash-side">
+          <div class="dash-stage">
+            <div class="dash-state dash-state-sheet">
+              <div class="sheet-cols">
+                <span class="sheet-col">DATE</span><span class="sheet-col">CUSTOMER</span><span class="sheet-col">ORDER</span><span class="sheet-col">QTY</span><span class="sheet-col">SKU</span><span class="sheet-col">TYPE</span><span class="sheet-col">AMOUNT</span><span class="sheet-col">VAT</span><span class="sheet-col">TOTAL</span><span class="sheet-col">STATUS</span><span class="sheet-col">MARGIN</span><span class="sheet-col">NOTES</span>
+              </div>
+              <div class="sheet-rows">
+                <span class="sheet-cell">04/01</span><span class="sheet-cell">Acme Ltd</span><span class="sheet-cell">#1024</span><span class="sheet-cell">12</span><span class="sheet-cell">WD-12</span><span class="sheet-cell">Order</span><span class="sheet-cell">&pound;1,240</span><span class="sheet-cell">&pound;248</span><span class="sheet-cell">&pound;1,488</span><span class="sheet-cell">Paid</span><span class="sheet-cell">22%</span><span class="sheet-cell">ok</span>
+                <span class="sheet-cell">04/01</span><span class="sheet-cell">Globex</span><span class="sheet-cell">#1025</span><span class="sheet-cell flash" style="animation-delay: 0.2s">8</span><span class="sheet-cell">WD-08</span><span class="sheet-cell">Order</span><span class="sheet-cell">&pound;980</span><span class="sheet-cell">&pound;196</span><span class="sheet-cell">&pound;1,176</span><span class="sheet-cell">Paid</span><span class="sheet-cell">18%</span><span class="sheet-cell">ok</span>
+                <span class="sheet-cell">04/02</span><span class="sheet-cell">Initech</span><span class="sheet-cell">#1026</span><span class="sheet-cell">3</span><span class="sheet-cell">WD-03</span><span class="sheet-cell">Refund</span><span class="sheet-cell neg">-&pound;340</span><span class="sheet-cell neg">-&pound;68</span><span class="sheet-cell neg">-&pound;408</span><span class="sheet-cell neg">Refund</span><span class="sheet-cell neg">-8%</span><span class="sheet-cell">chk</span>
+                <span class="sheet-cell">04/02</span><span class="sheet-cell">Soylent</span><span class="sheet-cell">#1027</span><span class="sheet-cell">21</span><span class="sheet-cell">WD-21</span><span class="sheet-cell">Order</span><span class="sheet-cell">&pound;2,150</span><span class="sheet-cell flash" style="animation-delay: 0.7s">&pound;430</span><span class="sheet-cell">&pound;2,580</span><span class="sheet-cell">Paid</span><span class="sheet-cell">24%</span><span class="sheet-cell">ok</span>
+                <span class="sheet-cell">04/03</span><span class="sheet-cell">Umbrella</span><span class="sheet-cell">#1028</span><span class="sheet-cell">5</span><span class="sheet-cell">WD-05</span><span class="sheet-cell">Order</span><span class="sheet-cell">&pound;620</span><span class="sheet-cell">&pound;124</span><span class="sheet-cell">&pound;744</span><span class="sheet-cell warn">Pending</span><span class="sheet-cell">15%</span><span class="sheet-cell">wait</span>
+                <span class="sheet-cell">04/03</span><span class="sheet-cell">Stark</span><span class="sheet-cell">#1029</span><span class="sheet-cell">47</span><span class="sheet-cell">WD-47</span><span class="sheet-cell">Order</span><span class="sheet-cell">&pound;4,890</span><span class="sheet-cell">&pound;978</span><span class="sheet-cell flash" style="animation-delay: 1.2s">&pound;5,868</span><span class="sheet-cell">Paid</span><span class="sheet-cell">31%</span><span class="sheet-cell">ok</span>
+                <span class="sheet-cell">04/04</span><span class="sheet-cell">Wayne</span><span class="sheet-cell">#1030</span><span class="sheet-cell">14</span><span class="sheet-cell">WD-14</span><span class="sheet-cell">Order</span><span class="sheet-cell">&pound;1,475</span><span class="sheet-cell">&pound;295</span><span class="sheet-cell">&pound;1,770</span><span class="sheet-cell">Paid</span><span class="sheet-cell">19%</span><span class="sheet-cell">ok</span>
+                <span class="sheet-cell">04/04</span><span class="sheet-cell">Cyberdyne</span><span class="sheet-cell">#1031</span><span class="sheet-cell">2</span><span class="sheet-cell">WD-02</span><span class="sheet-cell">Refund</span><span class="sheet-cell neg">-&pound;180</span><span class="sheet-cell neg">-&pound;36</span><span class="sheet-cell neg">-&pound;216</span><span class="sheet-cell neg">Refund</span><span class="sheet-cell neg">-4%</span><span class="sheet-cell">chk</span>
+                <span class="sheet-cell">04/05</span><span class="sheet-cell">Tyrell</span><span class="sheet-cell">#1032</span><span class="sheet-cell">30</span><span class="sheet-cell flash" style="animation-delay: 1.7s">WD-30</span><span class="sheet-cell">Order</span><span class="sheet-cell">&pound;3,120</span><span class="sheet-cell">&pound;624</span><span class="sheet-cell">&pound;3,744</span><span class="sheet-cell warn">Pending</span><span class="sheet-cell">26%</span><span class="sheet-cell">wait</span>
+                <span class="sheet-cell">04/05</span><span class="sheet-cell">Massive D</span><span class="sheet-cell">#1033</span><span class="sheet-cell">8</span><span class="sheet-cell">WD-08</span><span class="sheet-cell">Order</span><span class="sheet-cell">&pound;870</span><span class="sheet-cell">&pound;174</span><span class="sheet-cell">&pound;1,044</span><span class="sheet-cell">Paid</span><span class="sheet-cell flash" style="animation-delay: 2.3s">17%</span><span class="sheet-cell">ok</span>
+              </div>
+              <span class="sheet-scrollbar"></span>
+            </div>
+            <div class="dash-state dash-state-dash">
+              <div class="dash-body">
+                <aside class="dash-side">
               <div class="dash-side-item active"></div>
               <div class="dash-side-item"></div>
               <div class="dash-side-item"></div>
@@ -2072,6 +2200,8 @@ body::before {
                   </svg>
                 </div>
               </div>
+            </div>
+          </div>
             </div>
           </div>
         </div>
@@ -2952,14 +3082,17 @@ const io = new IntersectionObserver((entries) => {
 document.querySelectorAll('.reveal, .reveal-stagger').forEach(el => io.observe(el));
 
 // ------------------------------------------------------------------
-// HERO DASHBOARD: count-up loop (synced with 14s CSS bar/line cycle)
+// HERO DASHBOARD: count-up loop (synced with 18s CSS stage cycle)
+// Spreadsheet shows 0-3s, transition 3-4.5s, dashboard 4.5-15s, fade
+// back 15-17s. Numbers reset at the start of each cycle (hidden under
+// the spreadsheet) and animate up at the dashboard reveal moment.
 // ------------------------------------------------------------------
 (function () {
   const counters = document.querySelectorAll('.dash-counter[data-count]');
   if (!counters.length) return;
   const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const LOOP = 14000;
-  const COUNT_DELAY = 700;
+  const LOOP = 18000;
+  const COUNT_DELAY = 5000; // dashboard becomes visible at 4.5s
   const COUNT_DUR = 1800;
 
   function format(value, decimals) {
@@ -2988,26 +3121,19 @@ document.querySelectorAll('.reveal, .reveal-stagger').forEach(el => io.observe(e
   }
   if (reduce) { setFinal(); return; }
 
-  const dash = document.querySelector('.dash');
-  if (!dash) return;
-  let started = false;
-  let intervalId = null;
-
+  function reset() {
+    counters.forEach(el => {
+      el.textContent = el.getAttribute('data-decimals') === '1' ? '0.0' : '0';
+    });
+  }
   function tick() {
-    counters.forEach(el => { el.textContent = el.getAttribute('data-decimals') === '1' ? '0.0' : '0'; });
+    reset();
     setTimeout(() => counters.forEach(runCountUp), COUNT_DELAY);
   }
-  function start() {
-    if (started) return;
-    started = true;
-    tick();
-    intervalId = setInterval(tick, LOOP);
-  }
-  // Kick off when the dashboard is in view
-  const dashIo = new IntersectionObserver((entries) => {
-    entries.forEach(e => { if (e.isIntersecting) { start(); dashIo.unobserve(e.target); } });
-  }, { threshold: 0.25 });
-  dashIo.observe(dash);
+  // Start aligned with the page-load CSS animation clock so the
+  // count-up matches the dashboard reveal window.
+  tick();
+  setInterval(tick, LOOP);
 })();
 
 // ------------------------------------------------------------------
