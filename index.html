@@ -1572,7 +1572,7 @@ body::before {
   align-items: center;
   justify-content: center;
 }
-.diagram-svg-wrap.before { filter: saturate(0.6); }
+.diagram-svg-wrap.before { filter: saturate(0.8); }
 .diagram-svg-wrap.after {
   border-color: var(--border-accent);
   box-shadow: 0 0 60px -20px rgba(240,192,0,0.18);
@@ -1628,17 +1628,35 @@ body::before {
   stroke-dasharray: 4 4;
 }
 .line-mess-broken {
-  stroke: rgba(239,68,68,0.18);
+  stroke: rgba(239,68,68,0.32);
   stroke-width: 1.6;
   fill: none;
   stroke-dasharray: 4 4;
-  animation: brokenPulse 6s ease-in-out infinite;
+  animation: brokenPulse 4s ease-in-out infinite;
 }
-.line-mess-broken-2 { animation-delay: -2s; }
-.line-mess-broken-3 { animation-delay: -4s; }
+.line-mess-broken-2 { animation-delay: -0.7s; }
+.line-mess-broken-3 { animation-delay: -1.4s; }
+.line-mess-broken-4 { animation-delay: -2.1s; }
+.line-mess-broken-5 { animation-delay: -2.8s; }
+.line-mess-broken-6 { animation-delay: -3.4s; }
 @keyframes brokenPulse {
-  0%, 70%, 100% { stroke: rgba(239,68,68,0.18); }
-  82% { stroke: rgba(239,68,68,0.78); }
+  0%, 60%, 100% { stroke: rgba(239,68,68,0.3); }
+  78% { stroke: rgba(239,68,68,0.95); }
+}
+
+/* Floating error indicators in the Before panel */
+.error-dot {
+  fill: rgba(239,68,68,0.85);
+  filter: drop-shadow(0 0 8px rgba(239,68,68,0.7));
+  transform-origin: center;
+  transform-box: fill-box;
+  animation: errorPulse 2.4s ease-in-out infinite;
+}
+.error-dot-2 { animation-delay: -0.8s; }
+.error-dot-3 { animation-delay: -1.6s; }
+@keyframes errorPulse {
+  0%, 100% { opacity: 0.45; transform: scale(0.85); }
+  50%      { opacity: 1; transform: scale(1.2); }
 }
 
 /* After lines (clean radial flow) */
@@ -1665,8 +1683,9 @@ body::before {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .line-mess-broken { animation: none; stroke: rgba(239,68,68,0.4); }
+  .line-mess-broken { animation: none; stroke: rgba(239,68,68,0.55); }
   .line-after-flow { animation: none; opacity: 0.85; }
+  .error-dot { animation: none; opacity: 0.85; }
 }
 
 @media (max-width: 720px) {
@@ -2814,38 +2833,61 @@ body::before {
         <div class="diagram-label">Today</div>
         <div class="diagram-svg-wrap before">
           <svg class="diagram-svg" viewBox="0 0 400 360" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid meet">
-            <!-- chaotic connecting lines, drawn before nodes -->
-            <line class="line-mess" x1="82" y1="60" x2="190" y2="160"/>
-            <line class="line-mess" x1="82" y1="60" x2="318" y2="50"/>
-            <line class="line-mess" x1="82" y1="60" x2="66" y2="260"/>
-            <line class="line-mess-broken" x1="318" y1="50" x2="66" y2="260"/>
-            <line class="line-mess" x1="318" y1="50" x2="302" y2="270"/>
-            <line class="line-mess-broken line-mess-broken-2" x1="190" y1="160" x2="66" y2="260"/>
-            <line class="line-mess-broken line-mess-broken-3" x1="190" y1="160" x2="302" y2="270"/>
-            <line class="line-mess-dashed" x1="66" y1="260" x2="302" y2="270"/>
+            <!--
+              Chaotic connecting lines (drawn before the nodes).
+              Five system boxes (positions slightly off-grid) with 15
+              connecting lines, 8 of which are .line-mess-broken with
+              staggered red brokenPulse keyframes (-0 / -0.7 / -1.4 /
+              -2.1 / -2.8 / -3.4s) so something is always pulsing.
+              Approx node centres: CRM (74,56), Accounts (332,42),
+              Inventory (194,142), Spreadsheets (52,270), Email (314,284).
+            -->
+            <!-- solid mess -->
+            <line class="line-mess" x1="74" y1="56" x2="332" y2="42"/>
+            <line class="line-mess" x1="74" y1="56" x2="194" y2="142"/>
+            <line class="line-mess" x1="74" y1="56" x2="52" y2="270"/>
+            <line class="line-mess" x1="332" y1="42" x2="314" y2="284"/>
+            <line class="line-mess" x1="194" y1="142" x2="332" y2="42"/>
+            <line class="line-mess-dashed" x1="52" y1="270" x2="314" y2="284"/>
+            <line class="line-mess-dashed" x1="74" y1="56" x2="314" y2="284"/>
 
-            <!-- nodes -->
-            <g transform="translate(40,40)">
+            <!-- broken / pulsing red -->
+            <line class="line-mess-broken" x1="332" y1="42" x2="52" y2="270"/>
+            <line class="line-mess-broken line-mess-broken-2" x1="194" y1="142" x2="52" y2="270"/>
+            <line class="line-mess-broken line-mess-broken-3" x1="194" y1="142" x2="314" y2="284"/>
+            <line class="line-mess-broken line-mess-broken-4" x1="332" y1="42" x2="194" y2="142"/>
+            <line class="line-mess-broken line-mess-broken-5" x1="74" y1="56" x2="314" y2="284"/>
+            <line class="line-mess-broken line-mess-broken-6" x1="52" y1="270" x2="194" y2="142"/>
+            <path class="line-mess-broken line-mess-broken-2" d="M74 56 Q220 30 332 42"/>
+            <path class="line-mess-broken line-mess-broken-5" d="M52 270 Q160 200 194 142"/>
+
+            <!-- floating error indicators -->
+            <circle class="error-dot" cx="148" cy="92" r="3.5"/>
+            <circle class="error-dot error-dot-2" cx="252" cy="200" r="3"/>
+            <circle class="error-dot error-dot-3" cx="118" cy="206" r="3.2"/>
+
+            <!-- nodes (slightly off-grid positions) -->
+            <g transform="translate(32,36)">
               <rect class="node-rect" width="84" height="40" rx="6"/>
               <circle class="node-dot" cx="14" cy="20" r="3"/>
               <text class="node-label" x="52" y="24" text-anchor="middle">CRM</text>
             </g>
-            <g transform="translate(276,30)">
+            <g transform="translate(290,22)">
               <rect class="node-rect" width="84" height="40" rx="6"/>
               <circle class="node-dot" cx="14" cy="20" r="3"/>
               <text class="node-label" x="52" y="24" text-anchor="middle">Accounts</text>
             </g>
-            <g transform="translate(148,140)">
+            <g transform="translate(152,122)">
               <rect class="node-rect" width="84" height="40" rx="6"/>
               <circle class="node-dot" cx="14" cy="20" r="3"/>
               <text class="node-label" x="52" y="24" text-anchor="middle">Inventory</text>
             </g>
-            <g transform="translate(24,240)">
+            <g transform="translate(10,250)">
               <rect class="node-rect" width="84" height="40" rx="6"/>
               <circle class="node-dot" cx="14" cy="20" r="3"/>
               <text class="node-label" x="52" y="24" text-anchor="middle">Spreadsheets</text>
             </g>
-            <g transform="translate(260,250)">
+            <g transform="translate(272,264)">
               <rect class="node-rect" width="84" height="40" rx="6"/>
               <circle class="node-dot" cx="14" cy="20" r="3"/>
               <text class="node-label" x="52" y="24" text-anchor="middle">Email</text>
@@ -2859,17 +2901,24 @@ body::before {
         <div class="diagram-label diagram-label-after">With Rebel Dev</div>
         <div class="diagram-svg-wrap after">
           <svg class="diagram-svg" viewBox="0 0 400 360" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid meet">
-            <!-- base lines -->
-            <path class="line-after-base" d="M200 180 Q140 130 88 80"/>
-            <path class="line-after-base" d="M200 180 Q260 130 312 80"/>
-            <path class="line-after-base" d="M200 180 Q140 230 88 280"/>
-            <path class="line-after-base" d="M200 180 Q260 230 312 280"/>
+            <!--
+              Each path leaves the hub from one of its four edges and
+              terminates at the matching edge of a satellite box, with
+              a quadratic control point pulled into the empty diagonal
+              quadrant so the line never crosses through any box.
+              Hub: x 130-270, y 150-210. CRM: x 48-128, y 60-100.
+              Accounts: x 272-352, y 60-100. Inventory: x 48-128,
+              y 260-300. Reporting: x 272-352, y 260-300.
+            -->
+            <path class="line-after-base" d="M160 150 Q110 120 118 100"/>
+            <path class="line-after-base" d="M240 150 Q290 120 282 100"/>
+            <path class="line-after-base" d="M160 210 Q110 240 118 260"/>
+            <path class="line-after-base" d="M240 210 Q290 240 282 260"/>
 
-            <!-- animated flow on top -->
-            <path class="line-after-flow" d="M200 180 Q140 130 88 80"/>
-            <path class="line-after-flow line-after-flow-2" d="M200 180 Q260 130 312 80"/>
-            <path class="line-after-flow line-after-flow-3" d="M200 180 Q140 230 88 280"/>
-            <path class="line-after-flow line-after-flow-4" d="M200 180 Q260 230 312 280"/>
+            <path class="line-after-flow" d="M160 150 Q110 120 118 100"/>
+            <path class="line-after-flow line-after-flow-2" d="M240 150 Q290 120 282 100"/>
+            <path class="line-after-flow line-after-flow-3" d="M160 210 Q110 240 118 260"/>
+            <path class="line-after-flow line-after-flow-4" d="M240 210 Q290 240 282 260"/>
 
             <!-- satellites -->
             <g transform="translate(48,60)">
