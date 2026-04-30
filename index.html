@@ -1255,7 +1255,9 @@ body::before {
   width: 56px;
   height: 56px;
   border-radius: 50%;
-  background: rgba(240,192,0,0.16);
+  background:
+    linear-gradient(rgba(240,192,0,0.16), rgba(240,192,0,0.16)),
+    var(--bg);
   border: 1.5px solid rgba(240,192,0,0.55);
   box-shadow: 0 0 24px -8px rgba(240,192,0,0.35);
   display: flex;
@@ -1633,21 +1635,28 @@ body::before {
   height: 56px;
   margin-left: -28px;
   border-radius: 50%;
-  background: rgba(240,192,0,0.16);
+  background:
+    linear-gradient(rgba(240,192,0,0.16), rgba(240,192,0,0.16)),
+    var(--bg);
   border: 1.5px solid rgba(240,192,0,0.55);
   box-shadow: 0 0 24px -8px rgba(240,192,0,0.35);
   z-index: 1;
 }
 .step-num {
+  position: absolute;
+  top: -80px;
+  left: 50%;
+  width: 56px;
+  height: 56px;
+  margin: 0 0 0 -28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   font-family: var(--font-mono);
   font-size: 11px;
   font-weight: 600;
   letter-spacing: 0.12em;
   color: var(--accent);
-  position: absolute;
-  top: -65px;
-  left: 0; right: 0;
-  margin: 0;
   z-index: 2;
 }
 .step h4 {
@@ -1702,7 +1711,7 @@ body::before {
   }
   .step { text-align: left; }
   .step::before { top: -8px; left: -80px; margin-left: 0; }
-  .step-num { top: 8px; left: -80px; right: auto; width: 56px; text-align: center; }
+  .step-num { top: -8px; left: -80px; right: auto; margin: 0; width: 56px; height: 56px; }
   .step p, .step-extra { max-width: none; margin-left: 0; margin-right: 0; }
   .step-extra { margin-top: 14px; }
 }
