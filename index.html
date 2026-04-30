@@ -549,6 +549,30 @@ body::before {
   border-radius: 2px;
 }
 
+/* Mobile: collapse the spreadsheet from 12 to 6 most-meaningful columns
+   (DATE / CUSTOMER / ORDER / AMOUNT / STATUS / MARGIN). Hide QTY, SKU,
+   TYPE, VAT, TOTAL, NOTES. The dashboard state is unaffected. */
+@media (max-width: 720px) {
+  .sheet-cols,
+  .sheet-rows {
+    grid-template-columns: repeat(6, 1fr);
+  }
+  .sheet-col:nth-child(4),
+  .sheet-col:nth-child(5),
+  .sheet-col:nth-child(6),
+  .sheet-col:nth-child(8),
+  .sheet-col:nth-child(9),
+  .sheet-col:nth-child(12),
+  .sheet-cell:nth-child(12n+4),
+  .sheet-cell:nth-child(12n+5),
+  .sheet-cell:nth-child(12n+6),
+  .sheet-cell:nth-child(12n+8),
+  .sheet-cell:nth-child(12n+9),
+  .sheet-cell:nth-child(12n+12) {
+    display: none;
+  }
+}
+
 .dash-body {
   display: grid;
   grid-template-columns: 60px 1fr;
@@ -909,12 +933,106 @@ body::before {
   letter-spacing: -0.005em;
 }
 .review-cta .btn-primary svg { width: 18px; height: 18px; }
+.review-cta-note {
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  letter-spacing: 0.04em;
+  line-height: 1.55;
+  color: var(--text-dim);
+  text-align: center;
+  max-width: 640px;
+  margin: 22px auto 0;
+}
 @media (max-width: 720px) {
   #free-review { padding: 96px 0; }
   .review-card { padding: 56px 28px 48px; }
   .review-points { grid-template-columns: 1fr; gap: 18px; padding: 22px 0 0; margin-bottom: 36px; }
   .review-cta { justify-content: stretch; }
   .review-cta .btn-primary { width: 100%; justify-content: center; padding: 18px 24px; }
+  .review-cta-note { font-size: 11px; }
+}
+
+/* Pain section inline CTA */
+.pain-cta {
+  display: flex;
+  justify-content: center;
+  margin-top: 28px;
+}
+.pain-cta-btn {
+  font-size: 15px;
+  padding: 16px 28px;
+}
+@media (max-width: 720px) {
+  .pain-cta { padding: 0 16px; }
+  .pain-cta-btn { width: 100%; justify-content: center; }
+}
+
+/* Honest qualifier section */
+.qualifier {
+  padding: 96px 0;
+}
+.qualifier-inner {
+  max-width: 640px;
+  margin: 0 auto;
+  text-align: center;
+}
+.qualifier-label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 20px;
+}
+.qualifier-title {
+  font-size: clamp(24px, 3vw, 32px);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+  color: var(--text);
+  margin-bottom: 32px;
+}
+.qualifier-list {
+  list-style: none;
+  display: grid;
+  gap: 14px;
+  margin-bottom: 28px;
+}
+.qualifier-list li {
+  font-size: 16px;
+  color: var(--text-dim);
+  line-height: 1.5;
+}
+.qualifier-close {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+  padding-top: 24px;
+  border-top: 1px solid var(--border);
+}
+@media (max-width: 720px) {
+  .qualifier { padding: 64px 0; }
+  .qualifier-list li { font-size: 15px; }
+}
+
+/* Quiet variant of step-extra (no dashed top rule) */
+.step-extra-quiet {
+  margin-top: 10px !important;
+  padding-top: 0 !important;
+  border-top: 0 !important;
+  font-size: 12px !important;
+  color: var(--text-muted) !important;
+}
+
+/* Pricing subhead floor line */
+.price-floor {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.05em;
+  color: var(--text-muted);
+  margin-top: -1.4rem;
+  margin-bottom: 1.5rem;
 }
 
 /* ------------------------------------------------------------------
@@ -958,109 +1076,6 @@ body::before {
   from { transform: translateX(0); }
   to { transform: translateX(-50%); }
 }
-
-/* ------------------------------------------------------------------
-   WHO IT'S FOR
------------------------------------------------------------------- */
-.who-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 16px;
-}
-.who-card {
-  display: flex;
-  align-items: flex-start;
-  gap: 18px;
-  padding: 28px;
-  background: var(--bg-card);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-md);
-  transition: border-color 0.3s var(--ease), background 0.3s var(--ease);
-}
-.who-card:hover {
-  border-color: var(--border-accent);
-  background: var(--bg-card-hover);
-}
-.who-icon {
-  flex-shrink: 0;
-  width: 40px; height: 40px;
-  border-radius: 8px;
-  background: var(--accent-dim);
-  border: 1px solid var(--border-accent);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--accent);
-}
-.who-icon svg { width: 20px; height: 20px; }
-.who-card h4 {
-  font-size: 17px;
-  font-weight: 700;
-  margin-bottom: 6px;
-  letter-spacing: -0.01em;
-}
-.who-card p {
-  font-size: 15px;
-  color: var(--text-dim);
-  line-height: 1.55;
-}
-.who-card.full-width { grid-column: 1 / -1; }
-
-/* Signs subsection */
-.signs {
-  margin-top: 56px;
-  padding-top: 48px;
-  border-top: 1px solid var(--border);
-}
-.signs-intro {
-  font-family: var(--font-mono);
-  font-size: 12px;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--accent);
-  margin-bottom: 10px;
-}
-.signs h3 {
-  font-size: clamp(22px, 2.8vw, 28px);
-  font-weight: 800;
-  letter-spacing: -0.02em;
-  margin-bottom: 28px;
-  color: var(--text);
-}
-.signs-list {
-  list-style: none;
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 2px;
-  background: var(--border);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-md);
-  overflow: hidden;
-}
-.signs-list li {
-  display: flex;
-  align-items: flex-start;
-  gap: 16px;
-  padding: 20px 24px;
-  background: var(--bg-card);
-  font-size: 15px;
-  color: var(--text-dim);
-  line-height: 1.55;
-  transition: background 0.3s var(--ease), color 0.3s var(--ease);
-}
-.signs-list li:hover { background: var(--bg-card-hover); color: var(--text); }
-.signs-list .sign-icon {
-  flex-shrink: 0;
-  width: 28px; height: 28px;
-  border-radius: 6px;
-  background: var(--accent-dim);
-  border: 1px solid var(--border-accent);
-  color: var(--accent);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.signs-list .sign-icon svg { width: 14px; height: 14px; }
 
 /* What we build grid */
 .build-grid {
@@ -1222,139 +1237,6 @@ body::before {
   .pain-item { grid-template-columns: 1fr; gap: 8px; padding: 28px 0; }
   .pain-num { font-size: 28px; padding-top: 0; margin-bottom: 4px; }
   .pain-close { margin-top: 40px; }
-}
-
-/* Story section */
-.story-list {
-  list-style: none;
-  max-width: 640px;
-  margin: 0 auto;
-}
-.story-step {
-  display: flex;
-  align-items: baseline;
-  gap: 24px;
-  padding: 22px 0;
-  border-bottom: 1px solid var(--border);
-}
-.story-step:last-child { border-bottom: none; }
-.story-num {
-  font-family: var(--font-mono);
-  font-size: 13px;
-  font-weight: 500;
-  letter-spacing: 0.08em;
-  color: var(--accent);
-  flex-shrink: 0;
-  min-width: 28px;
-}
-.story-text {
-  font-size: 17px;
-  color: var(--text);
-  line-height: 1.55;
-  letter-spacing: -0.005em;
-}
-.story-close {
-  max-width: 640px;
-  margin: 56px auto 0;
-  text-align: center;
-}
-.story-close-line {
-  font-family: var(--font-mono);
-  font-size: 12px;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--accent);
-  margin-bottom: 22px;
-}
-
-/* Image break section */
-.image-break {
-  position: relative;
-  width: 100%;
-  height: 420px;
-  overflow: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  z-index: 2;
-}
-.image-break-img {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  filter: brightness(0.4) contrast(1.1);
-  z-index: 0;
-}
-.image-break::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: rgba(10, 10, 10, 0.4);
-  z-index: 1;
-}
-.image-break-content {
-  position: relative;
-  z-index: 2;
-  padding: 0 24px;
-  max-width: 900px;
-}
-.image-break h2 {
-  font-family: var(--font-sans);
-  font-weight: 900;
-  font-size: clamp(32px, 5vw, 56px);
-  line-height: 1.05;
-  letter-spacing: -0.025em;
-  color: #fff;
-  margin-bottom: 16px;
-}
-.image-break-sub {
-  font-family: var(--font-mono);
-  font-size: 12px;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--accent);
-}
-@media (max-width: 720px) {
-  .image-break { height: 320px; }
-}
-@media (max-width: 560px) {
-  .story-step { gap: 16px; padding: 18px 0; }
-  .story-text { font-size: 15.5px; }
-}
-
-/* ------------------------------------------------------------------
-   INTERLUDE
------------------------------------------------------------------- */
-.interlude {
-  padding: 32px 24px 0;
-  text-align: center;
-  position: relative;
-  z-index: 2;
-}
-.interlude-inner { max-width: 560px; margin: 0 auto; }
-.interlude-inner::before {
-  content: "";
-  display: block;
-  width: 36px;
-  height: 1px;
-  background: var(--accent);
-  margin: 0 auto 24px;
-}
-.interlude-inner p {
-  font-size: 20px;
-  font-weight: 300;
-  color: var(--text-dim);
-  font-style: italic;
-  letter-spacing: -0.005em;
-  line-height: 1.4;
-}
-.interlude-inner p strong {
-  color: var(--text);
-  font-weight: 500;
-  font-style: normal;
 }
 
 /* ------------------------------------------------------------------
@@ -1645,24 +1527,6 @@ body::before {
   font-weight: 700;
   margin-bottom: 10px;
   letter-spacing: -0.015em;
-}
-.price-best {
-  font-size: 13px;
-  color: var(--text-dim);
-  line-height: 1.45;
-  margin-bottom: 16px;
-  padding-bottom: 16px;
-  border-bottom: 1px solid var(--border);
-}
-.price-best::before {
-  content: "Best for";
-  font-family: var(--font-mono);
-  font-size: 10px;
-  letter-spacing: 0.12em;
-  color: var(--accent);
-  text-transform: uppercase;
-  margin-right: 10px;
-  font-weight: 600;
 }
 .price-sub {
   font-size: 14px;
@@ -2185,7 +2049,6 @@ body::before {
   .nav-links .nav-cta { padding: 14px 24px; font-size: 16px; }
   .burger { display: block; }
 
-  .who-grid { grid-template-columns: 1fr; }
   .services-grid { grid-template-columns: 1fr; }
   .build-grid { grid-template-columns: 1fr; }
   .process-grid { grid-template-columns: 1fr; }
@@ -2432,6 +2295,7 @@ body::before {
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </a>
       </div>
+      <p class="review-cta-note">We&rsquo;ll reply within one working day with two or three questions and an honest take on whether this is something we can help with.</p>
     </div>
   </div>
 </section>
@@ -2508,6 +2372,12 @@ body::before {
       </li>
     </ol>
     <p class="pain-close reveal">If even one of these sounds familiar, you&rsquo;re ready for proper software.</p>
+    <div class="pain-cta reveal">
+      <a href="#contact" class="btn-primary pain-cta-btn">
+        Tell us what&rsquo;s not working
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
   </div>
 </section>
 
@@ -2611,15 +2481,6 @@ body::before {
   </div>
 </section>
 
-<!-- ==================== IMAGE BREAK ==================== -->
-<section class="image-break reveal" aria-label="Real software. Real outcomes.">
-  <img class="image-break-img" src="https://images.unsplash.com/photo-1551434678-e076c223a692?w=1920&amp;q=80" alt="" loading="lazy" width="1920" height="600" />
-  <div class="image-break-content">
-    <h2>Real software. Real outcomes.</h2>
-    <p class="image-break-sub">Here&rsquo;s what that looks like in practice.</p>
-  </div>
-</section>
-
 <!-- ==================== PROCESS ==================== -->
 <section class="section" id="process">
   <div class="container">
@@ -2634,8 +2495,9 @@ body::before {
       <div class="step">
         <div class="step-num">STEP 01</div>
         <h4>Discovery Call</h4>
-        <p>We dig into how your business actually runs day to day. The better we understand the problem, the better the solution. Free 30 minutes. No obligation.</p>
+        <p>You walk away with a clearer view of the problem and a sense of whether software actually fixes it. Even if it&rsquo;s not us. Free 30 minutes. No obligation.</p>
         <p class="step-extra"><strong>We can come to you.</strong> Site visits available across the UK so we can see how your team works first-hand.</p>
+        <p class="step-extra step-extra-quiet">You speak directly with Nathan. No account managers, no junior staff, no sales script.</p>
       </div>
       <div class="step">
         <div class="step-num">STEP 02</div>
@@ -2692,15 +2554,15 @@ body::before {
       <div class="section-label">06 / Pricing</div>
       <h2 class="section-title">Three ways to work together.</h2>
       <p class="section-sub">
-        Every project is different, so every quote is different. These are starting points to give you a ballpark. Your actual price depends on what you need built.
+        Starting points. Final quote depends on what you actually need.
       </p>
+      <p class="price-floor">Most builds land between &pound;3,000 and &pound;15,000.</p>
     </div>
     <div class="pricing-grid reveal-stagger">
 
       <div class="price featured">
         <div class="price-badge">Most popular</div>
         <h3>Build + Managed Hosting</h3>
-        <p class="price-best">businesses that want it handled end to end</p>
         <p class="price-sub">Build it, host it, maintain it. You never think about servers.</p>
         <div class="price-amount"><span class="from">from</span>&pound;2,500</div>
         <div class="price-period">+ from &pound;199/mo managed hosting</div>
@@ -2721,7 +2583,6 @@ body::before {
 
       <div class="price">
         <h3>One-Off Build</h3>
-        <p class="price-best">businesses with their own technical team</p>
         <p class="price-sub">You want it built, you want to own it, and you&rsquo;ll handle the rest.</p>
         <div class="price-amount"><span class="from">from</span>&pound;3,500</div>
         <div class="price-period">Fixed one-time fee</div>
@@ -2738,7 +2599,6 @@ body::before {
 
       <div class="price">
         <h3>Ongoing Partnership</h3>
-        <p class="price-best">businesses that want an ongoing technical partner</p>
         <p class="price-sub">We work with you month to month, spot the bottlenecks, and build fixes as they come up. You get ongoing technical help without hiring in-house.</p>
         <div class="price-amount"><span class="from">from</span>&pound;1,800</div>
         <div class="price-period">Per month, rolling</div>
@@ -2754,6 +2614,22 @@ body::before {
         <a href="#contact" class="btn-ghost">Get a quote</a>
       </div>
 
+    </div>
+  </div>
+</section>
+
+<!-- ==================== HONEST QUALIFIER ==================== -->
+<section class="section qualifier">
+  <div class="container">
+    <div class="qualifier-inner reveal">
+      <div class="qualifier-label">Honest qualifier</div>
+      <h2 class="qualifier-title">Probably not the right fit if...</h2>
+      <ul class="qualifier-list">
+        <li>You&rsquo;re looking for the cheapest possible build.</li>
+        <li>You want a 12-month strategy engagement before any code is written.</li>
+        <li>You want to replace your in-house engineering team.</li>
+      </ul>
+      <p class="qualifier-close">For everyone else, the discovery call is on us.</p>
     </div>
   </div>
 </section>
@@ -2929,7 +2805,7 @@ body::before {
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </button>
         <div class="form-note">
-          We reply within one working day.<br />
+          We reply within one working day with an honest take on whether we can help and what it would look like.<br />
           By submitting, you agree to our <a href="privacy.html">privacy policy</a>.
         </div>
       </form>
