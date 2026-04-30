@@ -1513,6 +1513,169 @@ body::before {
 }
 
 /* ------------------------------------------------------------------
+   BEFORE / AFTER DIAGRAM
+------------------------------------------------------------------ */
+.diagram-section {
+  position: relative;
+  padding: 140px 0;
+  overflow: hidden;
+}
+.diagram-section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(ellipse 50% 60% at 78% 55%, rgba(240,192,0,0.05) 0%, transparent 70%);
+  z-index: 0;
+}
+.diagram-section > .container { position: relative; z-index: 1; }
+.diagram-section .section-head {
+  text-align: center;
+  margin: 0 auto 56px;
+  max-width: 720px;
+}
+.diagram-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 56px;
+  align-items: stretch;
+  position: relative;
+}
+.diagram-grid::before {
+  content: "";
+  position: absolute;
+  top: 32px; bottom: 32px; left: 50%;
+  width: 1px;
+  background: linear-gradient(to bottom, transparent, rgba(240,192,0,0.25), transparent);
+  pointer-events: none;
+}
+.diagram-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.diagram-label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+.diagram-label-after { color: var(--accent); }
+.diagram-svg-wrap {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 28px;
+  aspect-ratio: 4 / 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.diagram-svg-wrap.before { filter: saturate(0.6); }
+.diagram-svg-wrap.after {
+  border-color: var(--border-accent);
+  box-shadow: 0 0 60px -20px rgba(240,192,0,0.18);
+}
+.diagram-svg { width: 100%; height: 100%; display: block; overflow: visible; }
+
+/* Diagram nodes (shared) */
+.node-rect {
+  fill: #141414;
+  stroke: #2a2a2a;
+  stroke-width: 1;
+}
+.node-rect-after {
+  fill: #141414;
+  stroke: rgba(240,192,0,0.35);
+  stroke-width: 1;
+}
+.node-rect-hub {
+  fill: rgba(240,192,0,0.07);
+  stroke: var(--accent);
+  stroke-width: 1.5;
+  filter: drop-shadow(0 0 8px rgba(240,192,0,0.25));
+}
+.node-dot { fill: #6a6a6a; }
+.node-dot-after { fill: var(--accent); }
+.node-label {
+  font-family: 'JetBrains Mono', ui-monospace, Menlo, monospace;
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  fill: #a3a3a3;
+  text-transform: uppercase;
+}
+.node-label-after { fill: rgba(240,192,0,0.95); }
+.node-label-hub {
+  font-family: 'Outfit', ui-sans-serif, system-ui, sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  fill: var(--text);
+}
+
+/* Before lines (chaotic) */
+.line-mess {
+  stroke: rgba(255,255,255,0.12);
+  stroke-width: 1.4;
+  fill: none;
+}
+.line-mess-dashed {
+  stroke: rgba(255,255,255,0.1);
+  stroke-width: 1.4;
+  fill: none;
+  stroke-dasharray: 4 4;
+}
+.line-mess-broken {
+  stroke: rgba(239,68,68,0.18);
+  stroke-width: 1.6;
+  fill: none;
+  stroke-dasharray: 4 4;
+  animation: brokenPulse 6s ease-in-out infinite;
+}
+.line-mess-broken-2 { animation-delay: -2s; }
+.line-mess-broken-3 { animation-delay: -4s; }
+@keyframes brokenPulse {
+  0%, 70%, 100% { stroke: rgba(239,68,68,0.18); }
+  82% { stroke: rgba(239,68,68,0.78); }
+}
+
+/* After lines (clean radial flow) */
+.line-after-base {
+  stroke: rgba(240,192,0,0.28);
+  stroke-width: 1.4;
+  fill: none;
+  stroke-linecap: round;
+}
+.line-after-flow {
+  stroke: var(--accent);
+  stroke-width: 2;
+  fill: none;
+  stroke-linecap: round;
+  stroke-dasharray: 2 8;
+  animation: flowDots 4s linear infinite;
+  filter: drop-shadow(0 0 4px rgba(240,192,0,0.45));
+}
+.line-after-flow-2 { animation-delay: -1s; }
+.line-after-flow-3 { animation-delay: -2s; }
+.line-after-flow-4 { animation-delay: -3s; }
+@keyframes flowDots {
+  to { stroke-dashoffset: -30; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .line-mess-broken { animation: none; stroke: rgba(239,68,68,0.4); }
+  .line-after-flow { animation: none; opacity: 0.85; }
+}
+
+@media (max-width: 720px) {
+  .diagram-section { padding: 96px 0; }
+  .diagram-grid { grid-template-columns: 1fr; gap: 36px; }
+  .diagram-grid::before { display: none; }
+}
+
+/* ------------------------------------------------------------------
    PROCESS
 ------------------------------------------------------------------ */
 .process-grid {
@@ -2633,6 +2796,113 @@ body::before {
           </div>
         </div>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== BEFORE / AFTER DIAGRAM ==================== -->
+<section class="section diagram-section" aria-label="From scattered to one source of truth">
+  <div class="container">
+    <div class="section-head reveal">
+      <h2 class="section-title">From scattered to one source of truth.</h2>
+      <p class="section-sub">What changes when manual processes become custom software.</p>
+    </div>
+    <div class="diagram-grid reveal">
+
+      <!-- BEFORE -->
+      <div class="diagram-panel">
+        <div class="diagram-label">Today</div>
+        <div class="diagram-svg-wrap before">
+          <svg class="diagram-svg" viewBox="0 0 400 360" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid meet">
+            <!-- chaotic connecting lines, drawn before nodes -->
+            <line class="line-mess" x1="82" y1="60" x2="190" y2="160"/>
+            <line class="line-mess" x1="82" y1="60" x2="318" y2="50"/>
+            <line class="line-mess" x1="82" y1="60" x2="66" y2="260"/>
+            <line class="line-mess-broken" x1="318" y1="50" x2="66" y2="260"/>
+            <line class="line-mess" x1="318" y1="50" x2="302" y2="270"/>
+            <line class="line-mess-broken line-mess-broken-2" x1="190" y1="160" x2="66" y2="260"/>
+            <line class="line-mess-broken line-mess-broken-3" x1="190" y1="160" x2="302" y2="270"/>
+            <line class="line-mess-dashed" x1="66" y1="260" x2="302" y2="270"/>
+
+            <!-- nodes -->
+            <g transform="translate(40,40)">
+              <rect class="node-rect" width="84" height="40" rx="6"/>
+              <circle class="node-dot" cx="14" cy="20" r="3"/>
+              <text class="node-label" x="52" y="24" text-anchor="middle">CRM</text>
+            </g>
+            <g transform="translate(276,30)">
+              <rect class="node-rect" width="84" height="40" rx="6"/>
+              <circle class="node-dot" cx="14" cy="20" r="3"/>
+              <text class="node-label" x="52" y="24" text-anchor="middle">Accounts</text>
+            </g>
+            <g transform="translate(148,140)">
+              <rect class="node-rect" width="84" height="40" rx="6"/>
+              <circle class="node-dot" cx="14" cy="20" r="3"/>
+              <text class="node-label" x="52" y="24" text-anchor="middle">Inventory</text>
+            </g>
+            <g transform="translate(24,240)">
+              <rect class="node-rect" width="84" height="40" rx="6"/>
+              <circle class="node-dot" cx="14" cy="20" r="3"/>
+              <text class="node-label" x="52" y="24" text-anchor="middle">Spreadsheets</text>
+            </g>
+            <g transform="translate(260,250)">
+              <rect class="node-rect" width="84" height="40" rx="6"/>
+              <circle class="node-dot" cx="14" cy="20" r="3"/>
+              <text class="node-label" x="52" y="24" text-anchor="middle">Email</text>
+            </g>
+          </svg>
+        </div>
+      </div>
+
+      <!-- AFTER -->
+      <div class="diagram-panel">
+        <div class="diagram-label diagram-label-after">With Rebel Dev</div>
+        <div class="diagram-svg-wrap after">
+          <svg class="diagram-svg" viewBox="0 0 400 360" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid meet">
+            <!-- base lines -->
+            <path class="line-after-base" d="M200 180 Q140 130 88 80"/>
+            <path class="line-after-base" d="M200 180 Q260 130 312 80"/>
+            <path class="line-after-base" d="M200 180 Q140 230 88 280"/>
+            <path class="line-after-base" d="M200 180 Q260 230 312 280"/>
+
+            <!-- animated flow on top -->
+            <path class="line-after-flow" d="M200 180 Q140 130 88 80"/>
+            <path class="line-after-flow line-after-flow-2" d="M200 180 Q260 130 312 80"/>
+            <path class="line-after-flow line-after-flow-3" d="M200 180 Q140 230 88 280"/>
+            <path class="line-after-flow line-after-flow-4" d="M200 180 Q260 230 312 280"/>
+
+            <!-- satellites -->
+            <g transform="translate(48,60)">
+              <rect class="node-rect-after" width="80" height="40" rx="6"/>
+              <circle class="node-dot-after" cx="13" cy="20" r="2.6"/>
+              <text class="node-label node-label-after" x="50" y="24" text-anchor="middle">CRM</text>
+            </g>
+            <g transform="translate(272,60)">
+              <rect class="node-rect-after" width="80" height="40" rx="6"/>
+              <circle class="node-dot-after" cx="13" cy="20" r="2.6"/>
+              <text class="node-label node-label-after" x="50" y="24" text-anchor="middle">Accounts</text>
+            </g>
+            <g transform="translate(48,260)">
+              <rect class="node-rect-after" width="80" height="40" rx="6"/>
+              <circle class="node-dot-after" cx="13" cy="20" r="2.6"/>
+              <text class="node-label node-label-after" x="50" y="24" text-anchor="middle">Inventory</text>
+            </g>
+            <g transform="translate(272,260)">
+              <rect class="node-rect-after" width="80" height="40" rx="6"/>
+              <circle class="node-dot-after" cx="13" cy="20" r="2.6"/>
+              <text class="node-label node-label-after" x="50" y="24" text-anchor="middle">Reporting</text>
+            </g>
+
+            <!-- hub -->
+            <g transform="translate(130,150)">
+              <rect class="node-rect-hub" width="140" height="60" rx="8"/>
+              <text class="node-label-hub" x="70" y="29" text-anchor="middle">Your custom</text>
+              <text class="node-label-hub" x="70" y="46" text-anchor="middle">tool</text>
+            </g>
+          </svg>
+        </div>
+      </div>
+
     </div>
   </div>
 </section>
