@@ -27,7 +27,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Rebel Dev | Custom software for businesses outgrowing spreadsheets</title>
-<meta name="description" content="Rebel Dev builds custom software for small and mid-sized businesses. Process automation, dashboards, integrations, AI tools. Fixed price. Fast turnaround." />
+<meta name="description" content="Rebel Dev builds custom software for UK businesses. Replace manual processes, connect your systems, and give your team back their time. Fixed price." />
 <meta name="theme-color" content="#0a0a0a" />
 <meta property="og:title" content="Rebel Dev | Custom Software for Your Business" />
 <meta property="og:description" content="We build custom tools for businesses stuck with spreadsheets and manual processes. Fixed price. Fast turnaround." />
@@ -361,17 +361,7 @@ body::before {
   color: var(--text-dim);
   line-height: 1.6;
   max-width: 520px;
-  margin-bottom: 24px;
-}
-.hero p.lead-note {
-  font-size: 15px;
-  color: var(--text);
-  line-height: 1.5;
-  max-width: 520px;
-  padding-left: 16px;
-  border-left: 2px solid var(--accent);
   margin-bottom: 36px;
-  font-weight: 400;
 }
 .hero-ctas {
   display: flex;
@@ -1123,12 +1113,76 @@ body::before {
 }
 .describe-list li {
   font-size: 16px;
-  color: var(--text);
+  color: var(--text-dim);
   letter-spacing: -0.005em;
+  line-height: 1.5;
 }
+.describe-list li strong {
+  display: block;
+  color: var(--text);
+  font-weight: 700;
+  font-size: 16px;
+  margin-bottom: 2px;
+  letter-spacing: -0.01em;
+}
+.describe-list li + li { margin-top: 6px; }
 @media (max-width: 720px) {
   .describe-grid { grid-template-columns: 1fr; }
   .describe-col { padding: 26px 24px 30px; }
+}
+
+/* Pain section: large numbered items, hairline dividers, full-width feel */
+.pain-list {
+  max-width: 920px;
+  margin: 0 auto;
+  display: grid;
+  gap: 0;
+}
+.pain-item {
+  display: grid;
+  grid-template-columns: 96px 1fr;
+  gap: 32px;
+  padding: 36px 0;
+  border-bottom: 1px solid var(--border);
+  align-items: start;
+}
+.pain-item:first-child { border-top: 1px solid var(--border); }
+.pain-num {
+  font-family: var(--font-mono);
+  font-size: 40px;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  color: var(--accent);
+  line-height: 1;
+  padding-top: 6px;
+}
+.pain-h {
+  font-size: clamp(20px, 2.4vw, 26px);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--text);
+  margin-bottom: 10px;
+  line-height: 1.2;
+}
+.pain-p {
+  font-size: 16px;
+  color: var(--text-dim);
+  line-height: 1.65;
+  max-width: 640px;
+}
+.pain-close {
+  text-align: center;
+  margin-top: 56px;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+@media (max-width: 720px) {
+  .pain-item { grid-template-columns: 1fr; gap: 8px; padding: 28px 0; }
+  .pain-num { font-size: 28px; padding-top: 0; margin-bottom: 4px; }
+  .pain-close { margin-top: 40px; }
 }
 
 /* Story section */
@@ -2160,10 +2214,7 @@ body::before {
           its <span class="stroke">spreadsheets</span>.
         </h1>
         <p class="lead">
-          We build custom tools for small and mid-sized businesses stuck with spreadsheets, manual processes, and systems that don&rsquo;t talk to each other. Fixed price. Fast turnaround. No bloat.
-        </p>
-        <p class="lead-note">
-          We don&rsquo;t start building until we understand your business as well as you do.
+          We build custom software that replaces manual processes, connects your systems, and gives your team back their time. Fixed price. You own the code.
         </p>
         <div class="hero-ctas">
           <a href="#contact" class="btn-primary">
@@ -2286,16 +2337,29 @@ body::before {
   </div>
 </section>
 
+<!-- ==================== MARQUEE ==================== -->
+<div class="marquee">
+  <div class="marquee-track" id="marqueeTrack">
+    <span class="marquee-item">Process Automation</span>
+    <span class="marquee-item">Custom Dashboards</span>
+    <span class="marquee-item">Workflow Tools</span>
+    <span class="marquee-item">Data Integration</span>
+    <span class="marquee-item">Internal Portals</span>
+    <span class="marquee-item">Smart Automation</span>
+    <span class="marquee-item">Reporting &amp; Analytics</span>
+    <span class="marquee-item">Web &amp; Mobile Apps</span>
+  </div>
+</div>
+
 <!-- ==================== FREE REVIEW ==================== -->
-<section class="section" id="free-review" style="padding-top: 40px;">
+<section class="section" id="free-review">
   <div class="container">
     <div class="review-card reveal">
       <div class="section-head">
         <div class="section-label">Free review</div>
-        <h2 class="section-title">Not sure if your process needs software?</h2>
-        <p class="section-sub">Tell us about the spreadsheet or manual process you&rsquo;re stuck with.</p>
+        <h2 class="section-title">Send us your worst spreadsheet. We&rsquo;ll tell you what it should be.</h2>
       </div>
-      <p class="review-body">We&rsquo;ll review it and tell you honestly whether it should be software, what a simple system would look like, and roughly what it would cost. No obligation. No sales pitch. Just a straight answer.</p>
+      <p class="review-body">Tell us about a process, spreadsheet, or workflow that&rsquo;s slowing your team down. We&rsquo;ll review it and tell you honestly whether it should be software, what a simple system would look like, and roughly what it would cost. No obligation. No sales pitch. Just a straight answer.</p>
       <div class="review-points">
         <div class="review-point">
           <div class="review-point-icon">
@@ -2335,139 +2399,88 @@ body::before {
   </div>
 </section>
 
-<!-- ==================== MARQUEE ==================== -->
-<div class="marquee">
-  <div class="marquee-track" id="marqueeTrack">
-    <span class="marquee-item">Process Automation</span>
-    <span class="marquee-item">Custom Dashboards</span>
-    <span class="marquee-item">Workflow Tools</span>
-    <span class="marquee-item">Data Integration</span>
-    <span class="marquee-item">Internal Portals</span>
-    <span class="marquee-item">AI-Powered Tools</span>
-    <span class="marquee-item">Reporting &amp; Analytics</span>
-    <span class="marquee-item">Web &amp; Mobile Apps</span>
-  </div>
-</div>
-
-<!-- ==================== WHO IT'S FOR ==================== -->
-<section class="section" id="who">
+<!-- ==================== CASE STUDY ==================== -->
+<section class="section" id="case">
   <div class="container">
     <div class="section-head reveal">
-      <div class="section-label">01 / Who this is for</div>
-      <h2 class="section-title">If any of these sound like you, we should talk.</h2>
-      <p class="section-sub">
-        We work best with operators who know their business inside out but keep hitting the same software-shaped wall.
-      </p>
+      <div class="section-label">01 / Proof</div>
+      <h2 class="section-title">They quote in minutes now. Not hours.</h2>
+      <p class="section-sub">A UK logistics group was pricing every quote by hand across four operator rate cards. Three staff. Hours of work. Daily.</p>
     </div>
-    <div class="who-grid reveal-stagger">
-      <div class="who-card">
-        <div class="who-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 3v18M3 9h18"/></svg>
+    <div class="case reveal">
+      <div>
+        <div class="case-meta">Case Study &nbsp;/&nbsp; UK Logistics Group</div>
+        <h3>One tool. Every rate card. Instant answers.</h3>
+        <p>We sat with their sales team, learned how they actually quoted, and built one tool that pulled every rate card together.</p>
+        <p style="color: var(--text); font-weight: 500; margin-top: 24px;">Now their team gets instant answers. The spreadsheets are gone. The errors are gone. The hours are back.</p>
+      </div>
+      <div class="case-numbers">
+        <div class="case-num">
+          <div class="case-num-big">20+</div>
+          <div class="case-num-label">Hours saved weekly</div>
         </div>
-        <div>
-          <h4>You run half your business out of spreadsheets</h4>
-          <p>They grew organically. Nobody wants to touch them. One broken formula could cost you a day.</p>
+        <div class="case-num">
+          <div class="case-num-big">4</div>
+          <div class="case-num-label">Operator systems unified</div>
+        </div>
+        <div class="case-num">
+          <div class="case-num-big">1</div>
+          <div class="case-num-label">Source of truth</div>
         </div>
       </div>
-      <div class="who-card">
-        <div class="who-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 3v2M12 19v2M3 12h2M19 12h2M5.6 5.6l1.4 1.4M17 17l1.4 1.4M5.6 18.4L7 17M17 7l1.4-1.4"/></svg>
-        </div>
-        <div>
-          <h4>Your tools don&rsquo;t talk to each other</h4>
-          <p>CRM, accounts, inventory, scheduling. Four systems, zero conversation. Your team copies between them by hand.</p>
-        </div>
-      </div>
-      <div class="who-card">
-        <div class="who-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
-        </div>
-        <div>
-          <h4>Off-the-shelf SaaS doesn&rsquo;t fit</h4>
-          <p>You&rsquo;ve paid for software that almost works. Close, but never quite. You&rsquo;re working around it instead of with it.</p>
-        </div>
-      </div>
-      <div class="who-card">
-        <div class="who-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
-        </div>
-        <div>
-          <h4>You know what you need, you just need it built</h4>
-          <p>You&rsquo;ve scoped it in your head. You don&rsquo;t need a 6-month consulting engagement. You need someone to build it.</p>
-        </div>
-      </div>
-      <div class="who-card full-width">
-        <div class="who-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-        </div>
-        <div>
-          <h4>You want someone who actually shows up</h4>
-          <p>We&rsquo;re not hiding behind a screen. We offer site visits across the UK to understand your operations in person.</p>
-        </div>
-      </div>
-    </div>
-
-    <div class="signs reveal">
-      <p class="signs-intro">If even one of these sounds familiar, your business is ready for proper software.</p>
-      <h3>Signs you&rsquo;ve outgrown your current setup</h3>
-      <ul class="signs-list">
-        <li>
-          <span class="sign-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 9v12"/></svg>
-          </span>
-          A pricing model or process that lives in a workbook only one person fully understands
-        </li>
-        <li>
-          <span class="sign-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 14l4-4 4 4 5-5"/></svg>
-          </span>
-          Reports that take days to put together because data lives in three different places
-        </li>
-        <li>
-          <span class="sign-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
-          </span>
-          Your team copies information between systems every single day
-        </li>
-        <li>
-          <span class="sign-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M4.93 4.93l14.14 14.14"/></svg>
-          </span>
-          You&rsquo;re paying for SaaS tools that almost fit, with constant manual workarounds
-        </li>
-        <li>
-          <span class="sign-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-          </span>
-          You&rsquo;re hiring people to do work that software should be doing
-        </li>
-        <li>
-          <span class="sign-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="3"/><circle cx="18" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="18" r="3"/></svg>
-          </span>
-          Your operations run on a patchwork of tools that don&rsquo;t talk to each other
-        </li>
-      </ul>
     </div>
   </div>
 </section>
 
-<!-- ==================== INTERLUDE ==================== -->
-<div class="interlude reveal">
-  <div class="interlude-inner">
-    <p>Every project starts with <strong>listening</strong>.</p>
+<!-- ==================== SOUND FAMILIAR ==================== -->
+<section class="section" id="pain">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="section-label">02 / Sound familiar?</div>
+      <h2 class="section-title">Most of our clients come to us with one of these.</h2>
+      <p class="section-sub">If any of this sounds like you, you&rsquo;re already past the point where software would help.</p>
+    </div>
+    <ol class="pain-list reveal-stagger">
+      <li class="pain-item">
+        <div class="pain-num">01</div>
+        <div>
+          <div class="pain-h">You run half your business out of spreadsheets.</div>
+          <p class="pain-p">They grew organically. Nobody wants to touch them. One broken formula could cost you a day.</p>
+        </div>
+      </li>
+      <li class="pain-item">
+        <div class="pain-num">02</div>
+        <div>
+          <div class="pain-h">Your tools don&rsquo;t talk to each other.</div>
+          <p class="pain-p">CRM, accounts, inventory, scheduling. Four systems, zero conversation. Your team copies between them by hand.</p>
+        </div>
+      </li>
+      <li class="pain-item">
+        <div class="pain-num">03</div>
+        <div>
+          <div class="pain-h">Your team is doing work software should be doing.</div>
+          <p class="pain-p">Manual reports, repetitive admin, copy-pasting between systems. You&rsquo;re paying people to be slow.</p>
+        </div>
+      </li>
+      <li class="pain-item">
+        <div class="pain-num">04</div>
+        <div>
+          <div class="pain-h">You know what you need, you just need it built.</div>
+          <p class="pain-p">You&rsquo;ve scoped it in your head. You don&rsquo;t need a 6-month consulting engagement. You just need someone to build it.</p>
+        </div>
+      </li>
+    </ol>
+    <p class="pain-close reveal">If even one of these sounds familiar, you&rsquo;re ready for proper software.</p>
   </div>
-</div>
+</section>
 
 <!-- ==================== SERVICES ==================== -->
 <section class="section" id="services">
   <div class="container">
     <div class="section-head reveal">
-      <div class="section-label">02 / Services</div>
+      <div class="section-label">03 / Services</div>
       <h2 class="section-title">What we build.</h2>
-      <p class="section-sub">
-        We build internal tools that remove the manual work slowing your team down.
-      </p>
+      <p class="section-sub">Custom software that fixes what&rsquo;s slowing your team down.</p>
     </div>
     <div class="services-grid reveal-stagger">
 
@@ -2476,7 +2489,7 @@ body::before {
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v4M12 18v4M20 12h-4M8 12H4M17.7 6.3l-2.9 2.9M9.2 14.8l-2.9 2.9M17.7 17.7l-2.9-2.9M9.2 9.2L6.3 6.3"/><circle cx="12" cy="12" r="3"/></svg>
         </div>
         <h3>Process Automation</h3>
-        <p>The repetitive stuff your team shouldn&rsquo;t be doing. We automate the manual work so they can focus on the parts that need a human.</p>
+        <p>Your team stops doing the repetitive work that software should be doing. They focus on what actually needs a human.</p>
       </div>
 
       <div class="service">
@@ -2484,7 +2497,7 @@ body::before {
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
         </div>
         <h3>Custom Dashboards &amp; Tools</h3>
-        <p>Internal dashboards that surface exactly what you need. Built around your workflow, not a template somebody else designed.</p>
+        <p>You see what&rsquo;s happening across your business in one place. Built around your workflow, not a template.</p>
       </div>
 
       <div class="service">
@@ -2492,15 +2505,15 @@ body::before {
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="6" cy="6" r="3"/><circle cx="18" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="18" r="3"/><path d="M9 6h6M6 9v6M18 9v6M9 18h6"/></svg>
         </div>
         <h3>System Integrations</h3>
-        <p>Connect the tools you already use. Your CRM, accounts software, warehouse system, email, spreadsheets, whatever. One source of truth.</p>
+        <p>Your CRM, accounts, inventory, and email finally talk to each other. One source of truth instead of four.</p>
       </div>
 
       <div class="service">
         <div class="service-icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L14 8L20 8L15 12L17 18L12 14L7 18L9 12L4 8L10 8Z"/></svg>
         </div>
-        <h3>AI-Powered Tools</h3>
-        <p>If AI is genuinely useful for the job, we build it in. If it isn&rsquo;t, we don&rsquo;t force it.</p>
+        <h3>Smart Automation</h3>
+        <p>Where automation genuinely helps, we build it in. Where it doesn&rsquo;t, we don&rsquo;t force it.</p>
       </div>
 
       <div class="service">
@@ -2508,7 +2521,7 @@ body::before {
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18"/><path d="M7 14l4-4 4 4 5-5"/></svg>
         </div>
         <h3>Reporting &amp; Analytics</h3>
-        <p>The numbers you need to run the business, delivered automatically. No more Monday morning spent building reports by hand.</p>
+        <p>Your reports build themselves. No more Monday morning spent putting numbers together by hand.</p>
       </div>
 
       <div class="service">
@@ -2516,155 +2529,47 @@ body::before {
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M12 18h.01"/></svg>
         </div>
         <h3>Web &amp; Mobile Apps</h3>
-        <p>Customer portals, booking systems, internal apps, field tools. Built to look good and work properly on any device.</p>
+        <p>Customer portals, booking systems, internal apps. Built to look professional and work on any device.</p>
       </div>
 
     </div>
   </div>
 </section>
 
-<!-- ==================== WHAT WE BUILD ==================== -->
+<!-- ==================== SCOPE ==================== -->
 <section class="section" id="build">
   <div class="container">
     <div class="section-head reveal">
-      <div class="section-label">What we build</div>
-      <h2 class="section-title">Real examples of the kind of software we deliver.</h2>
-      <p class="section-sub">Most of our projects fall into one of these categories.</p>
-    </div>
-    <div class="build-grid reveal-stagger">
-      <div class="build-card">
-        <div class="build-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><circle cx="7" cy="7" r="1" fill="currentColor"/></svg>
-        </div>
-        <h3>Pricing engines</h3>
-        <p>Replace complex pricing spreadsheets with tools anyone on your team can use.</p>
-      </div>
-      <div class="build-card">
-        <div class="build-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M8 13h5M8 17h8"/></svg>
-        </div>
-        <h3>Quoting tools</h3>
-        <p>Generate accurate quotes in minutes, not hours.</p>
-      </div>
-      <div class="build-card">
-        <div class="build-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
-        </div>
-        <h3>Operations dashboards</h3>
-        <p>See what matters across your business in one place.</p>
-      </div>
-      <div class="build-card">
-        <div class="build-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-        </div>
-        <h3>Internal CRMs</h3>
-        <p>A sales and client tool built for how your team actually works.</p>
-      </div>
-      <div class="build-card">
-        <div class="build-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 10h20"/><circle cx="7" cy="15" r="1.5"/></svg>
-        </div>
-        <h3>Customer portals</h3>
-        <p>Give your clients a professional way to access what they need.</p>
-      </div>
-      <div class="build-card">
-        <div class="build-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><path d="M3.27 6.96L12 12.01l8.73-5.05M12 22.08V12"/></svg>
-        </div>
-        <h3>Inventory systems</h3>
-        <p>Track stock, orders, and suppliers without the spreadsheet chaos.</p>
-      </div>
-      <div class="build-card">
-        <div class="build-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v4M12 18v4M20 12h-4M8 12H4M17.7 6.3l-2.9 2.9M9.2 14.8l-2.9 2.9M17.7 17.7l-2.9-2.9M9.2 9.2L6.3 6.3"/><circle cx="12" cy="12" r="3"/></svg>
-        </div>
-        <h3>Automation workflows</h3>
-        <p>Remove the manual work your team shouldn&rsquo;t be doing.</p>
-      </div>
-      <div class="build-card">
-        <div class="build-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><rect x="7" y="12" width="3" height="6"/><rect x="12" y="8" width="3" height="10"/><rect x="17" y="5" width="3" height="13"/></svg>
-        </div>
-        <h3>Reporting platforms</h3>
-        <p>Pull data from every system into reports that write themselves.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ==================== DESCRIBE IT, WE BUILD IT ==================== -->
-<section class="section" id="describe">
-  <div class="container">
-    <div class="section-head reveal">
-      <div class="section-label">No limits</div>
+      <div class="section-label">04 / Scope</div>
       <h2 class="section-title">If you can describe it, we can build it.</h2>
-      <p class="section-sub">Custom software isn&rsquo;t just for replacing spreadsheets. It&rsquo;s for any process, workflow, or tool you wish worked differently.</p>
+      <p class="section-sub">Custom software isn&rsquo;t just for replacing spreadsheets. If it helps your business run better, we build it.</p>
     </div>
     <div class="describe-body reveal">
-      <p>If it helps your business run better, we build it. Productivity tools, customer-facing portals, internal dashboards, automation flows, reporting platforms, scheduling systems, inventory management, integrations between systems. Anything you&rsquo;ve imagined but couldn&rsquo;t find off the shelf, we&rsquo;ll build it around the way you actually work.</p>
+      <p>Pricing engines, customer portals, operations dashboards, internal CRMs, booking systems, inventory tools, automation flows, reporting platforms, integrations between systems. Anything you&rsquo;ve imagined but couldn&rsquo;t find off the shelf, we build it around the way you actually work.</p>
     </div>
     <div class="describe-grid reveal-stagger">
       <div class="describe-col">
         <div class="describe-col-label">Internal tools</div>
         <ul class="describe-list">
-          <li>Pricing engines</li>
-          <li>Quoting tools</li>
-          <li>Operations dashboards</li>
-          <li>Internal CRMs</li>
-          <li>Reporting platforms</li>
-          <li>Inventory systems</li>
+          <li><strong>Pricing engines</strong>Replace complex pricing logic with tools anyone can use</li>
+          <li><strong>Quoting tools</strong>Generate accurate quotes in minutes</li>
+          <li><strong>Operations dashboards</strong>See what matters in one place</li>
+          <li><strong>Internal CRMs</strong>Built for how your team actually sells</li>
+          <li><strong>Reporting platforms</strong>Reports that write themselves</li>
+          <li><strong>Inventory systems</strong>Stock, orders, suppliers, all in one tool</li>
         </ul>
       </div>
       <div class="describe-col">
         <div class="describe-col-label">Customer-facing</div>
         <ul class="describe-list">
-          <li>Client portals</li>
-          <li>Booking systems</li>
-          <li>Self-service dashboards</li>
-          <li>Custom checkout flows</li>
-          <li>Membership platforms</li>
-          <li>Branded apps</li>
+          <li><strong>Client portals</strong>A professional way for clients to access what they need</li>
+          <li><strong>Booking systems</strong>Self-service scheduling that just works</li>
+          <li><strong>Self-service dashboards</strong>Customers find answers without contacting you</li>
+          <li><strong>Custom checkout flows</strong>Built for how you actually sell</li>
+          <li><strong>Membership platforms</strong>Subscriptions, access tiers, and renewals</li>
+          <li><strong>Branded apps</strong>Native or web, on every device</li>
         </ul>
       </div>
-    </div>
-  </div>
-</section>
-
-<!-- ==================== WHEN PEOPLE CONTACT US ==================== -->
-<section class="section" id="story">
-  <div class="container">
-    <div class="section-head reveal" style="text-align: center; margin-left: auto; margin-right: auto;">
-      <div class="section-label" style="justify-content: center;">When people contact us</div>
-      <h2 class="section-title">The same story comes up again and again.</h2>
-    </div>
-    <ol class="story-list reveal-stagger">
-      <li class="story-step">
-        <span class="story-num">01</span>
-        <span class="story-text">A process has quietly become critical to the business.</span>
-      </li>
-      <li class="story-step">
-        <span class="story-num">02</span>
-        <span class="story-text">Nobody wants to touch the system in case it breaks.</span>
-      </li>
-      <li class="story-step">
-        <span class="story-num">03</span>
-        <span class="story-text">Reports, quotes, or workflows take hours when they shouldn&rsquo;t.</span>
-      </li>
-      <li class="story-step">
-        <span class="story-num">04</span>
-        <span class="story-text">Someone finally says: this should be software by now.</span>
-      </li>
-      <li class="story-step">
-        <span class="story-num">05</span>
-        <span class="story-text">That&rsquo;s usually when they call us.</span>
-      </li>
-    </ol>
-    <div class="story-close reveal">
-      <p class="story-close-line">If this is where you are, let&rsquo;s talk.</p>
-      <a href="#contact" class="btn-primary">
-        Request a free discovery call
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-      </a>
     </div>
   </div>
 </section>
@@ -2678,53 +2583,11 @@ body::before {
   </div>
 </section>
 
-<!-- ==================== CASE STUDY ==================== -->
-<section class="section" id="case">
-  <div class="container">
-    <div class="section-head reveal">
-      <div class="section-label">03 / Proof</div>
-      <h2 class="section-title">Instant answers, where there used to be spreadsheets.</h2>
-      <p class="section-sub">
-        One example: a logistics team was pricing quotes by hand across four operator rate cards. We built one tool that pulled it together.
-      </p>
-    </div>
-    <div class="case reveal">
-      <div>
-        <div class="case-meta">Case Study &nbsp;/&nbsp; UK Logistics Group</div>
-        <h3>A pricing tool built around how they actually sell.</h3>
-        <p>
-          A UK logistics group needed a better way to price. Three staff members were spending hours each week manually cross-referencing rate cards across four different operators before every quote.
-        </p>
-        <p>
-          We sat with their sales team, learned how they actually quoted, and built the tool around that workflow. It pulls every rate card into one place and gives them instant answers.
-        </p>
-        <p style="color: var(--text); font-weight: 500; margin-top: 24px;">
-          The spreadsheets are gone. The team quotes in minutes instead of hours, with fewer errors.
-        </p>
-      </div>
-      <div class="case-numbers">
-        <div class="case-num">
-          <div class="case-num-big">20+</div>
-          <div class="case-num-label">Hours saved weekly</div>
-        </div>
-        <div class="case-num">
-          <div class="case-num-big">4</div>
-          <div class="case-num-label">Systems connected</div>
-        </div>
-        <div class="case-num">
-          <div class="case-num-big">&infin;</div>
-          <div class="case-num-label">Spreadsheets retired</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- ==================== PROCESS ==================== -->
 <section class="section" id="process">
   <div class="container">
     <div class="section-head reveal">
-      <div class="section-label">04 / Process</div>
+      <div class="section-label">05 / Process</div>
       <h2 class="section-title">How it works.</h2>
       <p class="section-sub">
         Four steps. No jargon. No surprise invoices.
@@ -2789,7 +2652,7 @@ body::before {
 <section class="section" id="pricing">
   <div class="container">
     <div class="section-head reveal">
-      <div class="section-label">05 / Pricing</div>
+      <div class="section-label">06 / Pricing</div>
       <h2 class="section-title">Three ways to work together.</h2>
       <p class="section-sub">
         Every project is different, so every quote is different. These are starting points to give you a ballpark. Your actual price depends on what you need built.
@@ -2806,10 +2669,10 @@ body::before {
         <div class="price-period">+ from &pound;199/mo managed hosting</div>
         <div class="price-note">Final price quoted after discovery call based on your specific requirements.</div>
         <ul class="price-features">
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg>Everything in One-Off Build</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg>Fully managed hosting &amp; database</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg>Automated backups, uptime monitoring</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg>Ongoing bug fixes &amp; small tweaks</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg>Fully managed hosting and database</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg>Automated backups and uptime monitoring</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg>Ongoing bug fixes and small tweaks</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg>Full custom build to spec</li>
           <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg>Priority email support</li>
           <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg>Cancel or migrate out anytime</li>
         </ul>
@@ -2828,9 +2691,9 @@ body::before {
         <div class="price-note">Final price quoted after discovery call based on your specific requirements.</div>
         <ul class="price-features">
           <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg>Full custom build to spec</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg>You own the code, outright</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg>You own the code outright</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg>30 days of bug-fix support after launch</li>
           <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg>Deployment handover</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg>30 days of bug-fix support</li>
           <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg>Documentation included</li>
         </ul>
         <a href="#contact" class="btn-ghost">Get a quote</a>
@@ -2845,8 +2708,8 @@ body::before {
         <div class="price-note">Final price quoted after discovery call based on your specific requirements.</div>
         <ul class="price-features">
           <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg>Process audit and improvement roadmap</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg>Build new tools as opportunities arise</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg>Maintain and improve existing systems</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg>New tools built as opportunities arise</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg>Maintain and improve everything we&rsquo;ve built</li>
           <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg>Hosting and infrastructure included</li>
           <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg>Regular check-ins and progress reviews</li>
           <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg>No recruitment costs, no long-term contract</li>
@@ -2862,7 +2725,7 @@ body::before {
 <section class="section" id="faq">
   <div class="container">
     <div class="section-head reveal" style="text-align: center; margin-left: auto; margin-right: auto;">
-      <div class="section-label" style="justify-content: center;">06 / Frequently asked</div>
+      <div class="section-label" style="justify-content: center;">07 / Frequently asked</div>
       <h2 class="section-title">Questions people ask before the call.</h2>
     </div>
     <div class="faq-list reveal">
@@ -2958,7 +2821,7 @@ body::before {
     </div>
     <div class="contact-grid">
       <div class="contact-info reveal">
-        <div class="section-label">07 / Get in touch</div>
+        <div class="section-label">08 / Get in touch</div>
         <h2>Tell us what&rsquo;s not working.</h2>
         <p>
           Describe the problem. We&rsquo;ll come back within one working day with an honest take on whether we can help and what it would look like.
@@ -3014,7 +2877,7 @@ body::before {
             <option>Process Automation</option>
             <option>Custom Dashboard or Tool</option>
             <option>System Integration</option>
-            <option>AI-Powered Tool</option>
+            <option>Smart Automation</option>
             <option>Reporting &amp; Analytics</option>
             <option>Web or Mobile App</option>
             <option>Not sure yet</option>
@@ -3047,7 +2910,7 @@ body::before {
           <img src="logo-icon1.webp" alt="Rebel Dev" class="logo-icon" width="200" height="134" />
           REBEL <span class="logo-accent">DEV</span>
         </a>
-        <p>Custom software for businesses that have outgrown spreadsheets and workarounds. A trading name of Rebel AI Ltd.</p>
+        <p>Custom software that fixes what&rsquo;s slowing your business down. A trading name of Rebel AI Ltd.</p>
       </div>
       <div class="footer-col">
         <h5>Services</h5>
@@ -3055,7 +2918,7 @@ body::before {
           <li><a href="#services">Process Automation</a></li>
           <li><a href="#services">Custom Dashboards</a></li>
           <li><a href="#services">System Integrations</a></li>
-          <li><a href="#services">AI-Powered Tools</a></li>
+          <li><a href="#services">Smart Automation</a></li>
           <li><a href="#services">Web &amp; Mobile Apps</a></li>
         </ul>
       </div>
