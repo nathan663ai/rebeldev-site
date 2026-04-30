@@ -1924,9 +1924,13 @@ body::before {
   font-weight: 400;
 }
 .founder-note p + p { margin-top: 14px; }
+.section-founder { padding: 60px 0; }
+.section-founder .founder-note { margin: 0 auto; }
 @media (max-width: 720px) {
   .founder-note { padding: 26px 24px; margin-bottom: 48px; }
   .founder-note p { font-size: 16px; }
+  .section-founder { padding: 40px 0; }
+  .section-founder .founder-note { margin-bottom: 0; }
 }
 .contact-grid {
   display: grid;
@@ -2340,7 +2344,6 @@ body::before {
       <a href="#process">Process</a>
       <a href="#pricing">Pricing</a>
       <a href="#faq">FAQ</a>
-      <a href="portal.html" class="nav-portal">Customer Portal</a>
       <a href="#contact" class="nav-cta">
         Get in touch
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
@@ -2606,7 +2609,7 @@ body::before {
       <div class="case-body">
         <div class="case-meta">Case Study &nbsp;/&nbsp; UK Logistics Group</div>
         <h3>One tool. Every rate card. Instant answers.</h3>
-        <p>We sat with their sales team, learned how they actually quoted, and built one tool that pulled every rate card together.</p>
+        <p>We sat with their sales team, learned how they quoted in practice, and built one tool that pulled every rate card together.</p>
         <p style="color: var(--text); font-weight: 500; margin-top: 24px;">Now their team gets instant answers. The spreadsheets are gone. The errors are gone. The hours are back.</p>
         <div class="case-numbers">
           <div class="case-num">
@@ -2633,7 +2636,7 @@ body::before {
     <div class="section-head reveal">
       <div class="section-label">02 / Selected work</div>
       <h2 class="section-title">A few of the systems we&rsquo;ve delivered.</h2>
-      <p class="section-sub">Names omitted under standard NDAs. The problems are real.</p>
+      <p class="section-sub">Names omitted under standard NDAs.</p>
     </div>
     <ol class="work-list reveal-stagger">
       <li class="work-item">
@@ -2665,7 +2668,21 @@ body::before {
         </div>
       </li>
     </ol>
-    <p class="work-close reveal">Each one shaped around how that team actually worked.</p>
+  </div>
+</section>
+
+<!-- ==================== WHO BUILDS THIS (founder note) ==================== -->
+<section class="section section-founder" id="founder">
+  <div class="container">
+    <div class="founder-note reveal">
+      <div class="founder-label">Who builds this</div>
+      <p>
+        Fifteen years inside small and mid-sized businesses. Sales, finance, operations, IT. Building the systems that fix the things slowing teams down. Margin engines, automated reporting, pricing tools, warehouse and shipping integrations, full mobile builds.
+      </p>
+      <p>
+        You&rsquo;re not talking to an agency or a developer-for-hire. You&rsquo;re talking to someone who has run the kind of process you&rsquo;re trying to fix. One point of contact. No account managers. No handoffs.
+      </p>
+    </div>
   </div>
 </section>
 
@@ -2726,7 +2743,7 @@ body::before {
       <p class="section-sub">Custom software isn&rsquo;t just for replacing spreadsheets. If it helps your business run better, we build it.</p>
     </div>
     <div class="describe-body reveal">
-      <p>Pricing engines, customer portals, operations dashboards, internal CRMs, booking systems, inventory tools, automation flows, reporting platforms, integrations between systems. Anything you&rsquo;ve imagined but couldn&rsquo;t find off the shelf, we build it around the way you actually work.</p>
+      <p>Internal tools and customer-facing systems for businesses with messy operations. Pricing engines, dashboards, internal CRMs, booking systems, customer portals, integrations, automation. Built around the way your team works.</p>
     </div>
     <div class="describe-grid reveal-stagger">
       <div class="describe-col">
@@ -2735,7 +2752,7 @@ body::before {
           <li><strong>Pricing engines</strong>Replace complex pricing logic with tools anyone can use</li>
           <li><strong>Quoting tools</strong>Generate accurate quotes in minutes</li>
           <li><strong>Operations dashboards</strong>See what matters in one place</li>
-          <li><strong>Internal CRMs</strong>Built for how your team actually sells</li>
+          <li><strong>Internal CRMs</strong>Built for how your team sells</li>
           <li><strong>Reporting platforms</strong>Reports that write themselves</li>
           <li><strong>Inventory systems</strong>Stock, orders, suppliers, all in one tool</li>
         </ul>
@@ -2746,9 +2763,6 @@ body::before {
           <li><strong>Client portals</strong>A professional way for clients to access what they need</li>
           <li><strong>Booking systems</strong>Self-service scheduling that just works</li>
           <li><strong>Self-service dashboards</strong>Customers find answers without contacting you</li>
-          <li><strong>Custom checkout flows</strong>Built for how you actually sell</li>
-          <li><strong>Membership platforms</strong>Subscriptions, access tiers, and renewals</li>
-          <li><strong>Branded apps</strong>Apps that work the way your team and customers actually use them.</li>
         </ul>
       </div>
     </div>
@@ -2827,14 +2841,13 @@ body::before {
       <div class="section-label">06 / Pricing</div>
       <h2 class="section-title">Three ways to work together.</h2>
       <p class="section-sub">
-        Starting points. Final quote depends on what you actually need.
+        Starting points. Final quote depends on what you need.
       </p>
       <p class="price-floor">Most builds land between &pound;3,000 and &pound;15,000.</p>
     </div>
     <div class="pricing-grid reveal-stagger">
 
-      <div class="price featured">
-        <div class="price-badge">Most popular</div>
+      <div class="price">
         <h3>Build + Managed Hosting</h3>
         <p class="price-sub">Build it, host it, maintain it. You never think about servers.</p>
         <div class="price-amount"><span class="from">from</span>&pound;2,500</div>
@@ -2848,10 +2861,7 @@ body::before {
           <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg>Priority email support</li>
           <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg>Cancel or migrate out anytime</li>
         </ul>
-        <a href="#contact" class="btn-primary">
-          Start with a free review
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-        </a>
+        <a href="#contact" class="btn-ghost">Start with a free review</a>
       </div>
 
       <div class="price">
@@ -2863,7 +2873,7 @@ body::before {
         <ul class="price-features">
           <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg>Full custom build to spec</li>
           <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg>You own the code outright</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg>30 days of bug-fix support after launch</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg>60 days of bug-fix support after launch</li>
           <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg>Deployment handover</li>
           <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg>Documentation included</li>
         </ul>
@@ -2923,7 +2933,7 @@ body::before {
           </span>
         </button>
         <div class="faq-a"><div class="faq-a-inner">
-          It depends on what you need. A simple internal tool will take less time than a multi-system platform with integrations. We&rsquo;ll give you a realistic timeline as part of the fixed-price quote after the discovery call. We&rsquo;d rather be honest upfront than set expectations we can&rsquo;t meet.
+          Most builds run between 4 and 12 weeks. A simple internal tool typically lands at 4 to 6 weeks. A multi-system platform with integrations can take 8 to 12. Genuinely complex builds may run longer. The actual timeline depends on the complexity of your requirements, and we scope it properly during the discovery call before we commit. You&rsquo;ll have a clear delivery date as part of the fixed-price quote, not a vague estimate.
         </div></div>
       </div>
       <div class="faq-item">
@@ -2999,15 +3009,6 @@ body::before {
 <!-- ==================== CONTACT ==================== -->
 <section class="section" id="contact">
   <div class="container">
-    <div class="founder-note reveal">
-      <div class="founder-label">Who builds this</div>
-      <p>
-        Fifteen years inside small and mid-sized businesses. Sales, finance, operations, IT. Building the systems that fix the things slowing teams down. Margin engines, automated reporting, pricing tools, warehouse and shipping integrations, full mobile builds.
-      </p>
-      <p>
-        You&rsquo;re not talking to an agency or a developer-for-hire. You&rsquo;re talking to someone who has actually run the kind of process you&rsquo;re trying to fix. One point of contact. No account managers. No handoffs.
-      </p>
-    </div>
     <div class="contact-grid">
       <div class="contact-info reveal">
         <div class="section-label">08 / Get in touch</div>
@@ -3082,7 +3083,7 @@ body::before {
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </button>
         <div class="form-note">
-          We reply within one working day with an honest take on whether we can help and what it would look like.<br />
+          When you submit, you&rsquo;ll get a reply within one working day. Two or three clarifying questions, a sense of whether software fixes this, and an honest take on whether we&rsquo;re the right team to help. No automated reply. No surprise sales call.<br />
           By submitting, you agree to our <a href="privacy.html">privacy policy</a>.
         </div>
       </form>
