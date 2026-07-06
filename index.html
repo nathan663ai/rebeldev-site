@@ -57,7 +57,7 @@
   --text-dim:       #57544a;
   --text-muted:     #8a8578;
   --accent:         #f0c000;
-  --accent-ink:     #9a7b00;
+  --accent-ink:     #b8860b;
   --accent-dim:     rgba(240,192,0,0.12);
   --accent-glow:    rgba(240,192,0,0.25);
   --status-green:   #16a34a;
@@ -160,9 +160,8 @@ body::before {
   content: "";
   width: 8px;
   height: 8px;
-  background: var(--accent);
+  background: #dfa800;
   border-radius: 2px;
-  box-shadow: 0 0 10px rgba(240,192,0,0.5);
 }
 .section-title {
   font-size: clamp(32px, 4.5vw, 56px);
@@ -299,14 +298,7 @@ body::before {
   z-index: 2;
 }
 /* Animated gradient mesh background */
-.hero-mesh {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  pointer-events: none;
-  overflow: hidden;
-  opacity: 0.12;
-}
+.hero-mesh { display: none; }
 .hero-blob {
   position: absolute;
   border-radius: 50%;
@@ -350,10 +342,22 @@ body::before {
 .hero-inner {
   position: relative;
   z-index: 2;
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: 1.02fr 1fr;
   align-items: center;
-  text-align: center;
+  gap: 56px;
+  text-align: left;
+}
+/* Subtle dot grid behind the hero */
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 10% 0;
+  background-image: radial-gradient(circle, rgba(22,21,15,0.08) 1px, transparent 1.5px);
+  background-size: 26px 26px;
+  -webkit-mask-image: linear-gradient(180deg, transparent, #000 18%, #000 70%, transparent);
+  mask-image: linear-gradient(180deg, transparent, #000 18%, #000 70%, transparent);
+  pointer-events: none;
 }
 .hero-tag {
   display: inline-flex;
@@ -377,7 +381,7 @@ body::before {
   animation: pulse 2s ease-in-out infinite;
 }
 .hero h1 {
-  font-size: clamp(40px, 6vw, 78px);
+  font-size: clamp(38px, 4.2vw, 58px);
   font-weight: 900;
   line-height: 0.98;
   letter-spacing: -0.035em;
@@ -397,14 +401,13 @@ body::before {
   font-size: 19px;
   color: var(--text-dim);
   line-height: 1.6;
-  max-width: 560px;
-  margin: 0 auto 36px;
+  max-width: 520px;
+  margin: 0 0 36px;
 }
 .hero-ctas {
   display: flex;
   gap: 14px;
   flex-wrap: wrap;
-  justify-content: center;
 }
 .btn-primary {
   background: var(--accent);
@@ -444,18 +447,13 @@ body::before {
 .hero-visual {
   position: relative;
   width: 100%;
-  max-width: 940px;
-  margin: 72px auto 0;
+  margin: 0;
 }
-.hero-visual::before {
-  content: "";
-  position: absolute;
-  left: 10%; right: 10%; bottom: -40px;
-  height: 120px;
-  background: radial-gradient(ellipse 50% 50% at 50% 50%, rgba(240,192,0,0.1), transparent 70%);
-  filter: blur(30px);
-  pointer-events: none;
+.hero-visual .dash {
+  width: min(52vw, 720px);
+  max-width: none;
 }
+
 .dash {
   --dash-loop: 18s;
   --dash-bar-stagger: 0.1s;
@@ -473,8 +471,8 @@ body::before {
   overflow: hidden;
   box-shadow: var(--shadow-lg);
   font-family: var(--font-sans);
-  transform: perspective(1800px) rotateX(5deg) translateY(var(--py, 0px));
-  transform-origin: center bottom;
+  transform: perspective(2000px) rotateY(-6deg) rotateX(3deg) translateY(var(--py, 0px));
+  transform-origin: left center;
   will-change: transform;
 }
 .dash-chrome {
@@ -979,9 +977,15 @@ body::before {
 ------------------------------------------------------------------ */
 .cap-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: 20px;
 }
+.cap-card-lg { grid-column: span 2; }
+.cap-card-lg .cap-frag { height: 210px; }
+.cap-card-lg .fd-bars { height: 110px; }
+.cap-card-lg .fai-doc,
+.cap-card-lg .fai-fields { top: 40px; bottom: 22px; }
+.cap-card-lg .fai-fields { gap: 12px; }
 .cap-card {
   border: 1px solid var(--border);
   border-radius: var(--radius-md);
@@ -1047,7 +1051,7 @@ body::before {
   flex: 1;
   height: calc(var(--h) * 100%);
   border-radius: 2px 2px 0 0;
-  background: linear-gradient(to top, rgba(240,192,0,0.2), rgba(240,192,0,0.65));
+  background: linear-gradient(to top, #ecbe1e, #cf9200);
   transform-origin: bottom;
   animation: fdBar 6s var(--ease) infinite;
   animation-delay: calc(var(--i) * 0.12s);
@@ -1090,7 +1094,7 @@ body::before {
 .fa-fill {
   position: absolute;
   inset: 0;
-  background: var(--accent);
+  background: #d9a200;
   transform: scaleX(0);
   transform-origin: left;
   animation: faFill 7s linear infinite;
@@ -1123,7 +1127,7 @@ body::before {
 }
 @keyframes faNode {
   0%, 4%   { border-color: var(--border-strong); box-shadow: none; }
-  8%, 88%  { border-color: rgba(240,192,0,0.7); box-shadow: 0 0 14px -4px rgba(240,192,0,0.5); }
+  8%, 88%  { border-color: rgba(201,143,0,0.75); box-shadow: 0 1px 4px rgba(160,110,0,0.25); }
   100%     { border-color: var(--border-strong); box-shadow: none; }
 }
 @keyframes faTick {
@@ -1176,8 +1180,8 @@ body::before {
   width: 7px; height: 7px;
   margin-top: -3.5px;
   border-radius: 50%;
-  background: var(--accent);
-  box-shadow: 0 0 10px var(--accent);
+  background: #d9a200;
+  box-shadow: 0 0 0 3px rgba(217,162,0,0.2);
   animation: fiDot 3.6s ease-in-out infinite;
 }
 @keyframes fiDot {
@@ -1239,8 +1243,8 @@ body::before {
   left: 0; right: 0;
   top: -26px;
   height: 26px;
-  background: linear-gradient(to bottom, transparent, rgba(240,192,0,0.22));
-  border-bottom: 1.5px solid var(--accent);
+  background: linear-gradient(to bottom, transparent, rgba(207,146,0,0.22));
+  border-bottom: 1.5px solid #c98f00;
   animation: faiScan 8s ease-in-out infinite;
 }
 @keyframes faiScan {
@@ -1420,8 +1424,8 @@ body::before {
   10%, 88% { opacity: 1; transform: translateY(0); }
   96%, 100%{ opacity: 0; transform: translateY(6px); }
 }
-.fr-title { height: 6px; width: 62%; border-radius: 2px; background: var(--accent); opacity: 0.85; }
-.fr-piece .fr-title { opacity: 1; background: linear-gradient(90deg, rgba(240,192,0,0.85), rgba(240,192,0,0.4)); height: 6px; width: 62%; border-radius: 2px; }
+.fr-title { height: 6px; width: 62%; border-radius: 2px; background: #d9a200; }
+.fr-piece .fr-title { opacity: 1; background: linear-gradient(90deg, #d9a200, #ecbe1e); height: 6px; width: 62%; border-radius: 2px; }
 .fr-chart {
   height: 34px;
   display: flex;
@@ -1434,7 +1438,7 @@ body::before {
   flex: 1;
   height: calc(var(--h) * 100%);
   border-radius: 1.5px 1.5px 0 0;
-  background: rgba(240,192,0,0.55);
+  background: #dca700;
 }
 .fr-row { height: 5px; border-radius: 2px; background: var(--border); }
 .fr-row-1 { width: 92%; }
@@ -1443,10 +1447,12 @@ body::before {
 
 @media (max-width: 960px) {
   .cap-grid { grid-template-columns: repeat(2, 1fr); }
+  .cap-card-lg { grid-column: span 2; }
 }
 @media (max-width: 620px) {
   .cap-grid { grid-template-columns: 1fr; }
-  .cap-frag { height: 156px; }
+  .cap-card-lg { grid-column: span 1; }
+  .cap-frag, .cap-card-lg .cap-frag { height: 165px; }
 }
 @media (prefers-reduced-motion: reduce) {
   .fd-bar, .fa-fill, .fa-node, .fa-node svg, .fi-dot, .fi-badge,
@@ -1463,6 +1469,103 @@ body::before {
   .fp-login { opacity: 0; }
   .fp-account { opacity: 1; }
   .fr-piece { opacity: 1; transform: none; }
+}
+
+/* Industries strip */
+.section-industries {
+  background: #ffffff;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+.ind-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+.ind-card {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 30px 28px;
+  transition: transform 0.3s var(--ease), box-shadow 0.3s var(--ease), border-color 0.3s var(--ease);
+}
+.ind-card:hover {
+  transform: translateY(-3px);
+  border-color: var(--border-strong);
+  box-shadow: var(--shadow-md);
+}
+.ind-icon {
+  width: 56px; height: 56px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(160deg, rgba(240,192,0,0.22), rgba(240,192,0,0.08));
+  border: 1px solid rgba(184,134,11,0.35);
+  color: var(--accent-ink);
+  margin-bottom: 20px;
+}
+.ind-icon svg { width: 26px; height: 26px; }
+.ind-card h3 {
+  font-size: 19px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  margin-bottom: 6px;
+  color: var(--text);
+}
+.ind-card p {
+  font-size: 14.5px;
+  color: var(--text-dim);
+  line-height: 1.55;
+}
+.ind-note {
+  margin-top: 36px;
+  text-align: center;
+  font-size: 15px;
+  color: var(--text-dim);
+}
+@media (max-width: 860px) {
+  .ind-grid { grid-template-columns: 1fr; gap: 16px; }
+}
+
+.stroke-dark {
+  font-family: var(--font-mono);
+  font-weight: 600;
+  color: var(--accent);
+}
+/* Pre-footer CTA band */
+.cta-band {
+  position: relative;
+  padding: 130px 0;
+  text-align: center;
+  overflow: hidden;
+}
+.cta-band::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle, rgba(240,192,0,0.1) 1px, transparent 1.5px);
+  background-size: 26px 26px;
+  -webkit-mask-image: radial-gradient(ellipse 70% 90% at 50% 50%, #000 30%, transparent 75%);
+  mask-image: radial-gradient(ellipse 70% 90% at 50% 50%, #000 30%, transparent 75%);
+  pointer-events: none;
+}
+.cta-band-inner { position: relative; z-index: 1; max-width: 780px; margin: 0 auto; }
+.cta-band h2 {
+  font-size: clamp(34px, 5vw, 58px);
+  font-weight: 900;
+  line-height: 1.05;
+  letter-spacing: -0.025em;
+  margin-bottom: 20px;
+}
+.cta-band p {
+  font-size: 18px;
+  color: var(--text-dim);
+  margin-bottom: 40px;
+}
+.cta-band .btn-primary {
+  font-size: 17px;
+  padding: 20px 36px;
 }
 
 /* Pain section: large numbered items, hairline dividers, full-width feel */
@@ -1848,7 +1951,7 @@ body::before {
   left: 12.5%;
   right: 12.5%;
   height: 2px;
-  background: rgba(240,192,0,0.28);
+  background: rgba(184,134,11,0.4);
   transform: scaleX(0);
   transform-origin: left;
   transition: transform 1s var(--ease) 0.1s;
@@ -1874,11 +1977,9 @@ body::before {
   height: 56px;
   margin-left: -28px;
   border-radius: 50%;
-  background:
-    linear-gradient(rgba(240,192,0,0.1), rgba(240,192,0,0.1)),
-    var(--bg);
-  border: 1.5px solid rgba(240,192,0,0.4);
-  box-shadow: 0 0 18px -10px rgba(240,192,0,0.25);
+  background: #ffffff;
+  border: 1.5px solid rgba(184,134,11,0.5);
+  box-shadow: var(--shadow-sm);
   z-index: 1;
 }
 .step-num {
@@ -1891,12 +1992,18 @@ body::before {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: var(--font-mono);
-  font-size: 17px;
-  font-weight: 700;
-  letter-spacing: 0.04em;
   color: var(--accent-ink);
   z-index: 2;
+}
+.step-num svg { width: 22px; height: 22px; }
+.step-kicker {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 8px;
 }
 .step h4 {
   font-size: 18px;
@@ -1976,17 +2083,18 @@ body::before {
   background: var(--border-strong);
 }
 .trust-icon {
-  width: 48px; height: 48px;
-  margin: 0 auto 18px;
+  width: 60px; height: 60px;
+  margin: 0 auto 20px;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 12px;
-  background: var(--accent-dim);
-  border: 1px solid var(--border-accent);
+  border-radius: 16px;
+  background: linear-gradient(160deg, rgba(240,192,0,0.22), rgba(240,192,0,0.08));
+  border: 1px solid rgba(184,134,11,0.35);
   color: var(--accent-ink);
+  box-shadow: var(--shadow-sm);
 }
-.trust-icon svg { width: 22px; height: 22px; }
+.trust-icon svg { width: 26px; height: 26px; }
 .trust-title {
   font-size: 18px;
   font-weight: 700;
@@ -2184,7 +2292,7 @@ body::before {
 .founder-note {
   background: var(--bg-card);
   border: 1px solid var(--border);
-  border-left: 3px solid var(--accent);
+  border-left: 3px solid #d9a200;
   border-radius: var(--radius-md);
   padding: 32px 36px;
   margin-bottom: 64px;
@@ -2565,7 +2673,10 @@ body::before {
 @media (max-width: 960px) {
   .section { padding: 80px 0; }
   .hero { padding: 140px 0 60px; }
-  .hero-visual { margin-top: 52px; }
+  .hero-inner { grid-template-columns: 1fr; gap: 48px; text-align: center; }
+  .hero p.lead { margin: 0 auto 36px; }
+  .hero-ctas { justify-content: center; }
+  .hero-visual .dash { width: 100%; max-width: 640px; margin: 0 auto; }
   .pricing-grid { grid-template-columns: 1fr; }
   .contact-grid { grid-template-columns: 1fr; gap: 40px; }
   .footer-top { grid-template-columns: 1fr 1fr; gap: 32px; }
@@ -2637,11 +2748,6 @@ body::before {
 
 <!-- ==================== HERO ==================== -->
 <section class="hero">
-  <div class="hero-mesh" aria-hidden="true">
-    <div class="hero-blob hero-blob-1"></div>
-    <div class="hero-blob hero-blob-2"></div>
-    <div class="hero-blob hero-blob-3"></div>
-  </div>
   <div class="container">
     <div class="hero-inner">
       <div class="hero-copy reveal">
@@ -2650,8 +2756,7 @@ body::before {
           Available for new projects &nbsp;/&nbsp; UK based
         </div>
         <h1>
-          Your business has outgrown<br/>
-          its <span class="stroke">spreadsheets</span>.
+          Your business has outgrown its <span class="stroke">spreadsheets</span>.
         </h1>
         <p class="lead">
           We design and build the software that replaces manual work. Dashboards, automations, AI tools, portals. Fixed price. You own it.
@@ -2784,7 +2889,7 @@ body::before {
     </div>
     <div class="cap-grid reveal-stagger">
 
-      <div class="cap-card">
+      <div class="cap-card cap-card-lg">
         <div class="cap-frag" aria-hidden="true">
           <span class="frag-label">Live</span>
           <div class="fd-kpis">
@@ -2806,6 +2911,30 @@ body::before {
         <div class="cap-body">
           <h3 class="cap-title">Dashboards</h3>
           <p class="cap-sub">Every number that matters, live in one place.</p>
+        </div>
+      </div>
+
+      <div class="cap-card cap-card-lg">
+        <div class="cap-frag" aria-hidden="true">
+          <span class="frag-label">Reading</span>
+          <div class="fai-doc">
+            <div class="fai-doc-name">invoice_0341.pdf</div>
+            <div class="frag-skel"></div>
+            <div class="frag-skel"></div>
+            <div class="frag-skel"></div>
+            <div class="frag-skel"></div>
+            <div class="frag-skel"></div>
+            <div class="fai-scan"></div>
+          </div>
+          <div class="fai-fields">
+            <div class="fai-field"><div class="fai-field-label">Supplier</div><div class="fai-value" style="--d: 1.2s">Acme Ltd</div></div>
+            <div class="fai-field"><div class="fai-field-label">Amount</div><div class="fai-value" style="--d: 1.9s">&pound;1,240.00</div></div>
+            <div class="fai-field"><div class="fai-field-label">Due date</div><div class="fai-value" style="--d: 2.6s">30 days</div></div>
+          </div>
+        </div>
+        <div class="cap-body">
+          <h3 class="cap-title">AI-Powered Tools</h3>
+          <p class="cap-sub">Documents read and fields filled automatically.</p>
         </div>
       </div>
 
@@ -2839,30 +2968,6 @@ body::before {
         <div class="cap-body">
           <h3 class="cap-title">System Integrations</h3>
           <p class="cap-sub">Your systems finally talk to each other.</p>
-        </div>
-      </div>
-
-      <div class="cap-card">
-        <div class="cap-frag" aria-hidden="true">
-          <span class="frag-label">Reading</span>
-          <div class="fai-doc">
-            <div class="fai-doc-name">invoice_0341.pdf</div>
-            <div class="frag-skel"></div>
-            <div class="frag-skel"></div>
-            <div class="frag-skel"></div>
-            <div class="frag-skel"></div>
-            <div class="frag-skel"></div>
-            <div class="fai-scan"></div>
-          </div>
-          <div class="fai-fields">
-            <div class="fai-field"><div class="fai-field-label">Supplier</div><div class="fai-value" style="--d: 1.2s">Acme Ltd</div></div>
-            <div class="fai-field"><div class="fai-field-label">Amount</div><div class="fai-value" style="--d: 1.9s">&pound;1,240.00</div></div>
-            <div class="fai-field"><div class="fai-field-label">Due date</div><div class="fai-value" style="--d: 2.6s">30 days</div></div>
-          </div>
-        </div>
-        <div class="cap-body">
-          <h3 class="cap-title">AI-Powered Tools</h3>
-          <p class="cap-sub">Documents read and fields filled automatically.</p>
         </div>
       </div>
 
@@ -3017,11 +3122,45 @@ body::before {
   </div>
 </section>
 
+<!-- ==================== INDUSTRIES ==================== -->
+<section class="section section-industries" id="industries">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="section-label">03 / Who it&rsquo;s for</div>
+      <h2 class="section-title">Built for operations-heavy businesses.</h2>
+    </div>
+    <div class="ind-grid reveal-stagger">
+      <div class="ind-card">
+        <div class="ind-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2"/><path d="M15 18H9"/><path d="M19 18h2a1 1 0 0 0 1-1v-3.65a1 1 0 0 0-.22-.62l-3.48-4.35A1 1 0 0 0 17.52 8H14"/><circle cx="17" cy="18" r="2"/><circle cx="7" cy="18" r="2"/></svg>
+        </div>
+        <h3>Logistics and distribution</h3>
+        <p>Rate lookups, job tracking, and depot dashboards that replace the master spreadsheet.</p>
+      </div>
+      <div class="ind-card">
+        <div class="ind-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+        </div>
+        <h3>Trades and field services</h3>
+        <p>Quoting, scheduling, and job sheets your team can use from a van.</p>
+      </div>
+      <div class="ind-card">
+        <div class="ind-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+        </div>
+        <h3>Professional services</h3>
+        <p>Client portals, reporting, and billing without the copy-paste.</p>
+      </div>
+    </div>
+    <p class="ind-note reveal">Not on the list? If your team lives in spreadsheets and email, you are exactly who we build for.</p>
+  </div>
+</section>
+
 <!-- ==================== SOUND FAMILIAR ==================== -->
 <section class="section band-dark" id="pain">
   <div class="container">
     <div class="section-head reveal">
-      <div class="section-label">03 / Sound familiar?</div>
+      <div class="section-label">04 / Sound familiar?</div>
       <h2 class="section-title">Most of our clients arrive with one of these.</h2>
     </div>
     <ol class="pain-list reveal-stagger">
@@ -3056,27 +3195,31 @@ body::before {
 <section class="section" id="process">
   <div class="container">
     <div class="section-head reveal">
-      <div class="section-label">04 / Process</div>
+      <div class="section-label">05 / Process</div>
       <h2 class="section-title">How it works.</h2>
     </div>
     <div class="process-grid reveal-stagger">
       <div class="step">
-        <div class="step-num">01</div>
+        <div class="step-num"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div>
+        <div class="step-kicker">Step 01</div>
         <h4>Discovery call</h4>
         <p>A free half hour on the problem. Site visits available UK-wide.</p>
       </div>
       <div class="step">
-        <div class="step-num">02</div>
+        <div class="step-num"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M16 13H8"/><path d="M16 17H8"/></svg></div>
+        <div class="step-kicker">Step 02</div>
         <h4>Fixed-price scope</h4>
         <p>A written scope and one price before anything starts.</p>
       </div>
       <div class="step">
-        <div class="step-num">03</div>
+        <div class="step-num"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></div>
+        <div class="step-kicker">Step 03</div>
         <h4>Build and iterate</h4>
         <p>You see working software early and steer it as we go.</p>
       </div>
       <div class="step">
-        <div class="step-num">04</div>
+        <div class="step-num"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="4"/><path d="M4.93 4.93l4.24 4.24"/><path d="M14.83 14.83l4.24 4.24"/><path d="M14.83 9.17l4.24-4.24"/><path d="M4.93 19.07l4.24-4.24"/></svg></div>
+        <div class="step-kicker">Step 04</div>
         <h4>Launch and support</h4>
         <p>We ship it, train your team, and stay available.</p>
       </div>
@@ -3117,7 +3260,7 @@ body::before {
 <section class="section" id="pricing">
   <div class="container">
     <div class="section-head reveal">
-      <div class="section-label">05 / Pricing</div>
+      <div class="section-label">06 / Pricing</div>
       <h2 class="section-title">Start small. Scale when it earns it.</h2>
       <p class="price-floor">Most builds land between &pound;3,000 and &pound;15,000.</p>
     </div>
@@ -3193,7 +3336,7 @@ body::before {
 <section class="section" id="faq">
   <div class="container">
     <div class="section-head reveal" style="text-align: center; margin-left: auto; margin-right: auto;">
-      <div class="section-label" style="justify-content: center;">06 / Frequently asked</div>
+      <div class="section-label" style="justify-content: center;">07 / Frequently asked</div>
       <h2 class="section-title">Questions people ask before the call.</h2>
     </div>
     <div class="faq-list reveal">
@@ -3256,6 +3399,20 @@ body::before {
   </div>
 </section>
 
+<!-- ==================== CTA BAND ==================== -->
+<section class="cta-band band-dark">
+  <div class="container">
+    <div class="cta-band-inner reveal">
+      <h2>Stop running your business on <span class="stroke-dark">spreadsheets</span>.</h2>
+      <p>A free half-hour call is all it takes to find out what proper software would change.</p>
+      <a href="#contact" class="btn-primary">
+        Book a free discovery call
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
 <!-- ==================== WHO BUILDS THIS (founder note) ==================== -->
 <section class="section section-founder" id="founder">
   <div class="container">
@@ -3273,7 +3430,7 @@ body::before {
   <div class="container">
     <div class="contact-grid">
       <div class="contact-info reveal">
-        <div class="section-label">07 / Get in touch</div>
+        <div class="section-label">08 / Get in touch</div>
         <h2>Tell us what&rsquo;s not working.</h2>
         <p>
           Describe the problem. We&rsquo;ll come back within one working day with an honest take on whether we can help and what it would look like.
