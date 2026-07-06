@@ -1418,7 +1418,7 @@ body::before {
   align-items: start;
   border: none;
 }
-.pain-item + .pain-item { margin-top: 56px; }
+.pain-item + .pain-item { margin-top: 44px; }
 .pain-num {
   width: 56px;
   height: 56px;
@@ -1441,19 +1441,12 @@ body::before {
   padding-top: 0;
 }
 .pain-h {
-  font-size: clamp(20px, 2.4vw, 26px);
+  font-size: clamp(20px, 2.4vw, 27px);
   font-weight: 800;
   letter-spacing: -0.02em;
   color: var(--text);
-  margin-bottom: 10px;
   line-height: 1.25;
-  padding-top: 12px;
-}
-.pain-p {
-  font-size: 16px;
-  color: var(--text-dim);
-  line-height: 1.65;
-  max-width: 640px;
+  padding-top: 13px;
 }
 .pain-close {
   text-align: center;
@@ -1470,115 +1463,124 @@ body::before {
 @media (max-width: 720px) {
   .pain-list::before { left: 19px; top: 20px; bottom: 20px; }
   .pain-item { grid-template-columns: 40px 1fr; gap: 18px; }
-  .pain-item + .pain-item { margin-top: 40px; }
+  .pain-item + .pain-item { margin-top: 36px; }
   .pain-num { width: 40px; height: 40px; font-size: 13px; }
-  .pain-h { font-size: 19px; padding-top: 6px; }
-  .pain-p { font-size: 15px; }
+  .pain-h { font-size: 19px; padding-top: 7px; }
   .pain-close { margin-top: 48px; }
 }
 
 /* ------------------------------------------------------------------
-   SELECTED WORK
+   CASE STUDY (Proof): before/after comparison
+   Cluttered spreadsheet on the left, the tool that replaced it on
+   the right, three large numerals underneath.
 ------------------------------------------------------------------ */
-.work-list {
-  list-style: none;
-  margin: 0 auto;
-  padding: 0;
-  max-width: 1080px;
+.ba-wrap {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 24px;
-}
-.work-item {
-  background: var(--bg-card);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-md);
-  padding: 32px 32px 28px;
-  display: flex;
-  flex-direction: column;
-  transition: border-color 0.3s var(--ease), background 0.3s var(--ease), transform 0.3s var(--ease);
-}
-.work-item:hover {
-  border-color: var(--border-accent);
-  background: var(--bg-card-hover);
-  transform: translateY(-2px);
-}
-.work-tag {
-  font-family: var(--font-mono);
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--accent);
-  margin-bottom: 14px;
-  line-height: 1.5;
-}
-.work-title {
-  font-size: clamp(19px, 1.9vw, 22px);
-  font-weight: 600;
-  line-height: 1.3;
-  letter-spacing: -0.012em;
-  color: var(--text);
-  margin-bottom: 22px;
-  padding-bottom: 22px;
-  border-bottom: 1px solid var(--border);
-}
-.work-spec {
-  display: grid;
-  gap: 16px;
-}
-.work-spec-row { display: block; }
-.work-spec-label {
-  font-family: var(--font-mono);
-  font-size: 10.5px;
-  font-weight: 600;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--accent);
-  margin-bottom: 4px;
-  display: block;
-}
-.work-spec-value {
-  font-size: 14.5px;
-  color: var(--text-dim);
-  line-height: 1.55;
-  margin: 0;
-  display: block;
-}
-@media (max-width: 860px) {
-  .work-list { grid-template-columns: 1fr; gap: 18px; }
-  .work-item { padding: 26px 24px 24px; }
-}
-
-/* ------------------------------------------------------------------
-   CASE STUDY
------------------------------------------------------------------- */
-.case {
-  display: grid;
-  grid-template-columns: 45fr 55fr;
-  gap: 60px;
+  grid-template-columns: 1fr 56px 1fr;
+  gap: 18px;
   align-items: center;
-  position: relative;
+  max-width: 1140px;
+  margin: 0 auto;
 }
-/* Case study product mockup: a rate-card lookup tool that mirrors
-   what the case study describes. Same dark/amber language as the
-   hero dashboard for site cohesion. */
-.case-mockup {
-  position: relative;
-  width: 100%;
-  max-width: 600px;
+.ba-panel { position: relative; }
+.ba-tag {
+  position: absolute;
+  top: -12px; left: 16px;
+  z-index: 5;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border-radius: 4px;
+  background: var(--bg-elev);
+  border: 1px solid var(--border-strong);
+  color: var(--text-dim);
 }
+.ba-tag-after {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #000;
+}
+.ba-arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--accent);
+}
+.ba-arrow svg {
+  width: 34px; height: 34px;
+  filter: drop-shadow(0 0 14px rgba(240,192,0,0.45));
+}
+/* Before: the cluttered rate-card spreadsheet */
+.ba-window {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 24px 60px rgba(0,0,0,0.45);
+  font-family: var(--font-mono);
+}
+.ba-chrome {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 9px 12px;
+  background: #f3f4f6;
+  border-bottom: 1px solid #e5e7eb;
+}
+.ba-dot { width: 9px; height: 9px; border-radius: 50%; background: #d1d5db; }
+.ba-chrome-title {
+  margin-left: 8px;
+  font-size: 9px;
+  letter-spacing: 0.06em;
+  color: #6b7280;
+}
+.ba-cols, .ba-row {
+  display: grid;
+  grid-template-columns: 1.4fr 0.8fr 1fr 1fr 1fr 0.9fr;
+}
+.ba-cols {
+  background: #f3f4f6;
+  border-bottom: 1px solid #d1d5db;
+}
+.ba-col {
+  padding: 6px 6px;
+  font-size: 7.5px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  color: #6b7280;
+  text-transform: uppercase;
+  border-right: 1px solid #e5e7eb;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.ba-cell {
+  padding: 6px 6px;
+  border-right: 1px solid #f0f1f3;
+  border-bottom: 1px solid #f0f1f3;
+  font-size: 8.5px;
+  color: #374151;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  background: #ffffff;
+}
+.ba-cell.err { background: rgba(239,68,68,0.12); color: #b91c1c; font-weight: 600; }
+.ba-cell.warn { background: rgba(245,158,11,0.14); color: #92400e; }
+.ba-cell.stale { color: #9ca3af; text-decoration: line-through; }
+/* After: the rate lookup tool */
 .cm-window {
   background: #0a0a0a;
   border: 1px solid var(--border);
-  border-radius: var(--radius-lg);
+  border-radius: var(--radius-md);
   overflow: hidden;
   box-shadow:
-    0 30px 80px rgba(0, 0, 0, 0.55),
+    0 24px 60px rgba(0, 0, 0, 0.55),
     0 0 0 1px rgba(240, 192, 0, 0.06),
     0 0 60px -20px rgba(240, 192, 0, 0.18);
-  transform: perspective(1400px) rotateY(-3deg) rotateX(2deg);
-  transform-origin: center center;
 }
 .cm-chrome {
   display: flex;
@@ -1699,74 +1701,56 @@ body::before {
   color: var(--text-dim);
   text-align: right;
 }
+@media (max-width: 960px) {
+  .ba-wrap { grid-template-columns: 1fr; gap: 28px; max-width: 560px; }
+  .ba-arrow svg { transform: rotate(90deg); }
+}
 @media (max-width: 720px) {
-  .cm-window { transform: none; }
+  .cm-filters { grid-template-columns: 1fr 1fr 1fr; gap: 6px; padding: 10px; }
+  .cm-result { padding: 10px 12px; }
+}
+@media (max-width: 480px) {
   .cm-filters { grid-template-columns: 1fr; }
   .cm-results-head { display: none; }
   .cm-result { grid-template-columns: 1fr 1fr; row-gap: 4px; }
   .cm-result-meta, .cm-result-eta { display: none; }
 }
-.case-body {
-  position: relative;
-}
-.case-body::before {
-  content: "";
-  position: absolute;
-  top: -120px; right: -80px;
-  width: 280px; height: 280px;
-  background: radial-gradient(circle, var(--accent-glow), transparent 70%);
-  filter: blur(60px);
-  pointer-events: none;
-  z-index: -1;
-}
-.case-meta {
-  font-family: var(--font-mono);
-  font-size: 11px;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--accent);
-  margin-bottom: 18px;
-}
-.case h3 {
-  font-size: clamp(26px, 3vw, 38px);
-  font-weight: 900;
-  line-height: 1.1;
-  letter-spacing: -0.02em;
-  margin-bottom: 20px;
-}
-.case p {
-  font-size: 16px;
-  color: var(--text-dim);
-  line-height: 1.65;
-  margin-bottom: 16px;
-}
+/* Proof stats: three large numerals */
 .case-numbers {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 16px;
-  margin-top: 32px;
-  position: relative;
+  gap: 24px;
+  max-width: 1000px;
+  margin: 72px auto 0;
+  text-align: center;
 }
-.case-num {
-  padding: 28px;
-  background: var(--bg-elev);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-md);
+.case-num { position: relative; padding: 0 20px; }
+.case-num + .case-num::before {
+  content: "";
+  position: absolute;
+  left: -12px; top: 15%;
+  height: 70%;
+  width: 1px;
+  background: var(--border-strong);
 }
 .case-num-big {
-  font-size: 44px;
+  font-size: clamp(52px, 7vw, 84px);
   font-weight: 900;
   line-height: 1;
   color: var(--accent);
   letter-spacing: -0.03em;
-  margin-bottom: 8px;
+  margin-bottom: 10px;
 }
 .case-num-label {
   font-family: var(--font-mono);
   font-size: 11px;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--text-muted);
+  color: var(--text-dim);
+}
+@media (max-width: 720px) {
+  .case-numbers { grid-template-columns: 1fr; gap: 36px; margin-top: 52px; }
+  .case-num + .case-num::before { display: none; }
 }
 
 /* ------------------------------------------------------------------
@@ -1851,18 +1835,6 @@ body::before {
   max-width: 240px;
   margin: 0 auto;
 }
-.step-extra {
-  margin-top: 14px;
-  padding-top: 14px;
-  border-top: 1px dashed var(--border-strong);
-  font-size: 12.5px;
-  color: var(--text-dim);
-  line-height: 1.55;
-  max-width: 240px;
-  margin-left: auto;
-  margin-right: auto;
-}
-.step-extra strong { color: var(--accent); font-weight: 500; }
 @media (prefers-reduced-motion: reduce) {
   .process-grid::before { transform: scaleX(1); transition: none; }
 }
@@ -2506,8 +2478,6 @@ body::before {
   .hero { padding: 140px 0 60px; }
   .hero-visual { margin-top: 52px; }
   .pricing-grid { grid-template-columns: 1fr; }
-  .case { grid-template-columns: 1fr; gap: 32px; }
-  .case-mockup { max-width: 480px; margin: 0 auto; }
   .contact-grid { grid-template-columns: 1fr; gap: 40px; }
   .footer-top { grid-template-columns: 1fr 1fr; gap: 32px; }
 }
@@ -2535,7 +2505,6 @@ body::before {
   .trust-grid { grid-template-columns: 1fr; gap: 32px; }
   .trust-item:not(:last-child)::after { display: none; }
   .field-row { grid-template-columns: 1fr; }
-  .case-numbers { grid-template-columns: 1fr; }
   .footer-top { grid-template-columns: 1fr; }
   .hero h1 { font-size: 44px; }
   .contact-form { padding: 24px; }
@@ -2854,12 +2823,38 @@ body::before {
 <section class="section" id="case">
   <div class="container">
     <div class="section-head reveal">
-      <div class="section-label">01 / Proof</div>
+      <div class="section-label">02 / Proof &nbsp;/&nbsp; UK Logistics Group</div>
       <h2 class="section-title">They quote in minutes now. Not hours.</h2>
-      <p class="section-sub">A UK logistics group was pricing every quote by hand across four operator rate cards. Three staff. Hours of work. Daily.</p>
+      <p class="section-sub">A UK logistics group priced every quote by hand across four operator rate cards. We built one tool that answers instantly.</p>
     </div>
-    <div class="case reveal">
-      <div class="case-mockup" aria-hidden="true">
+    <div class="ba-wrap reveal" aria-hidden="true">
+      <div class="ba-panel ba-before">
+        <span class="ba-tag">Before</span>
+        <div class="ba-window">
+          <div class="ba-chrome">
+            <span class="ba-dot"></span>
+            <span class="ba-dot"></span>
+            <span class="ba-dot"></span>
+            <span class="ba-chrome-title">rates_MASTER_v7_FINAL(2).xlsx</span>
+          </div>
+          <div class="ba-cols">
+            <span class="ba-col">Operator</span><span class="ba-col">Zone</span><span class="ba-col">0-50kg</span><span class="ba-col">50-100</span><span class="ba-col">100-250</span><span class="ba-col">Notes</span>
+          </div>
+          <div class="ba-row"><span class="ba-cell">DPD Direct</span><span class="ba-cell">SC-2</span><span class="ba-cell">&pound;38.40</span><span class="ba-cell">&pound;74.10</span><span class="ba-cell">&pound;148.20</span><span class="ba-cell warn">check??</span></div>
+          <div class="ba-row"><span class="ba-cell">Pallex</span><span class="ba-cell">SC-2</span><span class="ba-cell">&pound;35.00</span><span class="ba-cell err">#REF!</span><span class="ba-cell">&pound;132.40</span><span class="ba-cell">ok</span></div>
+          <div class="ba-row"><span class="ba-cell">Palletways</span><span class="ba-cell">SC-2</span><span class="ba-cell stale">&pound;39.90</span><span class="ba-cell">&pound;81.30</span><span class="ba-cell">&pound;155.80</span><span class="ba-cell warn">old 2023?</span></div>
+          <div class="ba-row"><span class="ba-cell">Tuffnells</span><span class="ba-cell err">#N/A</span><span class="ba-cell">&pound;36.20</span><span class="ba-cell">&pound;77.80</span><span class="ba-cell">&pound;141.60</span><span class="ba-cell">ok</span></div>
+          <div class="ba-row"><span class="ba-cell">DPD Direct</span><span class="ba-cell">SC-3</span><span class="ba-cell">&pound;41.70</span><span class="ba-cell">&pound;79.90</span><span class="ba-cell err">#VALUE!</span><span class="ba-cell warn">ask Dave</span></div>
+          <div class="ba-row"><span class="ba-cell">Pallex</span><span class="ba-cell">SC-3</span><span class="ba-cell">&pound;37.60</span><span class="ba-cell">&pound;76.20</span><span class="ba-cell">&pound;139.90</span><span class="ba-cell stale">v6??</span></div>
+          <div class="ba-row"><span class="ba-cell">Palletways</span><span class="ba-cell">SC-3</span><span class="ba-cell warn">&pound;42.10</span><span class="ba-cell">&pound;84.60</span><span class="ba-cell">&pound;161.20</span><span class="ba-cell">ok</span></div>
+          <div class="ba-row"><span class="ba-cell">Tuffnells</span><span class="ba-cell">SC-3</span><span class="ba-cell">&pound;38.90</span><span class="ba-cell err">#REF!</span><span class="ba-cell">&pound;147.30</span><span class="ba-cell err">DO NOT USE</span></div>
+        </div>
+      </div>
+      <div class="ba-arrow">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </div>
+      <div class="ba-panel ba-after">
+        <span class="ba-tag ba-tag-after">After</span>
         <div class="cm-window">
           <div class="cm-chrome">
             <span class="cm-dot"></span>
@@ -2912,112 +2907,21 @@ body::before {
           </div>
         </div>
       </div>
-      <div class="case-body">
-        <div class="case-meta">Case Study &nbsp;/&nbsp; UK Logistics Group</div>
-        <h3>One tool. Every rate card. Instant answers.</h3>
-        <p>We sat with their sales team, learned how they quoted in practice, and built one tool that pulled every rate card together.</p>
-        <p style="color: var(--text); font-weight: 500; margin-top: 24px;">Now their team gets instant answers. The spreadsheets are gone. The errors are gone. The hours are back.</p>
-        <div class="case-numbers">
-          <div class="case-num">
-            <div class="case-num-big">20+</div>
-            <div class="case-num-label">Hours saved weekly</div>
-          </div>
-          <div class="case-num">
-            <div class="case-num-big">4</div>
-            <div class="case-num-label">Operator systems unified</div>
-          </div>
-          <div class="case-num">
-            <div class="case-num-big">1</div>
-            <div class="case-num-label">Source of truth</div>
-          </div>
-        </div>
+    </div>
+    <div class="case-numbers reveal-stagger">
+      <div class="case-num">
+        <div class="case-num-big">20+</div>
+        <div class="case-num-label">Hours saved weekly</div>
+      </div>
+      <div class="case-num">
+        <div class="case-num-big">4</div>
+        <div class="case-num-label">Systems unified</div>
+      </div>
+      <div class="case-num">
+        <div class="case-num-big">1</div>
+        <div class="case-num-label">Source of truth</div>
       </div>
     </div>
-  </div>
-</section>
-
-<!-- ==================== SELECTED WORK ==================== -->
-<section class="section" id="work">
-  <div class="container">
-    <div class="section-head reveal">
-      <div class="section-label">02 / Selected work</div>
-      <h2 class="section-title">A few of the systems we&rsquo;ve delivered.</h2>
-      <p class="section-sub">Names omitted under standard NDAs.</p>
-    </div>
-    <ol class="work-list reveal-stagger">
-      <li class="work-item">
-        <div class="work-tag">B2B Sales &amp; Finance</div>
-        <h3 class="work-title">Customer-level margin and commission engine</h3>
-        <dl class="work-spec">
-          <div class="work-spec-row">
-            <dt class="work-spec-label">Requirements</dt>
-            <dd class="work-spec-value">Track 500+ customers across 24 months and run the full sales commission engine.</dd>
-          </div>
-          <div class="work-spec-row">
-            <dt class="work-spec-label">Solution</dt>
-            <dd class="work-spec-value">Custom dashboard pulling revenue, margin, and commission into one source of truth.</dd>
-          </div>
-          <div class="work-spec-row">
-            <dt class="work-spec-label">Results</dt>
-            <dd class="work-spec-value">Monthly numbers went from days of manual work to a single live dashboard.</dd>
-          </div>
-        </dl>
-      </li>
-      <li class="work-item">
-        <div class="work-tag">Operations &amp; Reporting</div>
-        <h3 class="work-title">Automated reporting platform</h3>
-        <dl class="work-spec">
-          <div class="work-spec-row">
-            <dt class="work-spec-label">Requirements</dt>
-            <dd class="work-spec-value">A portfolio of reports taking staff hours to days to compile by hand.</dd>
-          </div>
-          <div class="work-spec-row">
-            <dt class="work-spec-label">Solution</dt>
-            <dd class="work-spec-value">Automated pipelines pulling from multiple data sources, replacing all copy-paste work.</dd>
-          </div>
-          <div class="work-spec-row">
-            <dt class="work-spec-label">Results</dt>
-            <dd class="work-spec-value">Reports that took days now generate in seconds at the click of a button.</dd>
-          </div>
-        </dl>
-      </li>
-      <li class="work-item">
-        <div class="work-tag">Consumer / Wellbeing</div>
-        <h3 class="work-title">Mobile app and analytics dashboard</h3>
-        <dl class="work-spec">
-          <div class="work-spec-row">
-            <dt class="work-spec-label">Requirements</dt>
-            <dd class="work-spec-value">A consumer wellbeing app with full user analytics, built from scratch.</dd>
-          </div>
-          <div class="work-spec-row">
-            <dt class="work-spec-label">Solution</dt>
-            <dd class="work-spec-value">End-to-end build covering native app, backend, and integrated analytics layer.</dd>
-          </div>
-          <div class="work-spec-row">
-            <dt class="work-spec-label">Results</dt>
-            <dd class="work-spec-value">Production app live with full visibility into engagement, retention, and feature usage.</dd>
-          </div>
-        </dl>
-      </li>
-      <li class="work-item">
-        <div class="work-tag">E-commerce / Retail</div>
-        <h3 class="work-title">Custom Magento storefront</h3>
-        <dl class="work-spec">
-          <div class="work-spec-row">
-            <dt class="work-spec-label">Requirements</dt>
-            <dd class="work-spec-value">A multi-variant lighting catalogue needing custom configurators and stock integration.</dd>
-          </div>
-          <div class="work-spec-row">
-            <dt class="work-spec-label">Solution</dt>
-            <dd class="work-spec-value">Bespoke Magento 2 storefront with tailored checkout flows and stock management.</dd>
-          </div>
-          <div class="work-spec-row">
-            <dt class="work-spec-label">Results</dt>
-            <dd class="work-spec-value">A complex catalogue made simple to browse, configure, and buy.</dd>
-          </div>
-        </dl>
-      </li>
-    </ol>
   </div>
 </section>
 
@@ -3041,43 +2945,30 @@ body::before {
   <div class="container">
     <div class="section-head reveal">
       <div class="section-label">03 / Sound familiar?</div>
-      <h2 class="section-title">Most of our clients come to us with one of these.</h2>
-      <p class="section-sub">If any of this sounds like you, you&rsquo;re overdue for proper software.</p>
+      <h2 class="section-title">Most of our clients arrive with one of these.</h2>
     </div>
     <ol class="pain-list reveal-stagger">
       <li class="pain-item">
         <div class="pain-num">01</div>
-        <div>
-          <div class="pain-h">You run half your business out of spreadsheets.</div>
-          <p class="pain-p">They grew organically. Nobody wants to touch them. One broken formula could cost you a day.</p>
-        </div>
+        <div class="pain-h">You run half your business out of spreadsheets.</div>
       </li>
       <li class="pain-item">
         <div class="pain-num">02</div>
-        <div>
-          <div class="pain-h">Your tools don&rsquo;t talk to each other.</div>
-          <p class="pain-p">CRM, accounts, inventory, scheduling. Four systems, zero conversation. Your team copies between them by hand.</p>
-        </div>
+        <div class="pain-h">Your tools don&rsquo;t talk to each other.</div>
       </li>
       <li class="pain-item">
         <div class="pain-num">03</div>
-        <div>
-          <div class="pain-h">Your team is doing work software should be doing.</div>
-          <p class="pain-p">Manual reports, repetitive admin, copy-pasting between systems. You&rsquo;re paying people to be slow.</p>
-        </div>
+        <div class="pain-h">Your team is doing work software should be doing.</div>
       </li>
       <li class="pain-item">
         <div class="pain-num">04</div>
-        <div>
-          <div class="pain-h">You know what you need, you just need it built.</div>
-          <p class="pain-p">You&rsquo;ve scoped it in your head. You don&rsquo;t need a 6-month consulting engagement. You just need someone to build it.</p>
-        </div>
+        <div class="pain-h">You know what you need. It just needs building.</div>
       </li>
     </ol>
     <p class="pain-close reveal">If even one of these sounds familiar, you&rsquo;re ready for proper software.</p>
     <div class="pain-cta reveal">
       <a href="#contact" class="btn-primary pain-cta-btn">
-        Start with a free review
+        Book a free discovery call
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
       </a>
     </div>
@@ -3088,33 +2979,29 @@ body::before {
 <section class="section" id="process">
   <div class="container">
     <div class="section-head reveal">
-      <div class="section-label">05 / Process</div>
+      <div class="section-label">04 / Process</div>
       <h2 class="section-title">How it works.</h2>
-      <p class="section-sub">
-        Four steps. No jargon. No surprise invoices.
-      </p>
     </div>
     <div class="process-grid reveal-stagger">
       <div class="step">
         <div class="step-num">01</div>
-        <h4>Discovery Call</h4>
-        <p>You walk away with a clearer view of the problem and a sense of whether software actually fixes it. Even if it&rsquo;s not us. Free 30 minutes. No obligation.</p>
-        <p class="step-extra"><strong>We can come to you.</strong> Site visits available across the UK so we can see how your team works first-hand.</p>
+        <h4>Discovery call</h4>
+        <p>A free half hour on the problem. Site visits available UK-wide.</p>
       </div>
       <div class="step">
         <div class="step-num">02</div>
-        <h4>Scope &amp; Quote</h4>
-        <p>We write a clear scope and quote a fixed price. You know exactly what you&rsquo;re getting and exactly what it costs before anything starts.</p>
+        <h4>Fixed-price scope</h4>
+        <p>A written scope and one price before anything starts.</p>
       </div>
       <div class="step">
         <div class="step-num">03</div>
-        <h4>Build &amp; Iterate</h4>
-        <p>We build fast, show you progress early, and adjust based on your feedback. You&rsquo;re involved throughout, never chasing updates.</p>
+        <h4>Build and iterate</h4>
+        <p>You see working software early and steer it as we go.</p>
       </div>
       <div class="step">
         <div class="step-num">04</div>
-        <h4>Launch &amp; Support</h4>
-        <p>We ship it, train your team, and stick around. Host it for you, fix bugs, add features. Or hand it over and walk away. Your call.</p>
+        <h4>Launch and support</h4>
+        <p>We ship it, train your team, and stay available.</p>
       </div>
     </div>
   </div>
