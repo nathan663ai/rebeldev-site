@@ -87,6 +87,8 @@ body {
 }
 img, svg { display: block; max-width: 100%; }
 a { color: inherit; text-decoration: none; }
+::selection { background: var(--accent); color: #000; }
+section[id], div[id] { scroll-margin-top: 84px; }
 button { font-family: inherit; cursor: pointer; border: none; background: none; color: inherit; }
 input, textarea, select { font-family: inherit; color: inherit; }
 
@@ -123,7 +125,7 @@ body::before {
   font-weight: 500;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--accent);
+  color: var(--text-muted);
   display: inline-flex;
   align-items: center;
   gap: 10px;
@@ -135,7 +137,7 @@ body::before {
   height: 8px;
   background: var(--accent);
   border-radius: 2px;
-  box-shadow: 0 0 12px var(--accent);
+  box-shadow: 0 0 10px rgba(240,192,0,0.5);
 }
 .section-title {
   font-size: clamp(32px, 4.5vw, 56px);
@@ -278,7 +280,7 @@ body::before {
   z-index: 0;
   pointer-events: none;
   overflow: hidden;
-  opacity: 0.2;
+  opacity: 0.12;
 }
 .hero-blob {
   position: absolute;
@@ -421,7 +423,7 @@ body::before {
   position: absolute;
   left: 10%; right: 10%; bottom: -40px;
   height: 120px;
-  background: radial-gradient(ellipse 50% 50% at 50% 50%, rgba(240,192,0,0.16), transparent 70%);
+  background: radial-gradient(ellipse 50% 50% at 50% 50%, rgba(240,192,0,0.1), transparent 70%);
   filter: blur(30px);
   pointer-events: none;
 }
@@ -879,7 +881,7 @@ body::before {
   position: absolute;
   inset: 0;
   pointer-events: none;
-  background: radial-gradient(ellipse 60% 50% at 50% 45%, rgba(240,192,0,0.06) 0%, transparent 70%);
+  background: radial-gradient(ellipse 60% 50% at 50% 45%, rgba(240,192,0,0.04) 0%, transparent 70%);
   z-index: 0;
 }
 .qualifier > .container { position: relative; z-index: 1; }
@@ -1017,7 +1019,7 @@ body::before {
   flex: 1;
   height: calc(var(--h) * 100%);
   border-radius: 2px 2px 0 0;
-  background: linear-gradient(to top, rgba(240,192,0,0.25), rgba(240,192,0,0.85));
+  background: linear-gradient(to top, rgba(240,192,0,0.2), rgba(240,192,0,0.65));
   transform-origin: bottom;
   animation: fdBar 6s var(--ease) infinite;
   animation-delay: calc(var(--i) * 0.12s);
@@ -1175,146 +1177,195 @@ body::before {
   100%     { opacity: 0.25; }
 }
 
-/* 4. AI-powered tools: a document scanned, fields auto-filling */
+/* 4. AI-powered tools: a document scanned, fields auto-filling.
+   Fixed pixel heights throughout so nothing clips when real fonts load. */
 .fai-doc {
   position: absolute;
-  top: 34px; left: 18px; bottom: 18px;
-  width: 40%;
+  top: 36px; left: 18px; bottom: 18px;
+  width: 41%;
   border: 1px solid var(--border-strong);
   border-radius: 6px;
   background: var(--bg-card);
-  padding: 12px 10px;
+  padding: 10px;
   overflow: hidden;
 }
-.fai-doc .frag-skel { height: 4px; margin-bottom: 9px; }
-.fai-doc .frag-skel:nth-child(1) { width: 55%; }
+.fai-doc-name {
+  font-family: var(--font-mono);
+  font-size: 7.5px;
+  line-height: 1;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 10px;
+  white-space: nowrap;
+  overflow: hidden;
+}
+.fai-doc .frag-skel { height: 4px; margin-bottom: 8px; }
 .fai-doc .frag-skel:nth-child(2) { width: 90%; }
-.fai-doc .frag-skel:nth-child(3) { width: 75%; }
-.fai-doc .frag-skel:nth-child(4) { width: 85%; }
-.fai-doc .frag-skel:nth-child(5) { width: 60%; }
+.fai-doc .frag-skel:nth-child(3) { width: 70%; }
+.fai-doc .frag-skel:nth-child(4) { width: 84%; }
+.fai-doc .frag-skel:nth-child(5) { width: 58%; }
+.fai-doc .frag-skel:nth-child(6) { width: 76%; }
 .fai-scan {
   position: absolute;
-  left: 0; right: 0; top: -22%;
-  height: 22%;
-  background: linear-gradient(to bottom, transparent, rgba(240,192,0,0.28));
+  left: 0; right: 0;
+  top: -26px;
+  height: 26px;
+  background: linear-gradient(to bottom, transparent, rgba(240,192,0,0.22));
   border-bottom: 1.5px solid var(--accent);
-  animation: faiScan 8s var(--ease) infinite;
+  animation: faiScan 8s ease-in-out infinite;
 }
 @keyframes faiScan {
-  0%       { top: -22%; opacity: 1; }
-  38%      { top: 100%; opacity: 1; }
-  42%, 96% { top: 100%; opacity: 0; }
-  100%     { top: -22%; opacity: 1; }
+  0%       { transform: translateY(0); opacity: 1; }
+  38%      { transform: translateY(142px); opacity: 1; }
+  44%, 94% { transform: translateY(142px); opacity: 0; }
+  100%     { transform: translateY(0); opacity: 1; }
 }
 .fai-fields {
   position: absolute;
-  top: 34px; right: 18px; bottom: 18px;
-  width: 46%;
+  top: 36px; right: 18px; bottom: 18px;
+  width: 47%;
   display: flex;
   flex-direction: column;
-  gap: 9px;
+  justify-content: center;
+  gap: 8px;
 }
 .fai-field {
+  height: 32px;
+  flex: 0 0 32px;
   border: 1px solid var(--border-strong);
   border-radius: 5px;
   background: var(--bg-card);
-  padding: 6px 8px;
+  padding: 5px 8px;
+  overflow: hidden;
 }
 .fai-field-label {
   font-family: var(--font-mono);
-  font-size: 7.5px;
+  font-size: 7px;
+  line-height: 1;
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--text-muted);
   margin-bottom: 4px;
 }
 .fai-value {
-  height: 6px;
-  width: var(--w, 70%);
-  border-radius: 2px;
-  background: linear-gradient(90deg, rgba(240,192,0,0.7), rgba(240,192,0,0.35));
-  transform: scaleX(0);
-  transform-origin: left;
-  animation: faiFill 8s var(--ease) infinite;
+  font-family: var(--font-mono);
+  font-size: 9px;
+  line-height: 1;
+  font-weight: 600;
+  color: var(--accent);
+  white-space: nowrap;
+  overflow: hidden;
+  max-width: 0;
+  animation: faiType 8s steps(14, end) infinite;
   animation-delay: var(--d);
 }
-@keyframes faiFill {
-  0%, 8%    { transform: scaleX(0); }
-  20%, 92%  { transform: scaleX(1); }
-  100%      { transform: scaleX(0); }
+@keyframes faiType {
+  0%, 4%    { max-width: 0; }
+  18%, 90%  { max-width: 100%; }
+  96%, 100% { max-width: 0; }
 }
 
-/* 5. Customer portals: login resolving to an account view */
+/* 5. Customer portals: login resolving to an account view.
+   States alternate with clean windows so they never stack visually. */
 .fp-state {
   position: absolute;
-  inset: 34px 40px 18px;
+  inset: 36px 44px 18px;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  gap: 9px;
+  gap: 8px;
 }
-.fp-login { animation: fpLogin 8s var(--ease) infinite; }
-.fp-account { opacity: 0; animation: fpAccount 8s var(--ease) infinite; }
+.fp-login { animation: fpLogin 9s ease-in-out infinite; }
+.fp-account { opacity: 0; animation: fpAccount 9s ease-in-out infinite; }
 @keyframes fpLogin {
-  0%, 30%   { opacity: 1; transform: translateY(0); }
-  40%, 88%  { opacity: 0; transform: translateY(-8px); }
+  0%, 32%   { opacity: 1; transform: translateY(0); }
+  40%, 91%  { opacity: 0; transform: translateY(-6px); }
   98%, 100% { opacity: 1; transform: translateY(0); }
 }
 @keyframes fpAccount {
-  0%, 32%   { opacity: 0; transform: translateY(8px); }
-  42%, 86%  { opacity: 1; transform: translateY(0); }
-  96%, 100% { opacity: 0; transform: translateY(8px); }
+  0%, 39%   { opacity: 0; transform: translateY(6px); }
+  47%, 84%  { opacity: 1; transform: translateY(0); }
+  91%, 100% { opacity: 0; transform: translateY(6px); }
+}
+.fp-portal-title {
+  font-family: var(--font-mono);
+  font-size: 7.5px;
+  line-height: 1;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  text-align: center;
+  margin-bottom: 2px;
 }
 .fp-input {
   height: 22px;
+  flex: 0 0 22px;
   border: 1px solid var(--border-strong);
   border-radius: 5px;
   background: var(--bg-card);
-  position: relative;
-}
-.fp-input::after {
-  content: "";
-  position: absolute;
-  left: 8px; top: 8px;
-  height: 5px; width: 42%;
-  border-radius: 2px;
-  background: var(--border);
+  display: flex;
+  align-items: center;
+  padding: 0 9px;
+  font-family: var(--font-mono);
+  font-size: 8px;
+  letter-spacing: 0.18em;
+  color: var(--text-muted);
+  overflow: hidden;
 }
 .fp-btn {
   height: 22px;
+  flex: 0 0 22px;
   border-radius: 5px;
   background: var(--accent);
-  opacity: 0.9;
+  color: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-mono);
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
 }
-.fp-row {
+.fp-head {
   display: flex;
   align-items: center;
   gap: 8px;
+  height: 20px;
+  flex: 0 0 20px;
 }
 .fp-avatar {
-  width: 22px; height: 22px;
+  width: 20px; height: 20px;
   flex-shrink: 0;
   border-radius: 50%;
   background: var(--accent-dim);
   border: 1px solid var(--border-accent);
 }
-.fp-row .frag-skel { height: 5px; flex: 1; }
+.fp-name {
+  font-family: var(--font-mono);
+  font-size: 8.5px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  color: var(--text);
+}
 .fp-line {
-  height: 16px;
+  height: 22px;
+  flex: 0 0 22px;
   border: 1px solid var(--border-strong);
-  border-radius: 4px;
+  border-radius: 5px;
   background: var(--bg-card);
-  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 9px;
+  font-family: var(--font-mono);
+  font-size: 8px;
+  letter-spacing: 0.06em;
+  color: var(--text-dim);
+  overflow: hidden;
 }
-.fp-line::after {
-  content: "";
-  position: absolute;
-  left: 7px; top: 5px;
-  height: 4px;
-  width: var(--w, 60%);
-  border-radius: 2px;
-  background: var(--border);
-}
+.fp-val { color: var(--accent); font-weight: 600; }
 
 /* 6. Reporting: a report assembling itself */
 .fr-page {
@@ -1380,7 +1431,7 @@ body::before {
   .fa-node svg { opacity: 1; }
   .fi-dot { opacity: 0; }
   .fai-scan { display: none; }
-  .fai-value { transform: scaleX(1); }
+  .fai-value { max-width: 100%; }
   .fp-login { opacity: 0; }
   .fp-account { opacity: 1; }
   .fr-piece { opacity: 1; transform: none; }
@@ -1402,7 +1453,7 @@ body::before {
   bottom: 28px;
   left: 27px;
   width: 2px;
-  background: rgba(240,192,0,0.4);
+  background: rgba(240,192,0,0.28);
   transform: scaleY(0);
   transform-origin: top;
   transition: transform 1.2s var(--ease) 0.1s;
@@ -1423,10 +1474,10 @@ body::before {
   height: 56px;
   border-radius: 50%;
   background:
-    linear-gradient(rgba(240,192,0,0.16), rgba(240,192,0,0.16)),
+    linear-gradient(rgba(240,192,0,0.1), rgba(240,192,0,0.1)),
     var(--bg);
-  border: 1.5px solid rgba(240,192,0,0.55);
-  box-shadow: 0 0 24px -8px rgba(240,192,0,0.35);
+  border: 1.5px solid rgba(240,192,0,0.4);
+  box-shadow: 0 0 18px -10px rgba(240,192,0,0.25);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1454,7 +1505,7 @@ body::before {
   font-size: 13px;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--accent);
+  color: var(--text-dim);
 }
 @media (prefers-reduced-motion: reduce) {
   .pain-list::before { transform: scaleY(1); transition: none; }
@@ -1738,10 +1789,11 @@ body::before {
   font-size: clamp(52px, 7vw, 84px);
   font-weight: 900;
   line-height: 1;
-  color: var(--accent);
+  color: var(--text);
   letter-spacing: -0.03em;
   margin-bottom: 10px;
 }
+.case-num-big .accent { color: var(--accent); }
 .case-num-label {
   font-family: var(--font-mono);
   font-size: 11px;
@@ -1772,7 +1824,7 @@ body::before {
   left: 12.5%;
   right: 12.5%;
   height: 2px;
-  background: rgba(240,192,0,0.4);
+  background: rgba(240,192,0,0.28);
   transform: scaleX(0);
   transform-origin: left;
   transition: transform 1s var(--ease) 0.1s;
@@ -1799,10 +1851,10 @@ body::before {
   margin-left: -28px;
   border-radius: 50%;
   background:
-    linear-gradient(rgba(240,192,0,0.16), rgba(240,192,0,0.16)),
+    linear-gradient(rgba(240,192,0,0.1), rgba(240,192,0,0.1)),
     var(--bg);
-  border: 1.5px solid rgba(240,192,0,0.55);
-  box-shadow: 0 0 24px -8px rgba(240,192,0,0.35);
+  border: 1.5px solid rgba(240,192,0,0.4);
+  box-shadow: 0 0 18px -10px rgba(240,192,0,0.25);
   z-index: 1;
 }
 .step-num {
@@ -1952,9 +2004,9 @@ body::before {
   transform: translateY(-4px);
 }
 .price.featured {
-  border-color: var(--accent);
-  background: linear-gradient(180deg, rgba(240,192,0,0.04) 0%, var(--bg-card) 50%);
-  box-shadow: 0 0 0 1px var(--accent), 0 20px 50px rgba(240,192,0,0.05);
+  border-color: rgba(240,192,0,0.6);
+  background: linear-gradient(180deg, rgba(240,192,0,0.03) 0%, var(--bg-card) 50%);
+  box-shadow: 0 24px 60px -30px rgba(0,0,0,0.6);
 }
 .price-badge {
   position: absolute;
@@ -2120,7 +2172,7 @@ body::before {
   font-size: 11px;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--accent);
+  color: var(--text-muted);
   margin-bottom: 14px;
 }
 .founder-note p {
@@ -2769,6 +2821,7 @@ body::before {
         <div class="cap-frag" aria-hidden="true">
           <span class="frag-label">Reading</span>
           <div class="fai-doc">
+            <div class="fai-doc-name">invoice_0341.pdf</div>
             <div class="frag-skel"></div>
             <div class="frag-skel"></div>
             <div class="frag-skel"></div>
@@ -2777,9 +2830,9 @@ body::before {
             <div class="fai-scan"></div>
           </div>
           <div class="fai-fields">
-            <div class="fai-field"><div class="fai-field-label">Supplier</div><div class="fai-value" style="--w: 80%; --d: 1.4s"></div></div>
-            <div class="fai-field"><div class="fai-field-label">Amount</div><div class="fai-value" style="--w: 55%; --d: 2.0s"></div></div>
-            <div class="fai-field"><div class="fai-field-label">Due date</div><div class="fai-value" style="--w: 65%; --d: 2.6s"></div></div>
+            <div class="fai-field"><div class="fai-field-label">Supplier</div><div class="fai-value" style="--d: 1.2s">Acme Ltd</div></div>
+            <div class="fai-field"><div class="fai-field-label">Amount</div><div class="fai-value" style="--d: 1.9s">&pound;1,240.00</div></div>
+            <div class="fai-field"><div class="fai-field-label">Due date</div><div class="fai-value" style="--d: 2.6s">30 days</div></div>
           </div>
         </div>
         <div class="cap-body">
@@ -2792,15 +2845,16 @@ body::before {
         <div class="cap-frag" aria-hidden="true">
           <span class="frag-label">Signing in</span>
           <div class="fp-state fp-login">
-            <div class="fp-input"></div>
-            <div class="fp-input"></div>
-            <div class="fp-btn"></div>
+            <div class="fp-portal-title">portal.yourcompany.co.uk</div>
+            <div class="fp-input">name@company.co.uk</div>
+            <div class="fp-input">&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;</div>
+            <div class="fp-btn">Sign in</div>
           </div>
           <div class="fp-state fp-account">
-            <div class="fp-row"><span class="fp-avatar"></span><span class="frag-skel"></span></div>
-            <div class="fp-line" style="--w: 72%"></div>
-            <div class="fp-line" style="--w: 55%"></div>
-            <div class="fp-line" style="--w: 64%"></div>
+            <div class="fp-head"><span class="fp-avatar"></span><span class="fp-name">ACME LTD</span></div>
+            <div class="fp-line"><span>Invoices</span><span class="fp-val">12</span></div>
+            <div class="fp-line"><span>Open orders</span><span class="fp-val">3</span></div>
+            <div class="fp-line"><span>Documents</span><span class="fp-val">8</span></div>
           </div>
         </div>
         <div class="cap-body">
