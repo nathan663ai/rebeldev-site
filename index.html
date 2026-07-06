@@ -28,7 +28,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Rebel Dev | Custom software for businesses outgrowing spreadsheets</title>
 <meta name="description" content="Rebel Dev builds custom software for UK businesses. Replace manual processes, connect your systems, and give your team back their time. Fixed price." />
-<meta name="theme-color" content="#0a0a0a" />
+<meta name="theme-color" content="#faf9f7" />
 <meta property="og:title" content="Rebel Dev | Custom Software for Your Business" />
 <meta property="og:description" content="We build custom tools for businesses stuck with spreadsheets and manual processes. Fixed price. Fast turnaround." />
 <meta property="og:url" content="https://rebeldev.co.uk" />
@@ -46,20 +46,24 @@
 ------------------------------------------------------------------ */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 :root {
-  --bg:             #0a0a0a;
-  --bg-elev:        #111111;
-  --bg-card:        #141414;
-  --bg-card-hover:  #181818;
-  --border:         #1f1f1f;
-  --border-strong:  #2a2a2a;
-  --border-accent:  rgba(240,192,0,0.28);
-  --text:           #f5f5f5;
-  --text-dim:       #a3a3a3;
-  --text-muted:     #666666;
+  --bg:             #faf9f7;
+  --bg-elev:        #f3f1ed;
+  --bg-card:        #ffffff;
+  --bg-card-hover:  #ffffff;
+  --border:         #e9e6e0;
+  --border-strong:  #d9d5cc;
+  --border-accent:  rgba(214,158,0,0.35);
+  --text:           #16150f;
+  --text-dim:       #57544a;
+  --text-muted:     #8a8578;
   --accent:         #f0c000;
-  --accent-dim:     rgba(240,192,0,0.08);
-  --accent-glow:    rgba(240,192,0,0.15);
-  --status-green:   #22c55e;
+  --accent-ink:     #9a7b00;
+  --accent-dim:     rgba(240,192,0,0.12);
+  --accent-glow:    rgba(240,192,0,0.25);
+  --status-green:   #16a34a;
+  --shadow-sm:      0 1px 2px rgba(22,21,15,0.05), 0 2px 8px rgba(22,21,15,0.04);
+  --shadow-md:      0 2px 4px rgba(22,21,15,0.05), 0 12px 32px -8px rgba(22,21,15,0.12);
+  --shadow-lg:      0 4px 8px rgba(22,21,15,0.05), 0 32px 72px -16px rgba(22,21,15,0.22);
   --font-sans:      'Outfit', ui-sans-serif, system-ui, sans-serif;
   --font-mono:      'JetBrains Mono', ui-monospace, Menlo, monospace;
   --radius-sm:      6px;
@@ -67,6 +71,27 @@
   --radius-lg:      18px;
   --ease:           cubic-bezier(0.22, 1, 0.36, 1);
   --container:      1240px;
+}
+/* Dark bands: scoped token flip for the sections that stay dark
+   (pain, qualifier, featured price card, footer). Components inside
+   inherit these automatically. */
+.band-dark {
+  --bg:             #111009;
+  --bg-elev:        #191812;
+  --bg-card:        #1d1c15;
+  --bg-card-hover:  #22211a;
+  --border:         #2a2921;
+  --border-strong:  #3a382d;
+  --border-accent:  rgba(240,192,0,0.3);
+  --text:           #f7f5ef;
+  --text-dim:       #b0ac9f;
+  --text-muted:     #7a766a;
+  --accent-ink:     #f0c000;
+  --shadow-sm:      0 1px 2px rgba(0,0,0,0.3);
+  --shadow-md:      0 12px 32px -8px rgba(0,0,0,0.4);
+  --shadow-lg:      0 32px 72px -16px rgba(0,0,0,0.55);
+  background: var(--bg);
+  color: var(--text);
 }
 html {
   scroll-behavior: smooth;
@@ -152,7 +177,7 @@ body::before {
   max-width: 640px;
   line-height: 1.6;
 }
-.accent { color: var(--accent); }
+.accent { color: var(--accent-ink); }
 
 /* ------------------------------------------------------------------
    NAV
@@ -163,13 +188,13 @@ body::before {
   z-index: 100;
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  background: rgba(10,10,10,0.7);
+  background: rgba(250,249,247,0.75);
   border-bottom: 1px solid transparent;
   transition: border-color 0.3s var(--ease), background 0.3s var(--ease);
 }
 .nav-wrap.scrolled {
   border-bottom-color: var(--border);
-  background: rgba(10,10,10,0.85);
+  background: rgba(250,249,247,0.88);
 }
 .nav {
   display: flex;
@@ -362,7 +387,11 @@ body::before {
   font-family: var(--font-mono);
   font-weight: 600;
   font-style: normal;
-  color: var(--accent);
+  color: var(--text);
+  background-image: linear-gradient(180deg, transparent 58%, rgba(240,192,0,0.55) 58%, rgba(240,192,0,0.55) 94%, transparent 94%);
+  padding: 0 6px;
+  margin: 0 -2px;
+  border-radius: 4px;
 }
 .hero p.lead {
   font-size: 19px;
@@ -442,9 +471,7 @@ body::before {
   border: 1px solid var(--dash-line-c);
   border-radius: 14px;
   overflow: hidden;
-  box-shadow:
-    0 30px 80px rgba(0,0,0,0.5),
-    0 0 60px -18px rgba(240,192,0,0.22);
+  box-shadow: var(--shadow-lg);
   font-family: var(--font-sans);
   transform: perspective(1800px) rotateX(5deg) translateY(var(--py, 0px));
   transform-origin: center bottom;
@@ -958,14 +985,15 @@ body::before {
 .cap-card {
   border: 1px solid var(--border);
   border-radius: var(--radius-md);
-  background: transparent;
+  background: var(--bg-card);
   overflow: hidden;
+  box-shadow: var(--shadow-sm);
   transition: border-color 0.3s var(--ease), box-shadow 0.3s var(--ease), transform 0.3s var(--ease);
 }
 .cap-card:hover {
-  border-color: var(--border-accent);
+  border-color: var(--border-strong);
   transform: translateY(-3px);
-  box-shadow: 0 20px 40px -28px rgba(240,192,0,0.35), 0 0 60px -34px rgba(240,192,0,0.3);
+  box-shadow: var(--shadow-md);
 }
 .cap-frag {
   position: relative;
@@ -1046,7 +1074,7 @@ body::before {
   font-family: var(--font-mono);
   font-size: 10px;
   font-weight: 600;
-  color: var(--accent);
+  color: var(--accent-ink);
   margin-bottom: 4px;
 }
 .fd-kpi .frag-skel { height: 3px; width: 70%; }
@@ -1088,7 +1116,7 @@ body::before {
 }
 .fa-node svg {
   width: 12px; height: 12px;
-  stroke: var(--accent);
+  stroke: var(--accent-ink);
   opacity: 0;
   animation: faTick 7s linear infinite;
   animation-delay: var(--d);
@@ -1168,7 +1196,7 @@ body::before {
   font-size: 8.5px;
   font-weight: 600;
   letter-spacing: 0.14em;
-  color: var(--accent);
+  color: var(--accent-ink);
   animation: fiBadge 3.6s ease-in-out infinite;
 }
 @keyframes fiBadge {
@@ -1253,7 +1281,7 @@ body::before {
   font-size: 9px;
   line-height: 1;
   font-weight: 600;
-  color: var(--accent);
+  color: var(--accent-ink);
   white-space: nowrap;
   overflow: hidden;
   max-width: 0;
@@ -1365,7 +1393,7 @@ body::before {
   color: var(--text-dim);
   overflow: hidden;
 }
-.fp-val { color: var(--accent); font-weight: 600; }
+.fp-val { color: var(--accent-ink); font-weight: 600; }
 
 /* 6. Reporting: a report assembling itself */
 .fr-page {
@@ -1485,7 +1513,7 @@ body::before {
   font-size: 17px;
   font-weight: 700;
   letter-spacing: 0.04em;
-  color: var(--accent);
+  color: var(--accent-ink);
   position: relative;
   z-index: 1;
   padding-top: 0;
@@ -1557,11 +1585,10 @@ body::before {
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--accent);
+  color: var(--accent-ink);
 }
 .ba-arrow svg {
   width: 34px; height: 34px;
-  filter: drop-shadow(0 0 14px rgba(240,192,0,0.45));
 }
 /* Before: the cluttered rate-card spreadsheet */
 .ba-window {
@@ -1569,7 +1596,7 @@ body::before {
   border: 1px solid #e5e7eb;
   border-radius: 12px;
   overflow: hidden;
-  box-shadow: 0 24px 60px rgba(0,0,0,0.45);
+  box-shadow: var(--shadow-md);
   font-family: var(--font-mono);
   transform: translateY(var(--py, 0px));
 }
@@ -1628,10 +1655,7 @@ body::before {
   border: 1px solid var(--border);
   border-radius: var(--radius-md);
   overflow: hidden;
-  box-shadow:
-    0 24px 60px rgba(0, 0, 0, 0.55),
-    0 0 0 1px rgba(240, 192, 0, 0.06),
-    0 0 60px -20px rgba(240, 192, 0, 0.18);
+  box-shadow: var(--shadow-lg);
   transform: translateY(var(--py, 0px));
 }
 .cm-chrome {
@@ -1871,7 +1895,7 @@ body::before {
   font-size: 17px;
   font-weight: 700;
   letter-spacing: 0.04em;
-  color: var(--accent);
+  color: var(--accent-ink);
   z-index: 2;
 }
 .step h4 {
@@ -1925,9 +1949,7 @@ body::before {
   padding: 72px 0;
   border-top: 1px solid var(--border);
   border-bottom: 1px solid var(--border);
-  background:
-    linear-gradient(180deg, rgba(240,192,0,0.022), rgba(240,192,0,0.012)),
-    #0d0d0d;
+  background: #ffffff;
   position: relative;
   z-index: 2;
 }
@@ -1962,7 +1984,7 @@ body::before {
   border-radius: 12px;
   background: var(--accent-dim);
   border: 1px solid var(--border-accent);
-  color: var(--accent);
+  color: var(--accent-ink);
 }
 .trust-icon svg { width: 22px; height: 22px; }
 .trust-title {
@@ -1997,16 +2019,17 @@ body::before {
   display: flex;
   flex-direction: column;
   position: relative;
-  transition: border-color 0.3s var(--ease), transform 0.3s var(--ease);
+  box-shadow: var(--shadow-sm);
+  transition: border-color 0.3s var(--ease), transform 0.3s var(--ease), box-shadow 0.3s var(--ease);
 }
 .price:hover {
-  border-color: var(--border-accent);
+  border-color: var(--border-strong);
   transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
 }
 .price.featured {
-  border-color: rgba(240,192,0,0.6);
-  background: linear-gradient(180deg, rgba(240,192,0,0.03) 0%, var(--bg-card) 50%);
-  box-shadow: 0 24px 60px -30px rgba(0,0,0,0.6);
+  border-color: rgba(240,192,0,0.5);
+  box-shadow: var(--shadow-lg);
 }
 .price-badge {
   position: absolute;
@@ -2079,7 +2102,7 @@ body::before {
 .price-features li:last-child { border-bottom: none; }
 .price-features li svg {
   width: 14px; height: 14px;
-  color: var(--accent);
+  color: var(--accent-ink);
   flex-shrink: 0;
   margin-top: 3px;
 }
@@ -2095,11 +2118,11 @@ body::before {
   color: var(--text-dim);
 }
 .pricing-partner a {
-  color: var(--accent);
+  color: var(--accent-ink);
   border-bottom: 1px dashed var(--border-accent);
   transition: border-color 0.2s var(--ease);
 }
-.pricing-partner a:hover { border-bottom-color: var(--accent); }
+.pricing-partner a:hover { border-bottom-color: var(--accent-ink); }
 
 /* ------------------------------------------------------------------
    FAQ
@@ -2125,7 +2148,7 @@ body::before {
   font-weight: 500;
   transition: color 0.2s var(--ease);
 }
-.faq-q:hover { color: var(--accent); }
+.faq-q:hover { color: var(--accent-ink); }
 .faq-q-icon {
   flex-shrink: 0;
   width: 28px; height: 28px;
@@ -2139,8 +2162,8 @@ body::before {
 .faq-q-icon svg { width: 12px; height: 12px; }
 .faq-item.open .faq-q-icon {
   transform: rotate(45deg);
-  border-color: var(--accent);
-  color: var(--accent);
+  border-color: var(--accent-ink);
+  color: var(--accent-ink);
 }
 .faq-a {
   max-height: 0;
@@ -2166,6 +2189,7 @@ body::before {
   padding: 32px 36px;
   margin-bottom: 64px;
   max-width: 820px;
+  box-shadow: var(--shadow-sm);
 }
 .founder-label {
   font-family: var(--font-mono);
@@ -2226,7 +2250,7 @@ body::before {
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--accent);
+  color: var(--accent-ink);
   flex-shrink: 0;
 }
 .contact-method-icon svg { width: 16px; height: 16px; }
@@ -2243,12 +2267,13 @@ body::before {
   color: var(--text);
   font-weight: 500;
 }
-.contact-method a:hover .contact-method-value { color: var(--accent); }
+.contact-method a:hover .contact-method-value { color: var(--accent-ink); }
 .contact-form {
   background: var(--bg-card);
   border: 1px solid var(--border);
   border-radius: var(--radius-lg);
   padding: 36px;
+  box-shadow: var(--shadow-md);
 }
 .field { margin-bottom: 20px; }
 .field label {
@@ -2278,7 +2303,7 @@ body::before {
 .field textarea:focus {
   outline: none;
   border-color: var(--accent);
-  background: var(--bg);
+  background: #ffffff;
 }
 .field textarea { min-height: 130px; resize: vertical; }
 .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
@@ -2312,7 +2337,7 @@ body::before {
   position: fixed;
   inset: 0;
   z-index: 200;
-  background: rgba(0, 0, 0, 0.75);
+  background: rgba(22, 21, 15, 0.45);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
   align-items: center;
@@ -2332,7 +2357,7 @@ body::before {
   max-width: 460px;
   width: 100%;
   text-align: center;
-  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5);
+  box-shadow: var(--shadow-lg);
   position: relative;
   animation: modalCardIn 0.28s var(--ease);
 }
@@ -2346,7 +2371,7 @@ body::before {
   border-radius: 50%;
   background: var(--accent-dim);
   border: 1px solid var(--border-accent);
-  color: var(--accent);
+  color: var(--accent-ink);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -2414,7 +2439,7 @@ body::before {
   font-size: 14px;
   transition: color 0.2s var(--ease);
 }
-.footer-col a:hover { color: var(--accent); }
+.footer-col a:hover { color: var(--accent-ink); }
 .footer-bottom {
   padding-top: 28px;
   border-top: 1px solid var(--border);
@@ -2443,7 +2468,7 @@ body::before {
   letter-spacing: 0.05em;
   transition: color 0.2s var(--ease);
 }
-.footer-legal a:hover { color: var(--accent); }
+.footer-legal a:hover { color: var(--accent-ink); }
 .footer-follow {
   display: inline-flex;
   align-items: center;
@@ -2456,14 +2481,14 @@ body::before {
   color: var(--text-dim);
   transition: color 0.2s var(--ease);
 }
-.footer-follow:hover { color: var(--accent); }
+.footer-follow:hover { color: var(--accent-ink); }
 .footer-follow svg { width: 18px; height: 18px; display: block; }
 .form-note a {
   color: var(--text-dim);
   border-bottom: 1px dashed var(--border-strong);
   transition: color 0.2s var(--ease), border-color 0.2s var(--ease);
 }
-.form-note a:hover { color: var(--accent); border-bottom-color: var(--accent); }
+.form-note a:hover { color: var(--accent-ink); border-bottom-color: var(--accent-ink); }
 .footer-status {
   display: inline-flex;
   align-items: center;
@@ -2496,7 +2521,7 @@ body::before {
   text-align: center;
   transform: translateY(100%);
   transition: transform 0.35s var(--ease);
-  box-shadow: 0 -8px 24px rgba(0,0,0,0.35);
+  box-shadow: 0 -8px 24px rgba(22,21,15,0.2);
   letter-spacing: -0.005em;
 }
 .mobile-cta.visible { transform: translateY(0); }
@@ -2922,7 +2947,7 @@ body::before {
       </div>
       <div class="ba-panel ba-after">
         <span class="ba-tag ba-tag-after">After</span>
-        <div class="cm-window" data-parallax="0.055">
+        <div class="cm-window band-dark" data-parallax="0.055">
           <div class="cm-chrome">
             <span class="cm-dot"></span>
             <span class="cm-dot"></span>
@@ -2993,7 +3018,7 @@ body::before {
 </section>
 
 <!-- ==================== SOUND FAMILIAR ==================== -->
-<section class="section" id="pain">
+<section class="section band-dark" id="pain">
   <div class="container">
     <div class="section-head reveal">
       <div class="section-label">03 / Sound familiar?</div>
@@ -3127,7 +3152,7 @@ body::before {
         <a href="#contact" class="btn-ghost">Book a free discovery call</a>
       </div>
 
-      <div class="price featured">
+      <div class="price featured band-dark">
         <div class="price-badge">Most popular</div>
         <h3>Build + Managed Hosting</h3>
         <p class="price-sub">We build it, host it, maintain it, and improve it. You never think about servers.</p>
@@ -3149,7 +3174,7 @@ body::before {
 </section>
 
 <!-- ==================== HONEST QUALIFIER ==================== -->
-<section class="section qualifier" id="qualifier">
+<section class="section qualifier band-dark" id="qualifier">
   <div class="container">
     <div class="qualifier-inner reveal">
       <div class="qualifier-label">Honest qualifier</div>
@@ -3331,7 +3356,7 @@ body::before {
 </section>
 
 <!-- ==================== FOOTER ==================== -->
-<footer class="footer">
+<footer class="footer band-dark">
   <div class="container">
     <div class="footer-top">
       <div class="footer-brand">
