@@ -940,8 +940,7 @@ body::before {
   font-size: 12px;
   letter-spacing: 0.05em;
   color: var(--text-muted);
-  margin-top: -1.4rem;
-  margin-bottom: 1.5rem;
+  margin-top: 4px;
 }
 
 /* ------------------------------------------------------------------
@@ -2036,6 +2035,18 @@ body::before {
   justify-content: center;
   width: 100%;
 }
+.pricing-partner {
+  margin-top: 36px;
+  text-align: center;
+  font-size: 15px;
+  color: var(--text-dim);
+}
+.pricing-partner a {
+  color: var(--accent);
+  border-bottom: 1px dashed var(--border-accent);
+  transition: border-color 0.2s var(--ease);
+}
+.pricing-partner a:hover { border-bottom-color: var(--accent); }
 
 /* ------------------------------------------------------------------
    FAQ
@@ -2925,21 +2936,6 @@ body::before {
   </div>
 </section>
 
-<!-- ==================== WHO BUILDS THIS (founder note) ==================== -->
-<section class="section section-founder" id="founder">
-  <div class="container">
-    <div class="founder-note reveal">
-      <div class="founder-label">Who builds this</div>
-      <p>
-        Fifteen years inside small and mid-sized businesses. Sales, finance, operations, IT. Building the systems that fix the things slowing teams down. Margin engines, automated reporting, pricing tools, warehouse and shipping integrations, full mobile builds.
-      </p>
-      <p>
-        You&rsquo;re not talking to an agency or a developer-for-hire. You&rsquo;re talking to someone who has run the kind of process you&rsquo;re trying to fix. One point of contact. No account managers. No handoffs.
-      </p>
-    </div>
-  </div>
-</section>
-
 <!-- ==================== SOUND FAMILIAR ==================== -->
 <section class="section" id="pain">
   <div class="container">
@@ -3040,66 +3036,59 @@ body::before {
 <section class="section" id="pricing">
   <div class="container">
     <div class="section-head reveal">
-      <div class="section-label">06 / Pricing</div>
-      <h2 class="section-title">Three ways to work together.</h2>
-      <p class="section-sub">
-        Starting points. Final quote depends on what you need.
-      </p>
+      <div class="section-label">05 / Pricing</div>
+      <h2 class="section-title">Start small. Scale when it earns it.</h2>
       <p class="price-floor">Most builds land between &pound;3,000 and &pound;15,000.</p>
     </div>
     <div class="pricing-grid reveal-stagger">
 
       <div class="price">
-        <h3>Build + Managed Hosting</h3>
-        <p class="price-sub">Build it, host it, maintain it. You never think about servers.</p>
-        <div class="price-amount"><span class="from">from</span>&pound;2,500</div>
-        <div class="price-period">+ from &pound;199/mo managed hosting</div>
-        <div class="price-note">Final price quoted after discovery call based on your specific requirements.</div>
+        <h3>Discovery Audit</h3>
+        <p class="price-sub">A half-day review of one process, with a written recommendation you keep.</p>
+        <div class="price-amount">&pound;395</div>
+        <div class="price-period">Fixed fee, half day</div>
+        <div class="price-note">Fully credited against a build if you proceed.</div>
         <ul class="price-features">
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg>Fully managed hosting and database</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg>Automated backups and uptime monitoring</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg>Ongoing bug fixes and small tweaks</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg>Full custom build to spec</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg>Priority email support</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg>Cancel or migrate out anytime</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg>Half-day review of one process</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg>Written recommendation you keep</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg>Credited in full against a build</li>
         </ul>
-        <a href="#contact" class="btn-ghost">Start with a free review</a>
+        <a href="#contact" class="btn-ghost">Book a Discovery Audit</a>
       </div>
 
       <div class="price">
         <h3>One-Off Build</h3>
-        <p class="price-sub">You want it built, you want to own it, and you&rsquo;ll handle the rest.</p>
-        <div class="price-amount"><span class="from">from</span>&pound;3,500</div>
+        <p class="price-sub">We build it, you own it, and you handle the rest.</p>
+        <div class="price-amount"><span class="from">from</span>&pound;2,500</div>
         <div class="price-period">Fixed one-time fee</div>
-        <div class="price-note">Final price quoted after discovery call based on your specific requirements.</div>
+        <div class="price-note">Final price quoted after the discovery call.</div>
         <ul class="price-features">
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg>Full custom build to spec</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg>Fixed price agreed up front</li>
           <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg>You own the code outright</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg>60 days of bug-fix support after launch</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg>Deployment handover</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg>Documentation included</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg>60 days of bug-fix support</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg>Documentation and clean handover</li>
         </ul>
-        <a href="#contact" class="btn-ghost">Start with a free review</a>
+        <a href="#contact" class="btn-ghost">Book a free discovery call</a>
       </div>
 
-      <div class="price">
-        <h3>Ongoing Partnership</h3>
-        <p class="price-sub">We work with you month to month, spot the bottlenecks, and build fixes as they come up. You get ongoing technical help without hiring in-house.</p>
-        <div class="price-amount"><span class="from">from</span>&pound;1,800</div>
-        <div class="price-period">Per month, rolling</div>
-        <div class="price-note">Final price quoted after discovery call based on your specific requirements.</div>
+      <div class="price featured">
+        <div class="price-badge">Most popular</div>
+        <h3>Build + Managed Hosting</h3>
+        <p class="price-sub">We build it, host it, maintain it, and improve it. You never think about servers.</p>
+        <div class="price-amount"><span class="from">from</span>&pound;2,500</div>
+        <div class="price-period">+ from &pound;199/mo managed hosting</div>
+        <div class="price-note">Final price quoted after the discovery call.</div>
         <ul class="price-features">
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg>Process audit and improvement roadmap</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg>New tools built as opportunities arise</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg>Maintain and improve everything we&rsquo;ve built</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg>Hosting and infrastructure included</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg>Regular check-ins and progress reviews</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg>No recruitment costs, no long-term contract</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg>Full custom build to spec</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg>Hosting, backups, and monitoring</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg>Ongoing fixes and improvements</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg>Cancel or migrate out anytime</li>
         </ul>
-        <a href="#contact" class="btn-ghost">Start with a free review</a>
+        <a href="#contact" class="btn-primary" style="justify-content: center; width: 100%;">Book a free discovery call</a>
       </div>
 
     </div>
+    <p class="pricing-partner reveal">Need a fractional technical partner month to month? <a href="#contact">Ask about Ongoing Partnership</a>.</p>
   </div>
 </section>
 
@@ -3123,7 +3112,7 @@ body::before {
 <section class="section" id="faq">
   <div class="container">
     <div class="section-head reveal" style="text-align: center; margin-left: auto; margin-right: auto;">
-      <div class="section-label" style="justify-content: center;">07 / Frequently asked</div>
+      <div class="section-label" style="justify-content: center;">06 / Frequently asked</div>
       <h2 class="section-title">Questions people ask before the call.</h2>
     </div>
     <div class="faq-list reveal">
@@ -3135,18 +3124,7 @@ body::before {
           </span>
         </button>
         <div class="faq-a"><div class="faq-a-inner">
-          Most builds run between 4 and 12 weeks. A simple internal tool typically lands at 4 to 6 weeks. A multi-system platform with integrations can take 8 to 12. Genuinely complex builds may run longer. The actual timeline depends on the complexity of your requirements, and we scope it properly during the discovery call before we commit. You&rsquo;ll have a clear delivery date as part of the fixed-price quote, not a vague estimate.
-        </div></div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-q">
-          What if I don&rsquo;t know exactly what I want yet?
-          <span class="faq-q-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg>
-          </span>
-        </button>
-        <div class="faq-a"><div class="faq-a-inner">
-          That&rsquo;s what the discovery call is for. Most people come to us with a problem, not a spec. We turn it into a clear scope with you. If it turns out your problem is better solved another way, we&rsquo;ll tell you that too.
+          Most builds run between 4 and 12 weeks. A simple internal tool typically lands at 4 to 6 weeks. A multi-system platform with integrations can take 8 to 12. You&rsquo;ll have a clear delivery date as part of the fixed-price quote, not a vague estimate.
         </div></div>
       </div>
       <div class="faq-item">
@@ -3193,17 +3171,18 @@ body::before {
           Fair question. Everything we build uses standard tech that any competent developer can pick up. You get clean code, documentation, and full access. You&rsquo;re never locked in to us.
         </div></div>
       </div>
-      <div class="faq-item">
-        <button class="faq-q">
-          What tech do you build with?
-          <span class="faq-q-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg>
-          </span>
-        </button>
-        <div class="faq-a"><div class="faq-a-inner">
-          We pick tools that fit the project and that any competent developer could pick up later. Standard, well-supported technology, never whatever is trending. The goal is software you own and can hand to someone else if you ever need to. Not a black box.
-        </div></div>
-      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== WHO BUILDS THIS (founder note) ==================== -->
+<section class="section section-founder" id="founder">
+  <div class="container">
+    <div class="founder-note reveal">
+      <div class="founder-label">Who builds this</div>
+      <p>
+        Rebel Dev is run personally by Nathan, after fifteen years working inside small and mid-sized businesses. Every project is scoped, built, and supported by him directly.
+      </p>
     </div>
   </div>
 </section>
@@ -3213,7 +3192,7 @@ body::before {
   <div class="container">
     <div class="contact-grid">
       <div class="contact-info reveal">
-        <div class="section-label">08 / Get in touch</div>
+        <div class="section-label">07 / Get in touch</div>
         <h2>Tell us what&rsquo;s not working.</h2>
         <p>
           Describe the problem. We&rsquo;ll come back within one working day with an honest take on whether we can help and what it would look like.
