@@ -444,7 +444,7 @@ body::before {
     0 30px 80px rgba(0,0,0,0.5),
     0 0 60px -18px rgba(240,192,0,0.22);
   font-family: var(--font-sans);
-  transform: perspective(1800px) rotateX(5deg);
+  transform: perspective(1800px) rotateX(5deg) translateY(var(--py, 0px));
   transform-origin: center bottom;
   will-change: transform;
 }
@@ -768,7 +768,7 @@ body::before {
   color: var(--dash-ink);
 }
 @media (max-width: 720px) {
-  .dash { transform: none; }
+  .dash { transform: translateY(var(--py, 0px)); }
 }
 
 /* Morph overlay labels: amber pills positioned over the mockup itself,
@@ -1520,6 +1520,7 @@ body::before {
   overflow: hidden;
   box-shadow: 0 24px 60px rgba(0,0,0,0.45);
   font-family: var(--font-mono);
+  transform: translateY(var(--py, 0px));
 }
 .ba-chrome {
   display: flex;
@@ -1580,6 +1581,7 @@ body::before {
     0 24px 60px rgba(0, 0, 0, 0.55),
     0 0 0 1px rgba(240, 192, 0, 0.06),
     0 0 60px -20px rgba(240, 192, 0, 0.18);
+  transform: translateY(var(--py, 0px));
 }
 .cm-chrome {
   display: flex;
@@ -1861,8 +1863,7 @@ body::before {
   .step { text-align: left; }
   .step::before { top: -8px; left: -80px; margin-left: 0; }
   .step-num { top: -8px; left: -80px; right: auto; margin: 0; width: 56px; height: 56px; }
-  .step p, .step-extra { max-width: none; margin-left: 0; margin-right: 0; }
-  .step-extra { margin-top: 14px; }
+  .step p { max-width: none; margin-left: 0; margin-right: 0; }
 }
 
 /* ------------------------------------------------------------------
@@ -2541,7 +2542,8 @@ body::before {
       REBEL <span class="logo-accent">DEV</span>
     </a>
     <div class="nav-links" id="navLinks">
-      <a href="#process">Process</a>
+      <a href="#capabilities">What we build</a>
+      <a href="#process">How it works</a>
       <a href="#pricing">Pricing</a>
       <a href="#faq">FAQ</a>
       <a href="portal.html" class="nav-portal">Customer Portal</a>
@@ -2587,8 +2589,8 @@ body::before {
           </a>
         </div>
       </div>
-      <div class="hero-visual reveal" data-parallax>
-        <div class="dash" aria-hidden="true">
+      <div class="hero-visual reveal">
+        <div class="dash" aria-hidden="true" data-parallax="0.045">
           <div class="dash-chrome">
             <span class="dash-dot"></span>
             <span class="dash-dot"></span>
@@ -2841,7 +2843,7 @@ body::before {
     <div class="ba-wrap reveal" aria-hidden="true">
       <div class="ba-panel ba-before">
         <span class="ba-tag">Before</span>
-        <div class="ba-window">
+        <div class="ba-window" data-parallax="0.03">
           <div class="ba-chrome">
             <span class="ba-dot"></span>
             <span class="ba-dot"></span>
@@ -2866,7 +2868,7 @@ body::before {
       </div>
       <div class="ba-panel ba-after">
         <span class="ba-tag ba-tag-after">After</span>
-        <div class="cm-window">
+        <div class="cm-window" data-parallax="0.055">
           <div class="cm-chrome">
             <span class="cm-dot"></span>
             <span class="cm-dot"></span>
@@ -3244,15 +3246,16 @@ body::before {
         <div class="field">
           <label for="project">Project type</label>
           <select id="project" name="project" required>
+            <option>Discovery Audit</option>
             <option>Pricing engine</option>
             <option>Operations dashboard</option>
             <option>Internal CRM or quoting tool</option>
             <option>Reporting and analytics</option>
             <option>Customer portal or booking system</option>
             <option>Process automation</option>
+            <option>AI-powered tool</option>
             <option>Web or mobile app</option>
-            <option selected>Free Review</option>
-            <option>Not sure yet</option>
+            <option selected>Not sure yet</option>
           </select>
         </div>
         <div class="field">
@@ -3285,19 +3288,20 @@ body::before {
         <p>Custom software that fixes what&rsquo;s slowing your business down. A trading name of Rebel AI Ltd.</p>
       </div>
       <div class="footer-col">
-        <h5>Selected work</h5>
+        <h5>What we build</h5>
         <ul>
-          <li><a href="#work">Margin &amp; commission engines</a></li>
-          <li><a href="#work">Automated reporting</a></li>
-          <li><a href="#work">Mobile apps &amp; analytics</a></li>
-          <li><a href="#work">Custom storefronts</a></li>
+          <li><a href="#capabilities">Dashboards</a></li>
+          <li><a href="#capabilities">Process automation</a></li>
+          <li><a href="#capabilities">System integrations</a></li>
+          <li><a href="#capabilities">AI-powered tools</a></li>
+          <li><a href="#capabilities">Customer portals</a></li>
           <li><a href="#case">Case study: logistics</a></li>
         </ul>
       </div>
       <div class="footer-col">
         <h5>Company</h5>
         <ul>
-          <li><a href="#process">Process</a></li>
+          <li><a href="#process">How it works</a></li>
           <li><a href="#pricing">Pricing</a></li>
           <li><a href="#faq">FAQ</a></li>
           <li><a href="portal.html">Customer Portal</a></li>
@@ -3344,7 +3348,7 @@ body::before {
 </div>
 
 <!-- Mobile sticky CTA (< 768px only) -->
-<a href="#contact" class="mobile-cta" id="mobileCta">Request a free discovery call</a>
+<a href="#contact" class="mobile-cta" id="mobileCta">Book a free discovery call</a>
 
 <script>
 // ------------------------------------------------------------------
@@ -3385,6 +3389,33 @@ const io = new IntersectionObserver((entries) => {
 }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
 
 document.querySelectorAll('.reveal, .reveal-stagger').forEach(el => io.observe(el));
+
+// ------------------------------------------------------------------
+// SUBTLE PARALLAX ON MOCKUPS
+// Drives a --py custom property consumed inside each mockup's own
+// transform, so it never fights the reveal transitions.
+// ------------------------------------------------------------------
+(function () {
+  const els = document.querySelectorAll('[data-parallax]');
+  if (!els.length) return;
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  let ticking = false;
+  function update() {
+    ticking = false;
+    const vh = window.innerHeight;
+    els.forEach(el => {
+      const r = el.getBoundingClientRect();
+      if (r.bottom < -100 || r.top > vh + 100) return;
+      const speed = parseFloat(el.getAttribute('data-parallax')) || 0.04;
+      const offset = ((vh / 2) - (r.top + r.height / 2)) * speed;
+      el.style.setProperty('--py', offset.toFixed(1) + 'px');
+    });
+  }
+  window.addEventListener('scroll', () => {
+    if (!ticking) { ticking = true; requestAnimationFrame(update); }
+  }, { passive: true });
+  update();
+})();
 
 // ------------------------------------------------------------------
 // HERO DASHBOARD: count-up loop (synced with 18s CSS stage cycle)
