@@ -730,6 +730,85 @@ table.xl thead th:first-child, table.xl tbody th { width: 34px; }
 @media (max-width: 520px) { .steps { grid-template-columns: 1fr; } }
 
 /* ==================================================================
+   06 · PRICING
+================================================================== */
+.price-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; align-items: start; }
+.tier {
+  border: 1px solid var(--line-2); border-radius: 14px; padding: clamp(24px, 2.4vw, 34px);
+  background: var(--ink-2); display: flex; flex-direction: column; position: relative;
+  transition: transform .3s var(--ease), border-color .3s var(--ease);
+}
+.tier:hover { transform: translateY(-3px); border-color: var(--line-2); }
+.tier.featured {
+  border-color: var(--amber); background: linear-gradient(180deg, rgba(240,192,0,0.05), var(--ink-2) 40%);
+  box-shadow: 0 30px 80px -40px var(--amber-glow);
+}
+.tier-flag {
+  position: absolute; top: -1px; right: 22px; transform: translateY(-50%);
+  font-family: var(--font-mono); font-size: 0.64rem; letter-spacing: 0.12em; text-transform: uppercase;
+  background: var(--amber); color: #000; font-weight: 600; padding: 5px 12px; border-radius: 999px;
+}
+.tier-name { font-family: var(--font-mono); font-size: 0.78rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-dim); }
+.tier.featured .tier-name { color: var(--amber); }
+.tier-price { margin: 16px 0 4px; display: flex; align-items: baseline; gap: 6px; flex-wrap: wrap; }
+.tier-price .big { font-size: clamp(2.2rem, 4vw, 3rem); font-weight: 900; letter-spacing: -0.03em; }
+.tier-price .unit { font-family: var(--font-mono); font-size: 0.8rem; color: var(--text-mute); }
+.tier-price .pre { font-family: var(--font-mono); font-size: 0.78rem; color: var(--text-mute); align-self: center; }
+.tier-desc { color: var(--text-dim); font-size: 0.96rem; font-weight: 300; margin-bottom: 22px; min-height: 2.5em; }
+.tier-feats { list-style: none; display: flex; flex-direction: column; gap: 12px; margin-bottom: 26px; }
+.tier-feats li { display: flex; gap: 11px; align-items: flex-start; font-size: 0.92rem; color: var(--text-dim); font-weight: 300; }
+.tier-feats svg { width: 16px; height: 16px; flex: none; margin-top: 2px; stroke: var(--amber); }
+.tier-note {
+  font-family: var(--font-mono); font-size: 0.72rem; line-height: 1.5; color: var(--text-mute);
+  border-top: 1px dashed var(--line-2); padding-top: 14px; margin-bottom: 20px;
+}
+.tier-note b { color: var(--text-dim); font-weight: 500; }
+.tier .btn { margin-top: auto; justify-content: center; width: 100%; }
+.price-fine { margin-top: 28px; text-align: center; }
+.price-fine p { font-family: var(--font-mono); font-size: 0.8rem; color: var(--text-dim); }
+.price-fine p.small { font-size: 0.74rem; color: var(--text-mute); margin-top: 8px; }
+.price-fine a { color: var(--amber); }
+@media (max-width: 900px) { .price-grid { grid-template-columns: 1fr; max-width: 460px; margin: 0 auto; } }
+
+/* ==================================================================
+   07 · TRUST BAR
+================================================================== */
+.trust {
+  border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);
+  position: relative; z-index: 1;
+}
+.trust-inner { display: grid; grid-template-columns: repeat(3, 1fr); }
+.trust-item {
+  padding: clamp(28px, 4vh, 44px) var(--gutter); display: flex; align-items: center; gap: 14px;
+  justify-content: center; border-right: 1px solid var(--line);
+}
+.trust-item:last-child { border-right: none; }
+.trust-item svg { width: 22px; height: 22px; stroke: var(--amber); flex: none; }
+.trust-item span { font-family: var(--font-mono); font-size: 0.86rem; letter-spacing: 0.02em; color: var(--text); }
+@media (max-width: 720px) {
+  .trust-inner { grid-template-columns: 1fr; }
+  .trust-item { border-right: none; border-bottom: 1px solid var(--line); justify-content: flex-start; }
+  .trust-item:last-child { border-bottom: none; }
+}
+
+/* ==================================================================
+   08 · HONEST QUALIFIER — full-bleed interrupt
+================================================================== */
+.qualifier { position: relative; z-index: 1; padding-block: clamp(4.5rem, 11vh, 8rem); background: var(--ink-2); }
+.qual-label {
+  font-family: var(--font-mono); font-size: 0.74rem; letter-spacing: 0.16em; text-transform: uppercase;
+  color: var(--text-mute); margin-bottom: clamp(1.6rem, 4vh, 2.6rem);
+}
+.qual-line {
+  font-size: clamp(1.5rem, 4.2vw, 3rem); font-weight: 900; letter-spacing: -0.03em; line-height: 1.1;
+  color: var(--text-mute); padding: clamp(14px, 2.4vh, 22px) 0; border-bottom: 1px solid var(--line);
+  display: flex; gap: clamp(14px, 3vw, 32px); align-items: baseline; transition: color .3s var(--ease);
+}
+.qual-line:first-of-type { border-top: 1px solid var(--line); }
+.qual-line .x { color: var(--amber); font-family: var(--font-mono); font-size: 0.5em; font-weight: 500; flex: none; }
+.qual-line:hover { color: var(--text); }
+
+/* ==================================================================
    SCROLL REVEAL (shared)
 ================================================================== */
 .reveal { opacity: 0; transform: translateY(16px); transition: opacity .7s var(--ease), transform .7s var(--ease); }
@@ -1113,7 +1192,87 @@ table.xl thead th:first-child, table.xl tbody th { width: 34px; }
   </div>
 </section>
 
-<footer class="temp-foot">Sections in progress — familiar and process live.</footer>
+<!-- ==================== 06 · PRICING ==================== -->
+<section class="section" id="pricing">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">06 / Pricing</span>
+      <h2>Clear prices. No open-ended bills.</h2>
+      <p>Start small with an audit, or go straight to a build. Every option is fixed price and quoted before we start.</p>
+    </div>
+
+    <div class="price-grid reveal">
+      <!-- Tier 1 -->
+      <div class="tier">
+        <div class="tier-name">Discovery Audit</div>
+        <div class="tier-price"><span class="big">&pound;395</span><span class="unit">one process</span></div>
+        <p class="tier-desc">A day, sometimes two, spent inside one of your processes.</p>
+        <ul class="tier-feats">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5"><path d="M5 12l5 5L20 7"/></svg>Written findings you keep</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5"><path d="M5 12l5 5L20 7"/></svg>A fixed-price build recommendation</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5"><path d="M5 12l5 5L20 7"/></svg>Fully credited against any build</li>
+        </ul>
+        <a href="#contact" class="btn btn-ghost">Book a Discovery Audit</a>
+      </div>
+
+      <!-- Tier 2 (featured) -->
+      <div class="tier featured">
+        <div class="tier-flag">Most chosen</div>
+        <div class="tier-name">Build + Managed Hosting</div>
+        <div class="tier-price"><span class="pre">from</span><span class="big">&pound;2,500</span><span class="unit">+ &pound;199/mo</span></div>
+        <p class="tier-desc">12-month minimum. We host it, maintain it, and keep improving it.</p>
+        <ul class="tier-feats">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5"><path d="M5 12l5 5L20 7"/></svg>Lower build cost, because we host it</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5"><path d="M5 12l5 5L20 7"/></svg>Updates, fixes and monitoring included</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5"><path d="M5 12l5 5L20 7"/></svg>Backed up, and improved as you grow</li>
+        </ul>
+        <div class="tier-note">Why cheaper upfront? <b>We earn it back through hosting, so you do not pay for the whole build on day one.</b></div>
+        <a href="#contact" class="btn btn-primary">Book a discovery call</a>
+      </div>
+
+      <!-- Tier 3 -->
+      <div class="tier">
+        <div class="tier-name">One-Off Build</div>
+        <div class="tier-price"><span class="pre">from</span><span class="big">&pound;3,500</span></div>
+        <p class="tier-desc">Own everything outright, hosted wherever you like.</p>
+        <ul class="tier-feats">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5"><path d="M5 12l5 5L20 7"/></svg>Full source code and ownership</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5"><path d="M5 12l5 5L20 7"/></svg>60 days bug-fix support</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5"><path d="M5 12l5 5L20 7"/></svg>Host it yourself or with us</li>
+        </ul>
+        <a href="#contact" class="btn btn-ghost">Book a discovery call</a>
+      </div>
+    </div>
+
+    <div class="price-fine reveal">
+      <p>Final price quoted after the discovery call.</p>
+      <p class="small">Need a fractional technical partner month to month? <a href="#contact">Ask about Ongoing Partnership.</a></p>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== 07 · TRUST BAR ==================== -->
+<div class="trust">
+  <div class="trust-inner">
+    <div class="trust-item"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg><span>100% Confidential</span></div>
+    <div class="trust-item"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M4 7h16M4 12h16M4 17h10"/></svg><span>Fixed Price</span></div>
+    <div class="trust-item"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="9"/></svg><span>You Own Everything</span></div>
+  </div>
+</div>
+
+<!-- ==================== 08 · HONEST QUALIFIER ==================== -->
+<section class="qualifier">
+  <div class="wrap">
+    <div class="qual-label reveal">Probably not the right fit if</div>
+    <div class="reveal" data-d="1">
+      <div class="qual-line"><span class="x">01</span>You want the cheapest quote, not the right fix.</div>
+      <div class="qual-line"><span class="x">02</span>You expect software built with no input from the people who use it.</div>
+      <div class="qual-line"><span class="x">03</span>You need a quick logo and a brochure site. That is not what we do.</div>
+    </div>
+  </div>
+</section>
+
+<footer class="temp-foot">Sections in progress — pricing, trust and qualifier live.</footer>
 
 <script>
 // NAV scroll state
