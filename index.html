@@ -687,6 +687,49 @@ table.xl thead th:first-child, table.xl tbody th { width: 34px; }
 }
 
 /* ==================================================================
+   04 · SOUND FAMILIAR — recognition beat
+================================================================== */
+.pain { position: relative; z-index: 1; padding-block: var(--rhythm); }
+.pain-head { font-size: clamp(2.2rem, 6vw, 4.4rem); font-weight: 900; letter-spacing: -0.035em; margin-bottom: clamp(2rem, 5vh, 3.5rem); }
+.pain-head .amber { color: var(--amber); }
+.pain-list { border-top: 1px solid var(--line); }
+.pain-row {
+  display: flex; gap: clamp(18px, 4vw, 54px); align-items: flex-start;
+  padding: clamp(26px, 4.5vh, 46px) 4px; border-bottom: 1px solid var(--line);
+  position: relative; transition: padding-left .35s var(--ease);
+}
+.pain-row::before {
+  content: ""; position: absolute; left: -4px; top: 50%; transform: translateY(-50%) scaleY(0);
+  width: 3px; height: 62%; background: var(--amber); transition: transform .35s var(--ease); transform-origin: center;
+}
+.pain-row:hover { padding-left: 24px; }
+.pain-row:hover::before { transform: translateY(-50%) scaleY(1); }
+.pain-row .idx { font-family: var(--font-mono); font-size: 0.82rem; color: var(--text-mute); flex: none; padding-top: 0.5em; }
+.pain-row p { font-size: clamp(1.3rem, 3vw, 2.05rem); font-weight: 500; letter-spacing: -0.02em; color: var(--text-dim); line-height: 1.22; transition: color .3s var(--ease); }
+.pain-row:hover p { color: var(--text); }
+.pain-row p b { color: var(--text); font-weight: 500; }
+
+/* ==================================================================
+   05 · HOW IT WORKS — four steps
+================================================================== */
+.steps {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px;
+  background: var(--line); border: 1px solid var(--line); border-radius: 12px; overflow: hidden;
+}
+.step { background: var(--ink-2); padding: clamp(24px, 2.6vw, 36px); position: relative; transition: background .3s var(--ease); }
+.step:hover { background: var(--panel); }
+.step .snum {
+  font-family: var(--font-mono); font-size: 0.9rem; color: var(--amber);
+  display: flex; align-items: center; gap: 10px; margin-bottom: 20px;
+}
+.step .snum::after { content: ""; flex: 1; height: 1px; background: var(--line-2); }
+.step h3 { font-size: 1.28rem; letter-spacing: -0.02em; margin-bottom: 10px; }
+.step p { color: var(--text-dim); font-size: 0.95rem; font-weight: 300; }
+.step .subtle { display: block; font-family: var(--font-mono); font-size: 0.7rem; color: var(--text-mute); margin-top: 10px; letter-spacing: 0.02em; }
+@media (max-width: 900px) { .steps { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 520px) { .steps { grid-template-columns: 1fr; } }
+
+/* ==================================================================
    SCROLL REVEAL (shared)
 ================================================================== */
 .reveal { opacity: 0; transform: translateY(16px); transition: opacity .7s var(--ease), transform .7s var(--ease); }
@@ -1019,7 +1062,58 @@ table.xl thead th:first-child, table.xl tbody th { width: 34px; }
   </div>
 </section>
 
-<footer class="temp-foot">Sections in progress — proof live.</footer>
+<!-- ==================== 04 · SOUND FAMILIAR ==================== -->
+<section class="pain" id="familiar">
+  <div class="wrap">
+    <span class="eyebrow reveal">04 / Sound familiar</span>
+    <h2 class="pain-head reveal" data-d="1">If this is your business, we should <span class="amber">talk</span>.</h2>
+    <div class="pain-list reveal" data-d="2">
+      <div class="pain-row"><span class="idx">01</span><p>The whole business runs on <b>one spreadsheet</b>, and one person who understands it.</p></div>
+      <div class="pain-row"><span class="idx">02</span><p>Your team retypes the same numbers into <b>three different systems</b> every day.</p></div>
+      <div class="pain-row"><span class="idx">03</span><p>You cannot get a straight answer without someone <b>building a report by hand</b>.</p></div>
+      <div class="pain-row"><span class="idx">04</span><p>Every new hire spends weeks learning <b>the workarounds</b> instead of doing the job.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== 05 · HOW IT WORKS ==================== -->
+<section class="section" id="process">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">05 / How it works</span>
+      <h2>Four steps from mess to working software.</h2>
+      <p>No open-ended projects and no surprises. You know the price and the plan before we build anything.</p>
+    </div>
+    <div class="steps reveal">
+      <div class="step">
+        <div class="snum">01</div>
+        <h3>Discovery call</h3>
+        <p>We dig into how your business actually works and where the time goes.</p>
+        <span class="subtle">Site visits UK-wide</span>
+      </div>
+      <div class="step">
+        <div class="snum">02</div>
+        <h3>Fixed-price scope</h3>
+        <p>A clear plan and a fixed price. You approve it before a line is written.</p>
+        <span class="subtle">No open-ended bills</span>
+      </div>
+      <div class="step">
+        <div class="snum">03</div>
+        <h3>Build and iterate</h3>
+        <p>We build in the open and show you working software as it takes shape.</p>
+        <span class="subtle">You see it early</span>
+      </div>
+      <div class="step">
+        <div class="snum">04</div>
+        <h3>Launch and support</h3>
+        <p>We put it live, train your team, and stay on to keep it running.</p>
+        <span class="subtle">We do not disappear</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="temp-foot">Sections in progress — familiar and process live.</footer>
 
 <script>
 // NAV scroll state
