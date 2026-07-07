@@ -964,8 +964,9 @@ details.faq[open] .faq-answer { animation: faqOpen .4s var(--ease); }
   .dt tr { opacity: 1 !important; transform: none !important; }
   .scan { display: none; }
   .reveal { opacity: 1; transform: none; }
-  /* reduced-motion: show finished app, spreadsheet as small "before" inset */
-  .stage.rm .sheet { inset: auto 14px 14px auto; width: 42%; max-width: 300px; height: 46%; z-index: 8;
+  /* reduced-motion: show finished app, spreadsheet as small "before" inset
+     (bottom-left, clear of the quoted-rate figure in the right card) */
+  .stage.rm .sheet { inset: auto auto 14px 14px; width: 40%; max-width: 288px; height: 44%; z-index: 8;
     border: 1px solid var(--line-2); border-radius: 8px; overflow: hidden; box-shadow: 0 16px 40px rgba(0,0,0,0.6); }
   .stage.rm .sheet::after { content: "before"; position: absolute; top: 0; left: 0; z-index: 9;
     font-family: var(--font-mono); font-size: 0.58rem; letter-spacing: 0.14em; text-transform: uppercase;
@@ -1010,7 +1011,7 @@ details.faq[open] .faq-answer { animation: faqOpen .4s var(--ease); }
 <header class="hero" id="top">
   <div class="bleed">
     <div class="hero-copy">
-      <span class="eyebrow">Custom software · UK</span>
+      <span class="eyebrow">01 / Custom software · UK</span>
       <h1>Your business has outgrown its <span class="kw">spreadsheets</span>.</h1>
       <p class="hero-sub">Spreadsheets are usually just the symptom. We design and build custom software for small and mid-sized businesses: <b>reporting tools, automations, AI assistants, dashboards, customer portals.</b> If your business could use it, we can build it. Fixed price. You own it.</p>
       <div class="hero-cta">
@@ -1420,7 +1421,7 @@ details.faq[open] .faq-answer { animation: faqOpen .4s var(--ease); }
   <div class="wrap">
     <div class="faq-wrap">
       <div class="section-head reveal" style="margin-bottom:0">
-        <span class="eyebrow">09 / FAQ</span>
+        <span class="eyebrow">07 / FAQ</span>
         <h2>Straight answers.</h2>
         <p>The questions owners actually ask before they start.</p>
       </div>
@@ -1440,7 +1441,7 @@ details.faq[open] .faq-answer { animation: faqOpen .4s var(--ease); }
         </details>
         <details class="faq">
           <summary><span class="q-idx">04</span>Why not just hire a freelancer?<svg class="chev" viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></summary>
-          <div class="faq-answer">A freelancer disappears when the project ends. We build it, host it, and stay on to fix and improve it, so it keeps working long after launch.</div>
+          <div class="faq-answer">A freelancer disappears when the project ends. We build it, and can host it and stay on to fix and improve it if you want us to, so it keeps working long after launch.</div>
         </details>
         <details class="faq">
           <summary><span class="q-idx">05</span>What happens if you disappear?<svg class="chev" viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></summary>
@@ -1469,7 +1470,7 @@ details.faq[open] .faq-answer { animation: faqOpen .4s var(--ease); }
   <div class="wrap">
     <div class="contact-grid">
       <div class="reveal">
-        <span class="eyebrow">11 / Get in touch</span>
+        <span class="eyebrow">08 / Get in touch</span>
         <h2 style="font-size:clamp(2rem,4.4vw,3.4rem);margin-top:1.1rem;letter-spacing:-0.03em;">Tell us what is slowing you down.</h2>
         <p style="color:var(--text-dim);font-size:clamp(1.02rem,1.5vw,1.18rem);margin-top:1rem;max-width:46ch;font-weight:300;">Send us the process that drives you mad. We will tell you honestly whether software fixes it.</p>
         <div class="contact-methods">
